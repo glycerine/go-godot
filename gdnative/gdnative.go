@@ -17,8 +17,6 @@ import (
 	"fmt"
 	"log"
 	"unsafe"
-
-	"github.com/vitaminwater/cgo.wchar"
 )
 
 // debug determines whether or not we should log messages
@@ -265,7 +263,7 @@ func (u Uint64T) getBase() C.uint64_t {
 
 // newWcharT will convert the given C.wchar_t into a Go string
 func newWcharT(str *C.wchar_t) WcharT {
-	goStr, err := wchar.WcharStringPtrToGoString(unsafe.Pointer(str))
+	goStr, err := WcharTToString(str)
 	if err != nil {
 		log.Println("Error converting wchar_t to Go string:", err)
 	}
@@ -274,7 +272,7 @@ func newWcharT(str *C.wchar_t) WcharT {
 
 // newWcharTWithLength will convert the given C.wchar_t into a Go string
 func newWcharTWithLength(str *C.wchar_t, length int) WcharT {
-	goStr, err := wchar.WcharStringPtrNToGoString(unsafe.Pointer(str), length)
+	goStr, err := WcharTNIToString(str, length)
 	if err != nil {
 		log.Println("Error converting wchar_t to Go string:", err)
 	}
@@ -288,12 +286,8 @@ func newWcharTWithLength(str *C.wchar_t, length int) WcharT {
 type WcharT string
 
 func (w WcharT) getBase() *C.wchar_t {
-	wcharString, err := wchar.FromGoString(string(w))
-	if err != nil {
-		log.Println("Error decoding WcharT:", err)
-	}
-
-	return (*C.wchar_t)(wcharString.Pointer())
+	wcharString, _ := StringToWcharT(string(w))
+	return wcharString
 }
 
 func (w WcharT) AsString() String {

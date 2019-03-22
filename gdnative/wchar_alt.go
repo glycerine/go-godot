@@ -46,6 +46,10 @@ func WcharTToString(s *C.wchar_t) (string, error) {
 	panic("?!!")
 }
 
+func WcharTNIToString(s *C.wchar_t, size int) (string, error) {
+	return WcharTNToString(s, C.size_t(size))
+}
+
 func WcharTNToString(s *C.wchar_t, size C.size_t) (string, error) {
 	switch SIZEOF_WCHAR_T {
 	case 2:
