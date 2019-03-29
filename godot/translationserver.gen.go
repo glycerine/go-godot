@@ -27,13 +27,13 @@ func newSingletonTranslationServer() *translationServer {
 }
 
 /*
-
- */
+   Server that manages all translations. Translations can be set to it and removed from it.
+*/
 var TranslationServer = newSingletonTranslationServer()
 
 /*
-
- */
+Server that manages all translations. Translations can be set to it and removed from it.
+*/
 type translationServer struct {
 	Object
 	owner       gdnative.Object
@@ -57,7 +57,7 @@ func (o *translationServer) BaseClass() string {
 }
 
 /*
-
+        Adds a [Translation] resource.
 	Args: [{ false translation Translation}], Returns: void
 */
 func (o *translationServer) AddTranslation(translation TranslationImplementer) {
@@ -79,7 +79,7 @@ func (o *translationServer) AddTranslation(translation TranslationImplementer) {
 }
 
 /*
-
+        Clears the server from all translations.
 	Args: [], Returns: void
 */
 func (o *translationServer) Clear() {
@@ -100,7 +100,7 @@ func (o *translationServer) Clear() {
 }
 
 /*
-
+        Returns the current locale of the game.
 	Args: [], Returns: String
 */
 func (o *translationServer) GetLocale() gdnative.String {
@@ -124,7 +124,7 @@ func (o *translationServer) GetLocale() gdnative.String {
 }
 
 /*
-
+        Returns a locale's language and its variant (e.g. "en_US" would return "English (United States)").
 	Args: [{ false locale String}], Returns: String
 */
 func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.String {
@@ -149,7 +149,7 @@ func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.Strin
 }
 
 /*
-
+        Removes the given translation from the server.
 	Args: [{ false translation Translation}], Returns: void
 */
 func (o *translationServer) RemoveTranslation(translation TranslationImplementer) {
@@ -171,7 +171,7 @@ func (o *translationServer) RemoveTranslation(translation TranslationImplementer
 }
 
 /*
-
+        Sets the locale of the game.
 	Args: [{ false locale String}], Returns: void
 */
 func (o *translationServer) SetLocale(locale gdnative.String) {
@@ -193,7 +193,7 @@ func (o *translationServer) SetLocale(locale gdnative.String) {
 }
 
 /*
-
+        Returns the current locale's translation for the given message (key).
 	Args: [{ false message String}], Returns: String
 */
 func (o *translationServer) Translate(message gdnative.String) gdnative.String {

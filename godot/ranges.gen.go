@@ -176,6 +176,52 @@ func (o *Range) GetValue() gdnative.Real {
         Undocumented
 	Args: [], Returns: bool
 */
+func (o *Range) IsGreaterAllowed() gdnative.Bool {
+	//log.Println("Calling Range.IsGreaterAllowed()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Range", "is_greater_allowed")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *Range) IsLesserAllowed() gdnative.Bool {
+	//log.Println("Calling Range.IsLesserAllowed()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Range", "is_lesser_allowed")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
 func (o *Range) IsRatioExp() gdnative.Bool {
 	//log.Println("Calling Range.IsRatioExp()")
 
@@ -216,6 +262,48 @@ func (o *Range) IsUsingRoundedValues() gdnative.Bool {
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
 	return ret
+}
+
+/*
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
+*/
+func (o *Range) SetAllowGreater(allow gdnative.Bool) {
+	//log.Println("Calling Range.SetAllowGreater()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Range", "set_allow_greater")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
+*/
+func (o *Range) SetAllowLesser(allow gdnative.Bool) {
+	//log.Println("Calling Range.SetAllowLesser()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Range", "set_allow_lesser")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
 }
 
 /*
@@ -387,7 +475,7 @@ func (o *Range) SetValue(value gdnative.Real) {
 }
 
 /*
-        Binds two Ranges together along with any Ranges previously grouped with either of them. When any of Range's member variables change, it will share the new value with all other Ranges in its group.
+        Binds two ranges together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
 	Args: [{ false with Object}], Returns: void
 */
 func (o *Range) Share(with ObjectImplementer) {
@@ -408,7 +496,7 @@ func (o *Range) Share(with ObjectImplementer) {
 }
 
 /*
-        Stop Range from sharing its member variables with any other Range.
+        Stop range from sharing its member variables with any other.
 	Args: [], Returns: void
 */
 func (o *Range) Unshare() {
@@ -437,8 +525,12 @@ type RangeImplementer interface {
 	GetPage() gdnative.Real
 	GetStep() gdnative.Real
 	GetValue() gdnative.Real
+	IsGreaterAllowed() gdnative.Bool
+	IsLesserAllowed() gdnative.Bool
 	IsRatioExp() gdnative.Bool
 	IsUsingRoundedValues() gdnative.Bool
+	SetAllowGreater(allow gdnative.Bool)
+	SetAllowLesser(allow gdnative.Bool)
 	SetAsRatio(value gdnative.Real)
 	SetExpRatio(enabled gdnative.Bool)
 	SetMax(maximum gdnative.Real)

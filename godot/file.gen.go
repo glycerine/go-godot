@@ -43,7 +43,7 @@ func new_FileFromPointer(ptr gdnative.Pointer) File {
 }
 
 /*
-File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example. Here's a sample on how to write and read from a file: [codeblock] func save(content): var file = File.new() file.open("user://save_game.dat", file.WRITE) file.store_string(content) file.close() func load(): var file = File.new() file.open("user://save_game.dat", file.READ) var content = file.get_as_text() file.close() return content [/codeblock]
+File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example. Here's a sample on how to write and read from a file: [codeblock] func save(content): var file = File.new() file.open("user://save_game.dat", File.WRITE) file.store_string(content) file.close() func load(): var file = File.new() file.open("user://save_game.dat", File.READ) var content = file.get_as_text() file.close() return content [/codeblock]
 */
 type File struct {
 	Reference
@@ -495,6 +495,52 @@ func (o *File) GetPascalString() gdnative.String {
 
 /*
         Undocumented
+	Args: [], Returns: String
+*/
+func (o *File) GetPath() gdnative.String {
+	//log.Println("Calling _File.GetPath()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_File", "get_path")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
+func (o *File) GetPathAbsolute() gdnative.String {
+	//log.Println("Calling _File.GetPathAbsolute()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_File", "get_path_absolute")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [], Returns: int
 */
 func (o *File) GetPosition() gdnative.Int {
@@ -882,6 +928,28 @@ func (o *File) StoreBuffer(buffer gdnative.PoolByteArray) {
 
 /*
         Undocumented
+	Args: [{ false values PoolStringArray} {, true delim String}], Returns: void
+*/
+func (o *File) StoreCsvLine(values gdnative.PoolStringArray, delim gdnative.String) {
+	//log.Println("Calling _File.StoreCsvLine()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromPoolStringArray(values)
+	ptrArguments[1] = gdnative.NewPointerFromString(delim)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_File", "store_csv_line")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false value float}], Returns: void
 */
 func (o *File) StoreDouble(value gdnative.Real) {
@@ -1049,6 +1117,8 @@ type FileImplementer interface {
 	GetMd5(path gdnative.String) gdnative.String
 	GetModifiedTime(file gdnative.String) gdnative.Int
 	GetPascalString() gdnative.String
+	GetPath() gdnative.String
+	GetPathAbsolute() gdnative.String
 	GetPosition() gdnative.Int
 	GetReal() gdnative.Real
 	GetSha256(path gdnative.String) gdnative.String
@@ -1062,6 +1132,7 @@ type FileImplementer interface {
 	Store64(value gdnative.Int)
 	Store8(value gdnative.Int)
 	StoreBuffer(buffer gdnative.PoolByteArray)
+	StoreCsvLine(values gdnative.PoolStringArray, delim gdnative.String)
 	StoreDouble(value gdnative.Real)
 	StoreFloat(value gdnative.Real)
 	StoreLine(line gdnative.String)

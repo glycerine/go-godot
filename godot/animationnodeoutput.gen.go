@@ -13,29 +13,29 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
-//func NewResourceImporterWebmFromPointer(ptr gdnative.Pointer) ResourceImporterWebm {
-func newResourceImporterWebmFromPointer(ptr gdnative.Pointer) ResourceImporterWebm {
+//func NewAnimationNodeOutputFromPointer(ptr gdnative.Pointer) AnimationNodeOutput {
+func newAnimationNodeOutputFromPointer(ptr gdnative.Pointer) AnimationNodeOutput {
 	owner := gdnative.NewObjectFromPointer(ptr)
-	obj := ResourceImporterWebm{}
+	obj := AnimationNodeOutput{}
 	obj.SetBaseObject(owner)
 
 	return obj
 }
 
 /*
-Undocumented
-*/
-type ResourceImporterWebm struct {
-	ResourceImporter
+
+ */
+type AnimationNodeOutput struct {
+	AnimationNode
 	owner gdnative.Object
 }
 
-func (o *ResourceImporterWebm) BaseClass() string {
-	return "ResourceImporterWebm"
+func (o *AnimationNodeOutput) BaseClass() string {
+	return "AnimationNodeOutput"
 }
 
-// ResourceImporterWebmImplementer is an interface that implements the methods
-// of the ResourceImporterWebm class.
-type ResourceImporterWebmImplementer interface {
-	ResourceImporterImplementer
+// AnimationNodeOutputImplementer is an interface that implements the methods
+// of the AnimationNodeOutput class.
+type AnimationNodeOutputImplementer interface {
+	AnimationNodeImplementer
 }

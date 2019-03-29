@@ -20,8 +20,9 @@ const (
 	TextEditMenuClear     TextEditMenuItems = 3
 	TextEditMenuCopy      TextEditMenuItems = 1
 	TextEditMenuCut       TextEditMenuItems = 0
-	TextEditMenuMax       TextEditMenuItems = 6
+	TextEditMenuMax       TextEditMenuItems = 7
 	TextEditMenuPaste     TextEditMenuItems = 2
+	TextEditMenuRedo      TextEditMenuItems = 6
 	TextEditMenuSelectAll TextEditMenuItems = 4
 	TextEditMenuUndo      TextEditMenuItems = 5
 )
@@ -190,6 +191,26 @@ func (o *TextEdit) X_ToggleDrawCaret() {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "_toggle_draw_caret")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [], Returns: void
+*/
+func (o *TextEdit) X_UpdateWrapAt() {
+	//log.Println("Calling TextEdit.X_UpdateWrapAt()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_update_wrap_at")
 
 	// Call the parent method.
 	// void
@@ -550,16 +571,17 @@ func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.
 
 /*
 
-	Args: [{ false line int} {True true adjust_viewport bool} {True true can_be_hidden bool}], Returns: void
+	Args: [{ false line int} {True true adjust_viewport bool} {True true can_be_hidden bool} {0 true wrap_index int}], Returns: void
 */
-func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool) {
+func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool, wrapIndex gdnative.Int) {
 	//log.Println("Calling TextEdit.CursorSetLine()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromInt(line)
 	ptrArguments[1] = gdnative.NewPointerFromBool(adjustViewport)
 	ptrArguments[2] = gdnative.NewPointerFromBool(canBeHidden)
+	ptrArguments[3] = gdnative.NewPointerFromInt(wrapIndex)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_line")
@@ -650,6 +672,53 @@ func (o *TextEdit) FoldLine(line gdnative.Int) {
 	retPtr := gdnative.NewEmptyVoid()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
+}
+
+/*
+        Return an array containing the line number of each breakpoint.
+	Args: [], Returns: Array
+*/
+func (o *TextEdit) GetBreakpoints() gdnative.Array {
+	//log.Println("Calling TextEdit.GetBreakpoints()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_breakpoints")
+
+	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false keyword String}], Returns: Color
+*/
+func (o *TextEdit) GetKeywordColor(keyword gdnative.String) gdnative.Color {
+	//log.Println("Calling TextEdit.GetKeywordColor()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(keyword)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_keyword_color")
+
+	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -921,6 +990,30 @@ func (o *TextEdit) GetWordUnderCursor() gdnative.String {
 }
 
 /*
+
+	Args: [{ false keyword String}], Returns: bool
+*/
+func (o *TextEdit) HasKeywordColor(keyword gdnative.String) gdnative.Bool {
+	//log.Println("Calling TextEdit.HasKeywordColor()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(keyword)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "has_keyword_color")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
         Insert a given text at the cursor position.
 	Args: [{ false text String}], Returns: void
 */
@@ -939,6 +1032,29 @@ func (o *TextEdit) InsertTextAtCursor(text gdnative.String) {
 	retPtr := gdnative.NewEmptyVoid()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *TextEdit) IsBreakpointGutterEnabled() gdnative.Bool {
+	//log.Println("Calling TextEdit.IsBreakpointGutterEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_breakpoint_gutter_enabled")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -1246,14 +1362,14 @@ func (o *TextEdit) IsSyntaxColoringEnabled() gdnative.Bool {
         Undocumented
 	Args: [], Returns: bool
 */
-func (o *TextEdit) IsWrapping() gdnative.Bool {
-	//log.Println("Calling TextEdit.IsWrapping()")
+func (o *TextEdit) IsWrapEnabled() gdnative.Bool {
+	//log.Println("Calling TextEdit.IsWrapEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
 
 	// Get the method bind
-	methodBind := gdnative.NewMethodBind("TextEdit", "is_wrapping")
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_wrap_enabled")
 
 	// Call the parent method.
 	// bool
@@ -1327,6 +1443,26 @@ func (o *TextEdit) Redo() {
 }
 
 /*
+        Removes all the breakpoints (without firing "breakpoint_toggled" signal).
+	Args: [], Returns: void
+*/
+func (o *TextEdit) RemoveBreakpoints() {
+	//log.Println("Calling TextEdit.RemoveBreakpoints()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "remove_breakpoints")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Perform a search inside the text. Search flags can be specified in the SEARCH_* enum.
 	Args: [{ false key String} { false flags int} { false from_line int} { false from_column int}], Returns: PoolIntArray
 */
@@ -1389,6 +1525,27 @@ func (o *TextEdit) SelectAll() {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "select_all")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
+*/
+func (o *TextEdit) SetBreakpointGutterEnabled(enable gdnative.Bool) {
+	//log.Println("Calling TextEdit.SetBreakpointGutterEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_breakpoint_gutter_enabled")
 
 	// Call the parent method.
 	// void
@@ -1675,15 +1832,15 @@ func (o *TextEdit) SetVScrollSpeed(speed gdnative.Real) {
         Undocumented
 	Args: [{ false enable bool}], Returns: void
 */
-func (o *TextEdit) SetWrap(enable gdnative.Bool) {
-	//log.Println("Calling TextEdit.SetWrap()")
+func (o *TextEdit) SetWrapEnabled(enable gdnative.Bool) {
+	//log.Println("Calling TextEdit.SetWrapEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
 	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
 
 	// Get the method bind
-	methodBind := gdnative.NewMethodBind("TextEdit", "set_wrap")
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_wrap_enabled")
 
 	// Call the parent method.
 	// void
@@ -1784,6 +1941,7 @@ type TextEditImplementer interface {
 	X_ScrollMoved(arg0 gdnative.Real)
 	X_TextChangedEmit()
 	X_ToggleDrawCaret()
+	X_UpdateWrapAt()
 	X_VScrollInput()
 	AddColorRegion(beginKey gdnative.String, endKey gdnative.String, color gdnative.Color, lineOnly gdnative.Bool)
 	AddKeywordColor(keyword gdnative.String, color gdnative.Color)
@@ -1800,11 +1958,13 @@ type TextEditImplementer interface {
 	CursorSetBlinkSpeed(blinkSpeed gdnative.Real)
 	CursorSetBlockMode(enable gdnative.Bool)
 	CursorSetColumn(column gdnative.Int, adjustViewport gdnative.Bool)
-	CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool)
+	CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool, wrapIndex gdnative.Int)
 	Cut()
 	Deselect()
 	FoldAllLines()
 	FoldLine(line gdnative.Int)
+	GetBreakpoints() gdnative.Array
+	GetKeywordColor(keyword gdnative.String) gdnative.Color
 	GetLine(line gdnative.Int) gdnative.String
 	GetLineCount() gdnative.Int
 	GetMenu() PopupMenuImplementer
@@ -1816,7 +1976,9 @@ type TextEditImplementer interface {
 	GetText() gdnative.String
 	GetVScrollSpeed() gdnative.Real
 	GetWordUnderCursor() gdnative.String
+	HasKeywordColor(keyword gdnative.String) gdnative.Bool
 	InsertTextAtCursor(text gdnative.String)
+	IsBreakpointGutterEnabled() gdnative.Bool
 	IsContextMenuEnabled() gdnative.Bool
 	IsFolded(line gdnative.Int) gdnative.Bool
 	IsHidingEnabled() gdnative.Int
@@ -1830,13 +1992,15 @@ type TextEditImplementer interface {
 	IsShowLineNumbersEnabled() gdnative.Bool
 	IsSmoothScrollEnabled() gdnative.Bool
 	IsSyntaxColoringEnabled() gdnative.Bool
-	IsWrapping() gdnative.Bool
+	IsWrapEnabled() gdnative.Bool
 	MenuOption(option gdnative.Int)
 	Paste()
 	Redo()
+	RemoveBreakpoints()
 	Search(key gdnative.String, flags gdnative.Int, fromLine gdnative.Int, fromColumn gdnative.Int) gdnative.PoolIntArray
 	Select(fromLine gdnative.Int, fromColumn gdnative.Int, toLine gdnative.Int, toColumn gdnative.Int)
 	SelectAll()
+	SetBreakpointGutterEnabled(enable gdnative.Bool)
 	SetContextMenuEnabled(enable gdnative.Bool)
 	SetHidingEnabled(enable gdnative.Int)
 	SetHighlightAllOccurrences(enable gdnative.Bool)
@@ -1850,7 +2014,7 @@ type TextEditImplementer interface {
 	SetSyntaxColoring(enable gdnative.Bool)
 	SetText(text gdnative.String)
 	SetVScrollSpeed(speed gdnative.Real)
-	SetWrap(enable gdnative.Bool)
+	SetWrapEnabled(enable gdnative.Bool)
 	ToggleFoldLine(line gdnative.Int)
 	Undo()
 	UnfoldLine(line gdnative.Int)

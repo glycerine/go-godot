@@ -596,7 +596,7 @@ func (o *Area2D) IsOverridingAudioBus() gdnative.Bool {
 }
 
 /*
-        If [code]true[/code] the given area overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code], the given area overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false area Object}], Returns: bool
 */
 func (o *Area2D) OverlapsArea(area ObjectImplementer) gdnative.Bool {
@@ -620,7 +620,7 @@ func (o *Area2D) OverlapsArea(area ObjectImplementer) gdnative.Bool {
 }
 
 /*
-        If [code]true[/code] the given body overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code], the given body overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false body Object}], Returns: bool
 */
 func (o *Area2D) OverlapsBody(body ObjectImplementer) gdnative.Bool {

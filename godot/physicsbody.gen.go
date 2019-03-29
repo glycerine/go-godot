@@ -100,6 +100,29 @@ func (o *PhysicsBody) AddCollisionExceptionWith(body ObjectImplementer) {
 }
 
 /*
+        Returns an array of nodes that were added as collision exceptions for this body.
+	Args: [], Returns: Array
+*/
+func (o *PhysicsBody) GetCollisionExceptions() gdnative.Array {
+	//log.Println("Calling PhysicsBody.GetCollisionExceptions()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "get_collision_exceptions")
+
+	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
+	return ret
+}
+
+/*
         Undocumented
 	Args: [], Returns: int
 */
@@ -123,7 +146,7 @@ func (o *PhysicsBody) GetCollisionLayer() gdnative.Int {
 }
 
 /*
-
+        Returns an individual bit on the collision mask.
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *PhysicsBody) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
@@ -170,7 +193,7 @@ func (o *PhysicsBody) GetCollisionMask() gdnative.Int {
 }
 
 /*
-
+        Returns an individual bit on the collision mask.
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *PhysicsBody) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
@@ -236,7 +259,7 @@ func (o *PhysicsBody) SetCollisionLayer(layer gdnative.Int) {
 }
 
 /*
-
+        Sets individual bits on the layer mask. Use this if you only need to change one layer's value.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *PhysicsBody) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
@@ -279,7 +302,7 @@ func (o *PhysicsBody) SetCollisionMask(mask gdnative.Int) {
 }
 
 /*
-
+        Sets individual bits on the collision mask. Use this if you only need to change one layer's value.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *PhysicsBody) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
@@ -307,6 +330,7 @@ type PhysicsBodyImplementer interface {
 	X_GetLayers() gdnative.Int
 	X_SetLayers(mask gdnative.Int)
 	AddCollisionExceptionWith(body ObjectImplementer)
+	GetCollisionExceptions() gdnative.Array
 	GetCollisionLayer() gdnative.Int
 	GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool
 	GetCollisionMask() gdnative.Int

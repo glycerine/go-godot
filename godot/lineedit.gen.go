@@ -161,7 +161,7 @@ func (o *LineEdit) AppendAtCursor(text gdnative.String) {
 }
 
 /*
-        Erases the [LineEdit] text.
+        Erases the [code]LineEdit[/code] text.
 	Args: [], Returns: void
 */
 func (o *LineEdit) Clear() {
@@ -381,7 +381,7 @@ func (o *LineEdit) GetMaxLength() gdnative.Int {
 }
 
 /*
-        Returns the [PopupMenu] of this [code]LineEdit[/code]. By default, this menu is displayed when right-clicking on the [LineEdit].
+        Returns the [PopupMenu] of this [code]LineEdit[/code]. By default, this menu is displayed when right-clicking on the [code]LineEdit[/code].
 	Args: [], Returns: PopupMenu
 */
 func (o *LineEdit) GetMenu() PopupMenuImplementer {
@@ -467,6 +467,29 @@ func (o *LineEdit) GetPlaceholderAlpha() gdnative.Real {
         Undocumented
 	Args: [], Returns: String
 */
+func (o *LineEdit) GetSecretCharacter() gdnative.String {
+	//log.Println("Calling LineEdit.GetSecretCharacter()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineEdit", "get_secret_character")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
 func (o *LineEdit) GetText() gdnative.String {
 	//log.Println("Calling LineEdit.GetText()")
 
@@ -483,6 +506,29 @@ func (o *LineEdit) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *LineEdit) IsClearButtonEnabled() gdnative.Bool {
+	//log.Println("Calling LineEdit.IsClearButtonEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineEdit", "is_clear_button_enabled")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 	return ret
 }
 
@@ -577,7 +623,7 @@ func (o *LineEdit) MenuOption(option gdnative.Int) {
 }
 
 /*
-        Selects characters inside [LineEdit] between [code]from[/code] and [code]to[/code]. By default [code]from[/code] is at the beginning and [code]to[/code] at the end. [codeblock] text = "Welcome" select() # Welcome select(4) # ome select(2, 5) # lco [/codeblock]
+        Selects characters inside [code]LineEdit[/code] between [code]from[/code] and [code]to[/code]. By default [code]from[/code] is at the beginning and [code]to[/code] at the end. [codeblock] text = "Welcome" select() # Welcome select(4) # ome select(2, 5) # lco [/codeblock]
 	Args: [{0 true from int} {-1 true to int}], Returns: void
 */
 func (o *LineEdit) Select(from gdnative.Int, to gdnative.Int) {
@@ -631,6 +677,27 @@ func (o *LineEdit) SetAlign(align gdnative.Int) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("LineEdit", "set_align")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
+*/
+func (o *LineEdit) SetClearButtonEnabled(enable gdnative.Bool) {
+	//log.Println("Calling LineEdit.SetClearButtonEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineEdit", "set_clear_button_enabled")
 
 	// Call the parent method.
 	// void
@@ -809,6 +876,27 @@ func (o *LineEdit) SetSecret(enabled gdnative.Bool) {
 
 /*
         Undocumented
+	Args: [{ false character String}], Returns: void
+*/
+func (o *LineEdit) SetSecretCharacter(character gdnative.String) {
+	//log.Println("Calling LineEdit.SetSecretCharacter()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(character)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineEdit", "set_secret_character")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false text String}], Returns: void
 */
 func (o *LineEdit) SetText(text gdnative.String) {
@@ -848,7 +936,9 @@ type LineEditImplementer interface {
 	GetMenu() PopupMenuImplementer
 	GetPlaceholder() gdnative.String
 	GetPlaceholderAlpha() gdnative.Real
+	GetSecretCharacter() gdnative.String
 	GetText() gdnative.String
+	IsClearButtonEnabled() gdnative.Bool
 	IsContextMenuEnabled() gdnative.Bool
 	IsEditable() gdnative.Bool
 	IsSecret() gdnative.Bool
@@ -856,6 +946,7 @@ type LineEditImplementer interface {
 	Select(from gdnative.Int, to gdnative.Int)
 	SelectAll()
 	SetAlign(align gdnative.Int)
+	SetClearButtonEnabled(enable gdnative.Bool)
 	SetContextMenuEnabled(enable gdnative.Bool)
 	SetCursorPosition(position gdnative.Int)
 	SetEditable(enabled gdnative.Bool)
@@ -864,5 +955,6 @@ type LineEditImplementer interface {
 	SetPlaceholder(text gdnative.String)
 	SetPlaceholderAlpha(alpha gdnative.Real)
 	SetSecret(enabled gdnative.Bool)
+	SetSecretCharacter(character gdnative.String)
 	SetText(text gdnative.String)
 }

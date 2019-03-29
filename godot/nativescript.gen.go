@@ -38,6 +38,29 @@ func (o *NativeScript) BaseClass() string {
         Undocumented
 	Args: [], Returns: String
 */
+func (o *NativeScript) GetClassDocumentation() gdnative.String {
+	//log.Println("Calling NativeScript.GetClassDocumentation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_class_documentation")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
 func (o *NativeScript) GetClassName() gdnative.String {
 	//log.Println("Calling NativeScript.GetClassName()")
 
@@ -92,6 +115,124 @@ func (o *NativeScript) GetLibrary() GDNativeLibraryImplementer {
 	}
 
 	return &ret
+}
+
+/*
+        Undocumented
+	Args: [{ false method String}], Returns: String
+*/
+func (o *NativeScript) GetMethodDocumentation(method gdnative.String) gdnative.String {
+	//log.Println("Calling NativeScript.GetMethodDocumentation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_method_documentation")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [{ false path String}], Returns: String
+*/
+func (o *NativeScript) GetPropertyDocumentation(path gdnative.String) gdnative.String {
+	//log.Println("Calling NativeScript.GetPropertyDocumentation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_property_documentation")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
+func (o *NativeScript) GetScriptClassIconPath() gdnative.String {
+	//log.Println("Calling NativeScript.GetScriptClassIconPath()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_script_class_icon_path")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
+func (o *NativeScript) GetScriptClassName() gdnative.String {
+	//log.Println("Calling NativeScript.GetScriptClassName()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_script_class_name")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [{ false signal_name String}], Returns: String
+*/
+func (o *NativeScript) GetSignalDocumentation(signalName gdnative.String) gdnative.String {
+	//log.Println("Calling NativeScript.GetSignalDocumentation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signalName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_signal_documentation")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -173,13 +314,63 @@ func (o *NativeScript) SetLibrary(library GDNativeLibraryImplementer) {
 
 }
 
+/*
+        Undocumented
+	Args: [{ false icon_path String}], Returns: void
+*/
+func (o *NativeScript) SetScriptClassIconPath(iconPath gdnative.String) {
+	//log.Println("Calling NativeScript.SetScriptClassIconPath()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(iconPath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "set_script_class_icon_path")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false class_name String}], Returns: void
+*/
+func (o *NativeScript) SetScriptClassName(className gdnative.String) {
+	//log.Println("Calling NativeScript.SetScriptClassName()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(className)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "set_script_class_name")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
 // NativeScriptImplementer is an interface that implements the methods
 // of the NativeScript class.
 type NativeScriptImplementer interface {
 	ScriptImplementer
+	GetClassDocumentation() gdnative.String
 	GetClassName() gdnative.String
 	GetLibrary() GDNativeLibraryImplementer
+	GetMethodDocumentation(method gdnative.String) gdnative.String
+	GetPropertyDocumentation(path gdnative.String) gdnative.String
+	GetScriptClassIconPath() gdnative.String
+	GetScriptClassName() gdnative.String
+	GetSignalDocumentation(signalName gdnative.String) gdnative.String
 	New() ObjectImplementer
 	SetClassName(className gdnative.String)
 	SetLibrary(library GDNativeLibraryImplementer)
+	SetScriptClassIconPath(iconPath gdnative.String)
+	SetScriptClassName(className gdnative.String)
 }

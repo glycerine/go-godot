@@ -209,7 +209,7 @@ func (o *NetworkedMultiplayerPeer) SetRefuseNewConnections(enable gdnative.Bool)
 }
 
 /*
-        The peer to which packets will be sent. Default value: [code]0[/code].
+        Sets the peer to which packets will be sent. The [code]id[/code] can be one of: [code]TARGET_PEER_BROADCAST[/code] to send to all connected peers, [code]TARGET_PEER_SERVER[/code] to send to the peer acting as server, a valid peer ID to send to that specific peer, a negative peer ID to send to all peers except that one. Default: [code]TARGET_PEER_BROADCAST[/code]
 	Args: [{ false id int}], Returns: void
 */
 func (o *NetworkedMultiplayerPeer) SetTargetPeer(id gdnative.Int) {

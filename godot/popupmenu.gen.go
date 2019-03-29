@@ -285,14 +285,61 @@ func (o *PopupMenu) AddItem(label gdnative.String, id gdnative.Int, accel gdnati
 }
 
 /*
-        Add a separator between items. Separators also occupy an index.
-	Args: [], Returns: void
+        The same as [method add_check_item] but the inserted item will look as a radio button. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
-func (o *PopupMenu) AddSeparator() {
+func (o *PopupMenu) AddRadioCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
+	//log.Println("Calling PopupMenu.AddRadioCheckItem()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(label)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+	ptrArguments[2] = gdnative.NewPointerFromInt(accel)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "add_radio_check_item")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
+*/
+func (o *PopupMenu) AddRadioCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
+	//log.Println("Calling PopupMenu.AddRadioCheckShortcut()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shortcut.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+	ptrArguments[2] = gdnative.NewPointerFromBool(global)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "add_radio_check_shortcut")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Add a separator between items. Separators also occupy an index.
+	Args: [{ true label String}], Returns: void
+*/
+func (o *PopupMenu) AddSeparator(label gdnative.String) {
 	//log.Println("Calling PopupMenu.AddSeparator()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(label)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PopupMenu", "add_separator")
@@ -639,6 +686,29 @@ func (o *PopupMenu) GetItemTooltip(idx gdnative.Int) gdnative.String {
 
 /*
         Undocumented
+	Args: [], Returns: float
+*/
+func (o *PopupMenu) GetSubmenuPopupDelay() gdnative.Real {
+	//log.Println("Calling PopupMenu.GetSubmenuPopupDelay()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "get_submenu_popup_delay")
+
+	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyReal()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [], Returns: bool
 */
 func (o *PopupMenu) IsHideOnCheckableItemSelection() gdnative.Bool {
@@ -707,7 +777,30 @@ func (o *PopupMenu) IsHideOnStateItemSelection() gdnative.Bool {
 }
 
 /*
-        Return whether the item at index "idx" has a checkbox. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
+
+	Args: [], Returns: bool
+*/
+func (o *PopupMenu) IsHideOnWindowLoseFocus() gdnative.Bool {
+	//log.Println("Calling PopupMenu.IsHideOnWindowLoseFocus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "is_hide_on_window_lose_focus")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Return whether the item at index "idx" is checkable in some way, i.e., whether has a checkbox or radio button. Note that checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
@@ -731,7 +824,7 @@ func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Return the checkstate status of the item at index "idx".
+        Return whether the item at index "idx" is checked.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
@@ -779,6 +872,30 @@ func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
+        Return whether the item at index "idx" has radio-button-style checkability. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+	Args: [{ false idx int}], Returns: bool
+*/
+func (o *PopupMenu) IsItemRadioCheckable(idx gdnative.Int) gdnative.Bool {
+	//log.Println("Calling PopupMenu.IsItemRadioCheckable()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "is_item_radio_checkable")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
         Return whether the item is a separator. If it is, it would be displayed as a line.
 	Args: [{ false idx int}], Returns: bool
 */
@@ -791,6 +908,30 @@ func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PopupMenu", "is_item_separator")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false idx int}], Returns: bool
+*/
+func (o *PopupMenu) IsItemShortcutDisabled(idx gdnative.Int) gdnative.Bool {
+	//log.Println("Calling PopupMenu.IsItemShortcutDisabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "is_item_shortcut_disabled")
 
 	// Call the parent method.
 	// bool
@@ -887,6 +1028,27 @@ func (o *PopupMenu) SetHideOnStateItemSelection(enable gdnative.Bool) {
 }
 
 /*
+
+	Args: [{ false enable bool}], Returns: void
+*/
+func (o *PopupMenu) SetHideOnWindowLoseFocus(enable gdnative.Bool) {
+	//log.Println("Calling PopupMenu.SetHideOnWindowLoseFocus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "set_hide_on_window_lose_focus")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Set the accelerator of the item at index "idx". Accelerators are special combinations of keys that activate the item, no matter which control is focused.
 	Args: [{ false idx int} { false accel int}], Returns: void
 */
@@ -931,7 +1093,29 @@ func (o *PopupMenu) SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool) {
 }
 
 /*
-        Mark the item at index "idx" as a separator, which means that it would be displayed as a mere line.
+        The same as [method set_item_as_checkable] but placing a radio button in case of enabling. If used for disabling, it's the same. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+	Args: [{ false idx int} { false enable bool}], Returns: void
+*/
+func (o *PopupMenu) SetItemAsRadioCheckable(idx gdnative.Int, enable gdnative.Bool) {
+	//log.Println("Calling PopupMenu.SetItemAsRadioCheckable()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "set_item_as_radio_checkable")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Mark the item at index "idx" as a separator, which means that it would be displayed as a line.
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool) {
@@ -1108,6 +1292,28 @@ func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplement
 }
 
 /*
+
+	Args: [{ false idx int} { false disabled bool}], Returns: void
+*/
+func (o *PopupMenu) SetItemShortcutDisabled(idx gdnative.Int, disabled gdnative.Bool) {
+	//log.Println("Calling PopupMenu.SetItemShortcutDisabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "set_item_shortcut_disabled")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Sets the submenu of the item at index "idx". The submenu is the name of a child PopupMenu node that would be shown when the item is clicked.
 	Args: [{ false idx int} { false submenu String}], Returns: void
 */
@@ -1174,6 +1380,27 @@ func (o *PopupMenu) SetItemTooltip(idx gdnative.Int, tooltip gdnative.String) {
 }
 
 /*
+        Undocumented
+	Args: [{ false seconds float}], Returns: void
+*/
+func (o *PopupMenu) SetSubmenuPopupDelay(seconds gdnative.Real) {
+	//log.Println("Calling PopupMenu.SetSubmenuPopupDelay()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromReal(seconds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PopupMenu", "set_submenu_popup_delay")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
 
 	Args: [{ false idx int}], Returns: void
 */
@@ -1229,7 +1456,9 @@ type PopupMenuImplementer interface {
 	AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int)
 	AddIconShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
 	AddItem(label gdnative.String, id gdnative.Int, accel gdnative.Int)
-	AddSeparator()
+	AddRadioCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int)
+	AddRadioCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
+	AddSeparator(label gdnative.String)
 	AddShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
 	AddSubmenuItem(label gdnative.String, submenu gdnative.String, id gdnative.Int)
 	Clear()
@@ -1243,19 +1472,25 @@ type PopupMenuImplementer interface {
 	GetItemSubmenu(idx gdnative.Int) gdnative.String
 	GetItemText(idx gdnative.Int) gdnative.String
 	GetItemTooltip(idx gdnative.Int) gdnative.String
+	GetSubmenuPopupDelay() gdnative.Real
 	IsHideOnCheckableItemSelection() gdnative.Bool
 	IsHideOnItemSelection() gdnative.Bool
 	IsHideOnStateItemSelection() gdnative.Bool
+	IsHideOnWindowLoseFocus() gdnative.Bool
 	IsItemCheckable(idx gdnative.Int) gdnative.Bool
 	IsItemChecked(idx gdnative.Int) gdnative.Bool
 	IsItemDisabled(idx gdnative.Int) gdnative.Bool
+	IsItemRadioCheckable(idx gdnative.Int) gdnative.Bool
 	IsItemSeparator(idx gdnative.Int) gdnative.Bool
+	IsItemShortcutDisabled(idx gdnative.Int) gdnative.Bool
 	RemoveItem(idx gdnative.Int)
 	SetHideOnCheckableItemSelection(enable gdnative.Bool)
 	SetHideOnItemSelection(enable gdnative.Bool)
 	SetHideOnStateItemSelection(enable gdnative.Bool)
+	SetHideOnWindowLoseFocus(enable gdnative.Bool)
 	SetItemAccelerator(idx gdnative.Int, accel gdnative.Int)
 	SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool)
+	SetItemAsRadioCheckable(idx gdnative.Int, enable gdnative.Bool)
 	SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool)
 	SetItemChecked(idx gdnative.Int, checked gdnative.Bool)
 	SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
@@ -1264,9 +1499,11 @@ type PopupMenuImplementer interface {
 	SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant)
 	SetItemMultistate(idx gdnative.Int, state gdnative.Int)
 	SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplementer, global gdnative.Bool)
+	SetItemShortcutDisabled(idx gdnative.Int, disabled gdnative.Bool)
 	SetItemSubmenu(idx gdnative.Int, submenu gdnative.String)
 	SetItemText(idx gdnative.Int, text gdnative.String)
 	SetItemTooltip(idx gdnative.Int, tooltip gdnative.String)
+	SetSubmenuPopupDelay(seconds gdnative.Real)
 	ToggleItemChecked(idx gdnative.Int)
 	ToggleItemMultistate(idx gdnative.Int)
 }

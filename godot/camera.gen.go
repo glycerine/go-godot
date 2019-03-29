@@ -60,14 +60,15 @@ func (o *Camera) BaseClass() string {
 }
 
 /*
-        If this is the current Camera, remove it from being current. If it is inside the node tree, request to make the next Camera current, if any.
-	Args: [], Returns: void
+        If this is the current Camera, remove it from being current. If [code]enable_next[/code] is true, request to make the next Camera current, if any.
+	Args: [{True true enable_next bool}], Returns: void
 */
-func (o *Camera) ClearCurrent() {
+func (o *Camera) ClearCurrent(enableNext gdnative.Bool) {
 	//log.Println("Calling Camera.ClearCurrent()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enableNext)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "clear_current")
@@ -80,7 +81,7 @@ func (o *Camera) ClearCurrent() {
 }
 
 /*
-        Get the camera transform. Subclassed cameras (such as CharacterCamera) may provide different transforms than the [Node] transform.
+        Gets the camera transform. Subclassed cameras (such as CharacterCamera) may provide different transforms than the [Node] transform.
 	Args: [], Returns: Transform
 */
 func (o *Camera) GetCameraTransform() gdnative.Transform {
@@ -122,6 +123,30 @@ func (o *Camera) GetCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false layer int}], Returns: bool
+*/
+func (o *Camera) GetCullMaskBit(layer gdnative.Int) gdnative.Bool {
+	//log.Println("Calling Camera.GetCullMaskBit()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_cull_mask_bit")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 	return ret
 }
 
@@ -205,6 +230,29 @@ func (o *Camera) GetFov() gdnative.Real {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [], Returns: Array
+*/
+func (o *Camera) GetFrustum() gdnative.Array {
+	//log.Println("Calling Camera.GetFrustum()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_frustum")
+
+	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 	return ret
 }
 
@@ -393,7 +441,7 @@ func (o *Camera) IsCurrent() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if the given position is behind the Camera.
+        Returns [code]true[/code] if the given position is behind the Camera. Note that a position which returns [code]false[/code] may still be outside the Camera's field of view.
 	Args: [{ false world_point Vector3}], Returns: bool
 */
 func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
@@ -417,7 +465,7 @@ func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
 }
 
 /*
-        Make this camera the current Camera for the [Viewport] (see class description). If the Camera Node is outside the scene tree, it will attempt to become current once it's added.
+        Makes this camera the current Camera for the [Viewport] (see class description). If the Camera Node is outside the scene tree, it will attempt to become current once it's added.
 	Args: [], Returns: void
 */
 func (o *Camera) MakeCurrent() {
@@ -461,7 +509,7 @@ func (o *Camera) ProjectLocalRayNormal(screenPoint gdnative.Vector2) gdnative.Ve
 }
 
 /*
-        Returns how a 2D coordinate in the Viewport rectangle maps to a 3D point in worldspace.
+        Returns the 3D point in worldspace that maps to the given 2D coordinate in the [Viewport] rectangle.
 	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
 func (o *Camera) ProjectPosition(screenPoint gdnative.Vector2) gdnative.Vector3 {
@@ -545,6 +593,28 @@ func (o *Camera) SetCullMask(mask gdnative.Int) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_cull_mask")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{ false layer int} { false enable bool}], Returns: void
+*/
+func (o *Camera) SetCullMaskBit(layer gdnative.Int, enable gdnative.Bool) {
+	//log.Println("Calling Camera.SetCullMaskBit()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_cull_mask_bit")
 
 	// Call the parent method.
 	// void
@@ -680,7 +750,7 @@ func (o *Camera) SetKeepAspectMode(mode gdnative.Int) {
 }
 
 /*
-        Set the camera projection to orthogonal mode, by specifying a width and the [i]near[/i] and [i]far[/i] clip planes in worldspace units. (As a hint, 2D games often use this projection, with values specified in pixels)
+        Sets the camera projection to orthogonal mode, by specifying a width and the [i]near[/i] and [i]far[/i] clip planes in worldspace units. (As a hint, 2D games often use this projection, with values specified in pixels)
 	Args: [{ false size float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *Camera) SetOrthogonal(size gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
@@ -703,7 +773,7 @@ func (o *Camera) SetOrthogonal(size gdnative.Real, zNear gdnative.Real, zFar gdn
 }
 
 /*
-        Set the camera projection to perspective mode, by specifying a [i]FOV[/i] Y angle in degrees (FOV means Field of View), and the [i]near[/i] and [i]far[/i] clip planes in worldspace units.
+        Sets the camera projection to perspective mode, by specifying a [i]FOV[/i] Y angle in degrees (FOV means Field of View), and the [i]near[/i] and [i]far[/i] clip planes in worldspace units.
 	Args: [{ false fov float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *Camera) SetPerspective(fov gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
@@ -831,7 +901,7 @@ func (o *Camera) SetZnear(arg0 gdnative.Real) {
 }
 
 /*
-        Returns how a 3D point in worldspace maps to a 2D coordinate in the [Viewport] rectangle.
+        Returns the 2D coordinate in the [Viewport] rectangle that maps to the given 3D point in worldspace.
 	Args: [{ false world_point Vector3}], Returns: Vector2
 */
 func (o *Camera) UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2 {
@@ -858,11 +928,13 @@ func (o *Camera) UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2
 // of the Camera class.
 type CameraImplementer interface {
 	SpatialImplementer
-	ClearCurrent()
+	ClearCurrent(enableNext gdnative.Bool)
 	GetCameraTransform() gdnative.Transform
 	GetCullMask() gdnative.Int
+	GetCullMaskBit(layer gdnative.Int) gdnative.Bool
 	GetEnvironment() EnvironmentImplementer
 	GetFov() gdnative.Real
+	GetFrustum() gdnative.Array
 	GetHOffset() gdnative.Real
 	GetSize() gdnative.Real
 	GetVOffset() gdnative.Real
@@ -876,6 +948,7 @@ type CameraImplementer interface {
 	ProjectRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3
 	ProjectRayOrigin(screenPoint gdnative.Vector2) gdnative.Vector3
 	SetCullMask(mask gdnative.Int)
+	SetCullMaskBit(layer gdnative.Int, enable gdnative.Bool)
 	SetCurrent(arg0 gdnative.Bool)
 	SetDopplerTracking(mode gdnative.Int)
 	SetEnvironment(env EnvironmentImplementer)

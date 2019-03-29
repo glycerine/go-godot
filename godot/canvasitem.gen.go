@@ -18,6 +18,7 @@ type CanvasItemBlendMode int
 
 const (
 	CanvasItemBlendModeAdd          CanvasItemBlendMode = 1
+	CanvasItemBlendModeDisabled     CanvasItemBlendMode = 5
 	CanvasItemBlendModeMix          CanvasItemBlendMode = 0
 	CanvasItemBlendModeMul          CanvasItemBlendMode = 3
 	CanvasItemBlendModePremultAlpha CanvasItemBlendMode = 4
@@ -63,29 +64,6 @@ func (o *CanvasItem) X_Draw() {
 	retPtr := gdnative.NewEmptyVoid()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
-}
-
-/*
-        Undocumented
-	Args: [], Returns: Rect2
-*/
-func (o *CanvasItem) X_EditGetItemAndChildrenRect() gdnative.Rect2 {
-	//log.Println("Calling CanvasItem.X_EditGetItemAndChildrenRect()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_item_and_children_rect")
-
-	// Call the parent method.
-	// Rect2
-	retPtr := gdnative.NewEmptyRect2()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewRect2FromPointer(retPtr)
-	return ret
 }
 
 /*
@@ -177,6 +155,29 @@ func (o *CanvasItem) X_EditGetRotation() gdnative.Real {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: Vector2
+*/
+func (o *CanvasItem) X_EditGetScale() gdnative.Vector2 {
+	//log.Println("Calling CanvasItem.X_EditGetScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_scale")
+
+	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 	return ret
 }
 
@@ -289,6 +290,27 @@ func (o *CanvasItem) X_EditSetRotation(degrees gdnative.Real) {
 
 /*
         Undocumented
+	Args: [{ false scale Vector2}], Returns: void
+*/
+func (o *CanvasItem) X_EditSetScale(scale gdnative.Vector2) {
+	//log.Println("Calling CanvasItem.X_EditSetScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_scale")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false state Dictionary}], Returns: void
 */
 func (o *CanvasItem) X_EditSetState(state gdnative.Dictionary) {
@@ -320,29 +342,6 @@ func (o *CanvasItem) X_EditUsePivot() gdnative.Bool {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_pivot")
-
-	// Call the parent method.
-	// bool
-	retPtr := gdnative.NewEmptyBool()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewBoolFromPointer(retPtr)
-	return ret
-}
-
-/*
-        Undocumented
-	Args: [], Returns: bool
-*/
-func (o *CanvasItem) X_EditUsePosition() gdnative.Bool {
-	//log.Println("Calling CanvasItem.X_EditUsePosition()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_position")
 
 	// Call the parent method.
 	// bool
@@ -587,6 +586,29 @@ func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color 
 }
 
 /*
+
+	Args: [{ false mesh Mesh} { false texture Texture} {[Object:null] true normal_map Texture}], Returns: void
+*/
+func (o *CanvasItem) DrawMesh(mesh MeshImplementer, texture TextureImplementer, normalMap TextureImplementer) {
+	//log.Println("Calling CanvasItem.DrawMesh()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetBaseObject())
+	ptrArguments[2] = gdnative.NewPointerFromObject(normalMap.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_mesh")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Draws multiple, parallel lines with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
 	Args: [{ false points PoolVector2Array} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
@@ -626,6 +648,29 @@ func (o *CanvasItem) DrawMultilineColors(points gdnative.PoolVector2Array, color
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_multiline_colors")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{ false multimesh MultiMesh} { false texture Texture} {[Object:null] true normal_map Texture}], Returns: void
+*/
+func (o *CanvasItem) DrawMultimesh(multimesh MultiMeshImplementer, texture TextureImplementer, normalMap TextureImplementer) {
+	//log.Println("Calling CanvasItem.DrawMultimesh()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(multimesh.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetBaseObject())
+	ptrArguments[2] = gdnative.NewPointerFromObject(normalMap.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_multimesh")
 
 	// Call the parent method.
 	// void
@@ -917,6 +962,26 @@ func (o *CanvasItem) DrawTextureRectRegion(texture TextureImplementer, rect gdna
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_texture_rect_region")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [], Returns: void
+*/
+func (o *CanvasItem) ForceUpdateTransform() {
+	//log.Println("Calling CanvasItem.ForceUpdateTransform()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "force_update_transform")
 
 	// Call the parent method.
 	// void
@@ -1752,7 +1817,7 @@ func (o *CanvasItem) SetVisible(visible gdnative.Bool) {
 }
 
 /*
-        Show the CanvasItem currently hidden.
+        Show the CanvasItem currently hidden. For controls that inherit [Popup], the correct way to make them visible is to call one of the multiple popup*() functions instead.
 	Args: [], Returns: void
 */
 func (o *CanvasItem) Show() {
@@ -1796,19 +1861,19 @@ func (o *CanvasItem) Update() {
 type CanvasItemImplementer interface {
 	NodeImplementer
 	X_Draw()
-	X_EditGetItemAndChildrenRect() gdnative.Rect2
 	X_EditGetPivot() gdnative.Vector2
 	X_EditGetPosition() gdnative.Vector2
 	X_EditGetRect() gdnative.Rect2
 	X_EditGetRotation() gdnative.Real
+	X_EditGetScale() gdnative.Vector2
 	X_EditGetState() gdnative.Dictionary
 	X_EditSetPivot(pivot gdnative.Vector2)
 	X_EditSetPosition(position gdnative.Vector2)
 	X_EditSetRect(rect gdnative.Rect2)
 	X_EditSetRotation(degrees gdnative.Real)
+	X_EditSetScale(scale gdnative.Vector2)
 	X_EditSetState(state gdnative.Dictionary)
 	X_EditUsePivot() gdnative.Bool
-	X_EditUsePosition() gdnative.Bool
 	X_EditUseRect() gdnative.Bool
 	X_EditUseRotation() gdnative.Bool
 	X_IsOnTop() gdnative.Bool
@@ -1819,8 +1884,10 @@ type CanvasItemImplementer interface {
 	DrawCircle(position gdnative.Vector2, radius gdnative.Real, color gdnative.Color)
 	DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
 	DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
+	DrawMesh(mesh MeshImplementer, texture TextureImplementer, normalMap TextureImplementer)
 	DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
 	DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool)
+	DrawMultimesh(multimesh MultiMeshImplementer, texture TextureImplementer, normalMap TextureImplementer)
 	DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
 	DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
 	DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool)
@@ -1833,6 +1900,7 @@ type CanvasItemImplementer interface {
 	DrawTexture(texture TextureImplementer, position gdnative.Vector2, modulate gdnative.Color, normalMap TextureImplementer)
 	DrawTextureRect(texture TextureImplementer, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer)
 	DrawTextureRectRegion(texture TextureImplementer, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer, clipUv gdnative.Bool)
+	ForceUpdateTransform()
 	GetCanvas() gdnative.Rid
 	GetCanvasItem() gdnative.Rid
 	GetCanvasTransform() gdnative.Transform2D

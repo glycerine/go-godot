@@ -141,6 +141,29 @@ func (o *Sprite) GetOffset() gdnative.Vector2 {
 }
 
 /*
+        Returns a Rect2 representing the Sprite's boundary relative to its local coordinates.
+	Args: [], Returns: Rect2
+*/
+func (o *Sprite) GetRect() gdnative.Rect2 {
+	//log.Println("Calling Sprite.GetRect()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Sprite", "get_rect")
+
+	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
+	return ret
+}
+
+/*
         Undocumented
 	Args: [], Returns: Rect2
 */
@@ -281,6 +304,30 @@ func (o *Sprite) IsFlippedV() gdnative.Bool {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Sprite", "is_flipped_v")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false pos Vector2}], Returns: bool
+*/
+func (o *Sprite) IsPixelOpaque(pos gdnative.Vector2) gdnative.Bool {
+	//log.Println("Calling Sprite.IsPixelOpaque()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(pos)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Sprite", "is_pixel_opaque")
 
 	// Call the parent method.
 	// bool
@@ -598,12 +645,14 @@ type SpriteImplementer interface {
 	GetHframes() gdnative.Int
 	GetNormalMap() TextureImplementer
 	GetOffset() gdnative.Vector2
+	GetRect() gdnative.Rect2
 	GetRegionRect() gdnative.Rect2
 	GetTexture() TextureImplementer
 	GetVframes() gdnative.Int
 	IsCentered() gdnative.Bool
 	IsFlippedH() gdnative.Bool
 	IsFlippedV() gdnative.Bool
+	IsPixelOpaque(pos gdnative.Vector2) gdnative.Bool
 	IsRegion() gdnative.Bool
 	IsRegionFilterClipEnabled() gdnative.Bool
 	SetCentered(centered gdnative.Bool)

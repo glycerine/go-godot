@@ -33,7 +33,7 @@ func newStreamPeerTCPFromPointer(ptr gdnative.Pointer) StreamPeerTCP {
 }
 
 /*
-TCP Stream peer. This object can be used to connect to TCP servers, or also is returned by a tcp server.
+TCP Stream peer. This object can be used to connect to TCP servers, or also is returned by a TCP server.
 */
 type StreamPeerTCP struct {
 	StreamPeer
@@ -45,7 +45,7 @@ func (o *StreamPeerTCP) BaseClass() string {
 }
 
 /*
-        Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
+        Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [code]OK[/code] on success or [code]FAILED[/code] on failure.
 	Args: [{ false host String} { false port int}], Returns: enum.Error
 */
 func (o *StreamPeerTCP) ConnectToHost(host gdnative.String, port gdnative.Int) gdnative.Error {
@@ -136,7 +136,7 @@ func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
 }
 
 /*
-        Return the status of the connection, one of STATUS_* enum.
+        Return the status of the connection, see [enum StreamPeerTCP.Status].
 	Args: [], Returns: enum.StreamPeerTCP::Status
 */
 func (o *StreamPeerTCP) GetStatus() StreamPeerTCPStatus {
@@ -159,7 +159,7 @@ func (o *StreamPeerTCP) GetStatus() StreamPeerTCPStatus {
 }
 
 /*
-
+        Returns [code]true[/code] if this peer is currently connected to a host, [code]false[/code] otherwise.
 	Args: [], Returns: bool
 */
 func (o *StreamPeerTCP) IsConnectedToHost() gdnative.Bool {

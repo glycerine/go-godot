@@ -17,10 +17,11 @@ import (
 type StreamPeerSSLStatus int
 
 const (
-	StreamPeerSSLStatusConnected             StreamPeerSSLStatus = 1
+	StreamPeerSSLStatusConnected             StreamPeerSSLStatus = 2
 	StreamPeerSSLStatusDisconnected          StreamPeerSSLStatus = 0
-	StreamPeerSSLStatusErrorHostnameMismatch StreamPeerSSLStatus = 3
-	StreamPeerSSLStatusErrorNoCertificate    StreamPeerSSLStatus = 2
+	StreamPeerSSLStatusError                 StreamPeerSSLStatus = 3
+	StreamPeerSSLStatusErrorHostnameMismatch StreamPeerSSLStatus = 4
+	StreamPeerSSLStatusHandshaking           StreamPeerSSLStatus = 1
 )
 
 //func NewStreamPeerSSLFromPointer(ptr gdnative.Pointer) StreamPeerSSL {
@@ -46,14 +47,14 @@ func (o *StreamPeerSSL) BaseClass() string {
 
 /*
 
-	Args: [{ false stream StreamPeer}], Returns: enum.Error
+	Args: [{ false base StreamPeer}], Returns: enum.Error
 */
-func (o *StreamPeerSSL) AcceptStream(stream StreamPeerImplementer) gdnative.Error {
+func (o *StreamPeerSSL) AcceptStream(base StreamPeerImplementer) gdnative.Error {
 	//log.Println("Calling StreamPeerSSL.AcceptStream()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromObject(stream.GetBaseObject())
+	ptrArguments[0] = gdnative.NewPointerFromObject(base.GetBaseObject())
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "accept_stream")
@@ -137,9 +138,76 @@ func (o *StreamPeerSSL) GetStatus() StreamPeerSSLStatus {
 	return StreamPeerSSLStatus(ret)
 }
 
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *StreamPeerSSL) IsBlockingHandshakeEnabled() gdnative.Bool {
+	//log.Println("Calling StreamPeerSSL.IsBlockingHandshakeEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "is_blocking_handshake_enabled")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Poll the connection to check for incoming bytes. Call this right before "get_available_bytes()" for it to work properly.
+	Args: [], Returns: void
+*/
+func (o *StreamPeerSSL) Poll() {
+	//log.Println("Calling StreamPeerSSL.Poll()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "poll")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
+*/
+func (o *StreamPeerSSL) SetBlockingHandshakeEnabled(enabled gdnative.Bool) {
+	//log.Println("Calling StreamPeerSSL.SetBlockingHandshakeEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "set_blocking_handshake_enabled")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
 // StreamPeerSSLImplementer is an interface that implements the methods
 // of the StreamPeerSSL class.
 type StreamPeerSSLImplementer interface {
 	StreamPeerImplementer
 	DisconnectFromStream()
+	IsBlockingHandshakeEnabled() gdnative.Bool
+	Poll()
+	SetBlockingHandshakeEnabled(enabled gdnative.Bool)
 }

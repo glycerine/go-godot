@@ -85,7 +85,7 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
 }
 
 /*
-        Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
+        Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
 	Args: [{ false id int} { false position Vector3} {1 true weight_scale float}], Returns: void
 */
 func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Real) {
@@ -153,7 +153,7 @@ func (o *AStar) Clear() {
 }
 
 /*
-        Creates a segment between the given points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,1,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2, false) # If bidirectional=false it's only possible to go from point 1 to point 2 # and not from point 2 to point 1. [/codeblock]
+        Creates a segment between the given points. If [code]bidirectional[/code] is [code]false[/code], only movement from [code]id[/code] to [code]to_id[/code] is allowed, not the reverse direction. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1, 1, 0)) as.add_point(2, Vector3(0, 5, 0)) as.connect_points(1, 2, false) [/codeblock]
 	Args: [{ false id int} { false to_id int} {True true bidirectional bool}], Returns: void
 */
 func (o *AStar) ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional gdnative.Bool) {
@@ -245,7 +245,7 @@ func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
 }
 
 /*
-        Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3,3,0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y=0[/code] to [code]y=5[/code]. It's the closest position in the segment to the given point.
+        Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 5, 0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3, 3, 0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y = 0[/code] to [code]y = 5[/code]. It's the closest position in the segment to the given point.
 	Args: [{ false to_position Vector3}], Returns: Vector3
 */
 func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnative.Vector3 {
@@ -269,7 +269,7 @@ func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnativ
 }
 
 /*
-        Returns an array with the ids of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0), 1) # default weight is 1 as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, false) as.connect_points(2, 3, false) as.connect_points(4, 3, false) as.connect_points(1, 4, false) as.connect_points(5, 4, false) var res = as.get_id_path(1, 3) # returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+        Returns an array with the ids of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 1, 0), 1) # default weight is 1 as.add_point(3, Vector3(1, 1, 0)) as.add_point(4, Vector3(2, 0, 0)) as.connect_points(1, 2, false) as.connect_points(2, 3, false) as.connect_points(4, 3, false) as.connect_points(1, 4, false) as.connect_points(5, 4, false) var res = as.get_id_path(1, 3) # returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
 	Args: [{ false from_id int} { false to_id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolIntArray {
@@ -294,7 +294,7 @@ func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolI
 }
 
 /*
-        Returns an array with the ids of the points that form the connect with the given point. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0)) as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, true) as.connect_points(1, 3, true) var neighbors = as.get_point_connections(1) # returns [2, 3] [/codeblock]
+        Returns an array with the ids of the points that form the connect with the given point. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 1, 0)) as.add_point(3, Vector3(1, 1, 0)) as.add_point(4, Vector3(2, 0, 0)) as.connect_points(1, 2, true) as.connect_points(1, 3, true) var neighbors = as.get_point_connections(1) # returns [2, 3] [/codeblock]
 	Args: [{ false id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {

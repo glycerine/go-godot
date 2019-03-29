@@ -688,7 +688,7 @@ func (o *Area) IsUsingReverbBus() gdnative.Bool {
 }
 
 /*
-        If [code]true[/code] the given area overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code], the given area overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false area Object}], Returns: bool
 */
 func (o *Area) OverlapsArea(area ObjectImplementer) gdnative.Bool {
@@ -712,7 +712,7 @@ func (o *Area) OverlapsArea(area ObjectImplementer) gdnative.Bool {
 }
 
 /*
-        If [code]true[/code] the given body overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code], the given body overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false body Object}], Returns: bool
 */
 func (o *Area) OverlapsBody(body ObjectImplementer) gdnative.Bool {
@@ -820,7 +820,7 @@ func (o *Area) SetCollisionLayer(collisionLayer gdnative.Int) {
 }
 
 /*
-        Set/clear individual bits on the layer mask. This simplifies editing this [code]Area[code]'s layers.
+        Set/clear individual bits on the layer mask. This simplifies editing this [code]Area[/code]'s layers.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *Area) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {

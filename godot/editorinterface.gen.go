@@ -23,7 +23,7 @@ func newEditorInterfaceFromPointer(ptr gdnative.Pointer) EditorInterface {
 }
 
 /*
-Editor interface. Allows saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects and provides access to [EditorSettings], [EditorFileSystem], [EditorResourcePreview]\ er, [ScriptEditor], the editor viewport, as well as information about scenes. Also see [EditorPlugin] and [EditorScript].
+EditorInterface gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [EditorSettings], [EditorFileSystem], [EditorResourcePreview], [ScriptEditor], the editor viewport, and information about scenes.
 */
 type EditorInterface struct {
 	Node
@@ -56,7 +56,7 @@ func (o *EditorInterface) EditResource(resource ResourceImplementer) {
 }
 
 /*
-        Returns the base [Control].
+        Returns the main container of Godot editor's window. You can use it, for example, to retrieve the size of the container and place your controls accordingly.
 	Args: [], Returns: Control
 */
 func (o *EditorInterface) GetBaseControl() ControlImplementer {
@@ -93,7 +93,7 @@ func (o *EditorInterface) GetBaseControl() ControlImplementer {
 }
 
 /*
-        Returns the edited scene's root [Node].
+        Returns the edited (current) scene's root [Node].
 	Args: [], Returns: Node
 */
 func (o *EditorInterface) GetEditedSceneRoot() NodeImplementer {
@@ -204,7 +204,7 @@ func (o *EditorInterface) GetEditorViewport() ControlImplementer {
 }
 
 /*
-        Returns an [Array] of the currently opened scenes.
+        Returns an [Array] with the file paths of the currently opened scenes.
 	Args: [], Returns: Array
 */
 func (o *EditorInterface) GetOpenScenes() gdnative.Array {
@@ -264,7 +264,7 @@ func (o *EditorInterface) GetResourceFilesystem() EditorFileSystemImplementer {
 }
 
 /*
-        Returns the [EditorResourcePreview]\ er.
+        Returns the [EditorResourcePreview].
 	Args: [], Returns: EditorResourcePreview
 */
 func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreviewImplementer {
@@ -557,14 +557,14 @@ func (o *EditorInterface) SaveSceneAs(path gdnative.String, withPreview gdnative
 
 /*
 
-	Args: [{ false p_file String}], Returns: void
+	Args: [{ false file String}], Returns: void
 */
-func (o *EditorInterface) SelectFile(pFile gdnative.String) {
+func (o *EditorInterface) SelectFile(file gdnative.String) {
 	//log.Println("Calling EditorInterface.SelectFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromString(pFile)
+	ptrArguments[0] = gdnative.NewPointerFromString(file)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("EditorInterface", "select_file")
@@ -619,6 +619,6 @@ type EditorInterfaceImplementer interface {
 	OpenSceneFromPath(sceneFilepath gdnative.String)
 	ReloadSceneFromPath(sceneFilepath gdnative.String)
 	SaveSceneAs(path gdnative.String, withPreview gdnative.Bool)
-	SelectFile(pFile gdnative.String)
+	SelectFile(file gdnative.String)
 	SetPluginEnabled(plugin gdnative.String, enabled gdnative.Bool)
 }

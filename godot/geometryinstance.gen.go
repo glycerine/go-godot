@@ -17,7 +17,7 @@ import (
 type GeometryInstanceFlags int
 
 const (
-	GeometryInstanceFlagMax           GeometryInstanceFlags = 1
+	GeometryInstanceFlagMax           GeometryInstanceFlags = 2
 	GeometryInstanceFlagUseBakedLight GeometryInstanceFlags = 0
 )
 

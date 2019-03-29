@@ -119,14 +119,14 @@ func (o *MainLoop) X_Initialize() {
 
 /*
 
-	Args: [{ false ev InputEvent}], Returns: void
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *MainLoop) X_InputEvent(ev InputEventImplementer) {
+func (o *MainLoop) X_InputEvent(event InputEventImplementer) {
 	//log.Println("Calling MainLoop.X_InputEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromObject(ev.GetBaseObject())
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetBaseObject())
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "_input_event")
@@ -246,14 +246,14 @@ func (o *MainLoop) Init() {
 
 /*
 
-	Args: [{ false ev InputEvent}], Returns: void
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *MainLoop) InputEventMethod(ev InputEventImplementer) {
+func (o *MainLoop) InputEventMethod(event InputEventImplementer) {
 	//log.Println("Calling MainLoop.InputEventMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromObject(ev.GetBaseObject())
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetBaseObject())
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "input_event")
@@ -318,13 +318,13 @@ type MainLoopImplementer interface {
 	X_Finalize()
 	X_Idle(delta gdnative.Real)
 	X_Initialize()
-	X_InputEvent(ev InputEventImplementer)
+	X_InputEvent(event InputEventImplementer)
 	X_InputText(text gdnative.String)
 	X_Iteration(delta gdnative.Real)
 	Finish()
 	Idle(delta gdnative.Real) gdnative.Bool
 	Init()
-	InputEventMethod(ev InputEventImplementer)
+	InputEventMethod(event InputEventImplementer)
 	InputText(text gdnative.String)
 	Iteration(delta gdnative.Real) gdnative.Bool
 }

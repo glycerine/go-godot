@@ -23,7 +23,7 @@ func newSkeletonFromPointer(ptr gdnative.Pointer) Skeleton {
 }
 
 /*
-Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [Animation]). Skeleton will support rag doll dynamics in the future.
+Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [Animation]). Skeleton will support rag doll dynamics in the future. The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose. Note that "global pose" below refers to the overall transform of the bone with respect to skeleton, so it not the actual global/world transform of the bone.
 */
 type Skeleton struct {
 	Spatial
@@ -145,7 +145,7 @@ func (o *Skeleton) GetBoneCount() gdnative.Int {
 }
 
 /*
-
+        Return the custom pose of the specified bone. Custom pose is applied on top of the rest pose.
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
@@ -169,7 +169,7 @@ func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
 }
 
 /*
-
+        Return the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
@@ -193,7 +193,7 @@ func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
 }
 
 /*
-        Return the name of the bone at index "index"
+        Return the name of the bone at index "index".
 	Args: [{ false bone_idx int}], Returns: String
 */
 func (o *Skeleton) GetBoneName(boneIdx gdnative.Int) gdnative.String {
@@ -241,7 +241,7 @@ func (o *Skeleton) GetBoneParent(boneIdx gdnative.Int) gdnative.Int {
 }
 
 /*
-        Return the pose transform for bone "bone_idx".
+        Return the pose transform of the specified bone. Pose is applied on top of the custom pose, which is applied on top the rest pose.
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) gdnative.Transform {
@@ -289,7 +289,7 @@ func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) gdnative.Transform {
 }
 
 /*
-
+        Return the combination of custom pose and pose. The returned transform is in skeleton's reference frame.
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform {
@@ -361,6 +361,112 @@ func (o *Skeleton) IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool {
 }
 
 /*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *Skeleton) IsUsingBonesInWorldTransform() gdnative.Bool {
+	//log.Println("Calling Skeleton.IsUsingBonesInWorldTransform()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "is_using_bones_in_world_transform")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false exception RID}], Returns: void
+*/
+func (o *Skeleton) PhysicalBonesAddCollisionException(exception gdnative.Rid) {
+	//log.Println("Calling Skeleton.PhysicalBonesAddCollisionException()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(exception)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "physical_bones_add_collision_exception")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{ false exception RID}], Returns: void
+*/
+func (o *Skeleton) PhysicalBonesRemoveCollisionException(exception gdnative.Rid) {
+	//log.Println("Calling Skeleton.PhysicalBonesRemoveCollisionException()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(exception)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "physical_bones_remove_collision_exception")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{[] true bones Array}], Returns: void
+*/
+func (o *Skeleton) PhysicalBonesStartSimulation(bones gdnative.Array) {
+	//log.Println("Calling Skeleton.PhysicalBonesStartSimulation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(bones)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "physical_bones_start_simulation")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [], Returns: void
+*/
+func (o *Skeleton) PhysicalBonesStopSimulation() {
+	//log.Println("Calling Skeleton.PhysicalBonesStopSimulation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "physical_bones_stop_simulation")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
 
 	Args: [{ false bone_idx int} { false custom_pose Transform}], Returns: void
 */
@@ -418,6 +524,28 @@ func (o *Skeleton) SetBoneGlobalPose(boneIdx gdnative.Int, pose gdnative.Transfo
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_global_pose")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
+	Args: [{ false bone int} { false ignore bool}], Returns: void
+*/
+func (o *Skeleton) SetBoneIgnoreAnimation(bone gdnative.Int, ignore gdnative.Bool) {
+	//log.Println("Calling Skeleton.SetBoneIgnoreAnimation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bone)
+	ptrArguments[1] = gdnative.NewPointerFromBool(ignore)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_ignore_animation")
 
 	// Call the parent method.
 	// void
@@ -493,6 +621,27 @@ func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform) {
 }
 
 /*
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
+*/
+func (o *Skeleton) SetUseBonesInWorldTransform(enable gdnative.Bool) {
+	//log.Println("Calling Skeleton.SetUseBonesInWorldTransform()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_use_bones_in_world_transform")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Deprecated soon.
 	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
@@ -553,12 +702,19 @@ type SkeletonImplementer interface {
 	GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform
 	GetBoundChildNodesToBone(boneIdx gdnative.Int) gdnative.Array
 	IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool
+	IsUsingBonesInWorldTransform() gdnative.Bool
+	PhysicalBonesAddCollisionException(exception gdnative.Rid)
+	PhysicalBonesRemoveCollisionException(exception gdnative.Rid)
+	PhysicalBonesStartSimulation(bones gdnative.Array)
+	PhysicalBonesStopSimulation()
 	SetBoneCustomPose(boneIdx gdnative.Int, customPose gdnative.Transform)
 	SetBoneDisableRest(boneIdx gdnative.Int, disable gdnative.Bool)
 	SetBoneGlobalPose(boneIdx gdnative.Int, pose gdnative.Transform)
+	SetBoneIgnoreAnimation(bone gdnative.Int, ignore gdnative.Bool)
 	SetBoneParent(boneIdx gdnative.Int, parentIdx gdnative.Int)
 	SetBonePose(boneIdx gdnative.Int, pose gdnative.Transform)
 	SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform)
+	SetUseBonesInWorldTransform(enable gdnative.Bool)
 	UnbindChildNodeFromBone(boneIdx gdnative.Int, node ObjectImplementer)
 	UnparentBoneAndRest(boneIdx gdnative.Int)
 }

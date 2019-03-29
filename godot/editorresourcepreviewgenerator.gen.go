@@ -35,15 +35,16 @@ func (o *EditorResourcePreviewGenerator) BaseClass() string {
 }
 
 /*
-        Generate a preview from a given resource. This must be always implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
-	Args: [{ false from Resource}], Returns: Texture
+        Generate a preview from a given resource with the specified size. This must always be implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+	Args: [{ false from Resource} { false size Vector2}], Returns: Texture
 */
-func (o *EditorResourcePreviewGenerator) Generate(from ResourceImplementer) TextureImplementer {
+func (o *EditorResourcePreviewGenerator) Generate(from ResourceImplementer, size gdnative.Vector2) TextureImplementer {
 	//log.Println("Calling EditorResourcePreviewGenerator.Generate()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromObject(from.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromVector2(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("EditorResourcePreviewGenerator", "generate")
@@ -73,15 +74,16 @@ func (o *EditorResourcePreviewGenerator) Generate(from ResourceImplementer) Text
 }
 
 /*
-        Generate a preview directly from a path, implementing this is optional, as default code will load and call generate() Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
-	Args: [{ false path String}], Returns: Texture
+        Generate a preview directly from a path with the specified size. Implementing this is optional, as default code will load and call [method generate]. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+	Args: [{ false path String} { false size Vector2}], Returns: Texture
 */
-func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) TextureImplementer {
+func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String, size gdnative.Vector2) TextureImplementer {
 	//log.Println("Calling EditorResourcePreviewGenerator.GenerateFromPath()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("EditorResourcePreviewGenerator", "generate_from_path")
@@ -138,7 +140,7 @@ func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative
 // of the EditorResourcePreviewGenerator class.
 type EditorResourcePreviewGeneratorImplementer interface {
 	ReferenceImplementer
-	Generate(from ResourceImplementer) TextureImplementer
-	GenerateFromPath(path gdnative.String) TextureImplementer
+	Generate(from ResourceImplementer, size gdnative.Vector2) TextureImplementer
+	GenerateFromPath(path gdnative.String, size gdnative.Vector2) TextureImplementer
 	Handles(aType gdnative.String) gdnative.Bool
 }

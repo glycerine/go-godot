@@ -26,12 +26,11 @@ const (
 type TreeItemTreeCellMode int
 
 const (
-	TreeItemCellModeCheck           TreeItemTreeCellMode = 1
-	TreeItemCellModeCustom          TreeItemTreeCellMode = 5
-	TreeItemCellModeIcon            TreeItemTreeCellMode = 4
-	TreeItemCellModeRange           TreeItemTreeCellMode = 2
-	TreeItemCellModeRangeExpression TreeItemTreeCellMode = 3
-	TreeItemCellModeString          TreeItemTreeCellMode = 0
+	TreeItemCellModeCheck  TreeItemTreeCellMode = 1
+	TreeItemCellModeCustom TreeItemTreeCellMode = 4
+	TreeItemCellModeIcon   TreeItemTreeCellMode = 3
+	TreeItemCellModeRange  TreeItemTreeCellMode = 2
+	TreeItemCellModeString TreeItemTreeCellMode = 0
 )
 
 //func NewTreeItemFromPointer(ptr gdnative.Pointer) TreeItem {
@@ -56,7 +55,7 @@ func (o *TreeItem) BaseClass() string {
 }
 
 /*
-        Adds a button with [Texture] [code]button[/code] at column [code]column[/code]. The [code]button_idx[/code] index is used to identify the button when calling other methods. If not specified, the next available index is used, which may be retrieved by calling [code]get_buton_count()[/code] immediately after this method. Optionally, the button can be [code]disabled[/code] and have a [code]tooltip[/code].
+        Adds a button with [Texture] [code]button[/code] at column [code]column[/code]. The [code]button_idx[/code] index is used to identify the button when calling other methods. If not specified, the next available index is used, which may be retrieved by calling [method get_button_count] immediately after this method. Optionally, the button can be [code]disabled[/code] and have a [code]tooltip[/code].
 	Args: [{ false column int} { false button Texture} {-1 true button_idx int} {False true disabled bool} { true tooltip String}], Returns: void
 */
 func (o *TreeItem) AddButton(column gdnative.Int, button TextureImplementer, buttonIdx gdnative.Int, disabled gdnative.Bool, tooltip gdnative.String) {
@@ -1007,7 +1006,7 @@ func (o *TreeItem) MoveToTop() {
 }
 
 /*
-        Removes the child TreeItem at index [code]index[/code].
+        Removes the given child TreeItem.
 	Args: [{ false child Object}], Returns: void
 */
 func (o *TreeItem) RemoveChild(child ObjectImplementer) {
@@ -1094,7 +1093,7 @@ func (o *TreeItem) SetCellMode(column gdnative.Int, mode gdnative.Int) {
 }
 
 /*
-        If [code]true[/code] the column [code]column[/code] is checked.
+        If [code]true[/code], the column [code]column[/code] is checked.
 	Args: [{ false column int} { false checked bool}], Returns: void
 */
 func (o *TreeItem) SetChecked(column gdnative.Int, checked gdnative.Bool) {
@@ -1204,7 +1203,7 @@ func (o *TreeItem) SetCustomColor(column gdnative.Int, color gdnative.Color) {
 }
 
 /*
-        Sets the given column's custom draw callback to [code]callback[/code] method on [code]object[/code].
+        Sets the given column's custom draw callback to [code]callback[/code] method on [code]object[/code]. The [code]callback[/code] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
 	Args: [{ false column int} { false object Object} { false callback String}], Returns: void
 */
 func (o *TreeItem) SetCustomDraw(column gdnative.Int, object ObjectImplementer, callback gdnative.String) {
@@ -1269,7 +1268,7 @@ func (o *TreeItem) SetDisableFolding(disable gdnative.Bool) {
 }
 
 /*
-        If [code]true[/code] column [code]column[/code] is editable.
+        If [code]true[/code], column [code]column[/code] is editable.
 	Args: [{ false column int} { false enabled bool}], Returns: void
 */
 func (o *TreeItem) SetEditable(column gdnative.Int, enabled gdnative.Bool) {
@@ -1291,7 +1290,7 @@ func (o *TreeItem) SetEditable(column gdnative.Int, enabled gdnative.Bool) {
 }
 
 /*
-        If [code]true[/code] column [code]column[/code] is expanded to the right.
+        If [code]true[/code], column [code]column[/code] is expanded to the right.
 	Args: [{ false column int} { false enable bool}], Returns: void
 */
 func (o *TreeItem) SetExpandRight(column gdnative.Int, enable gdnative.Bool) {
@@ -1448,7 +1447,7 @@ func (o *TreeItem) SetRangeConfig(column gdnative.Int, min gdnative.Real, max gd
 }
 
 /*
-        If [code]true[/code] the given column is selectable.
+        If [code]true[/code], the given column is selectable.
 	Args: [{ false column int} { false selectable bool}], Returns: void
 */
 func (o *TreeItem) SetSelectable(column gdnative.Int, selectable gdnative.Bool) {

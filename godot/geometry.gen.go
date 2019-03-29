@@ -380,6 +380,34 @@ func (o *geometry) GetUv84NormalBit(normal gdnative.Vector3) gdnative.Int {
 
 /*
         Undocumented
+	Args: [{ false from_a Vector2} { false dir_a Vector2} { false from_b Vector2} { false dir_b Vector2}], Returns: Variant
+*/
+func (o *geometry) LineIntersectsLine2D(fromA gdnative.Vector2, dirA gdnative.Vector2, fromB gdnative.Vector2, dirB gdnative.Vector2) gdnative.Variant {
+	o.ensureSingleton()
+	//log.Println("Calling _Geometry.LineIntersectsLine2D()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(fromA)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(dirA)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(fromB)
+	ptrArguments[3] = gdnative.NewPointerFromVector2(dirB)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_Geometry", "line_intersects_line_2d")
+
+	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [{ false sizes PoolVector2Array}], Returns: Dictionary
 */
 func (o *geometry) MakeAtlas(sizes gdnative.PoolVector2Array) gdnative.Dictionary {
@@ -669,6 +697,7 @@ type GeometryImplementer interface {
 	GetClosestPointsBetweenSegments(p1 gdnative.Vector3, p2 gdnative.Vector3, q1 gdnative.Vector3, q2 gdnative.Vector3) gdnative.PoolVector3Array
 	GetClosestPointsBetweenSegments2D(p1 gdnative.Vector2, q1 gdnative.Vector2, p2 gdnative.Vector2, q2 gdnative.Vector2) gdnative.PoolVector2Array
 	GetUv84NormalBit(normal gdnative.Vector3) gdnative.Int
+	LineIntersectsLine2D(fromA gdnative.Vector2, dirA gdnative.Vector2, fromB gdnative.Vector2, dirB gdnative.Vector2) gdnative.Variant
 	MakeAtlas(sizes gdnative.PoolVector2Array) gdnative.Dictionary
 	PointIsInsideTriangle(point gdnative.Vector2, a gdnative.Vector2, b gdnative.Vector2, c gdnative.Vector2) gdnative.Bool
 	RayIntersectsTriangle(from gdnative.Vector3, dir gdnative.Vector3, a gdnative.Vector3, b gdnative.Vector3, c gdnative.Vector3) gdnative.Variant

@@ -213,6 +213,29 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) MaterialImplemen
 }
 
 /*
+
+	Args: [], Returns: int
+*/
+func (o *MeshInstance) GetSurfaceMaterialCount() gdnative.Int {
+	//log.Println("Calling MeshInstance.GetSurfaceMaterialCount()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "get_surface_material_count")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
         Undocumented
 	Args: [{ false mesh Mesh}], Returns: void
 */
@@ -287,6 +310,7 @@ type MeshInstanceImplementer interface {
 	GetMesh() MeshImplementer
 	GetSkeletonPath() gdnative.NodePath
 	GetSurfaceMaterial(surface gdnative.Int) MaterialImplementer
+	GetSurfaceMaterialCount() gdnative.Int
 	SetMesh(mesh MeshImplementer)
 	SetSkeletonPath(skeletonPath gdnative.NodePath)
 	SetSurfaceMaterial(surface gdnative.Int, material MaterialImplementer)

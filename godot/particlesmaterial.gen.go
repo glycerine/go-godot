@@ -29,7 +29,7 @@ type ParticlesMaterialFlags int
 
 const (
 	ParticlesMaterialFlagAlignYToVelocity ParticlesMaterialFlags = 0
-	ParticlesMaterialFlagMax              ParticlesMaterialFlags = 4
+	ParticlesMaterialFlagMax              ParticlesMaterialFlags = 3
 	ParticlesMaterialFlagRotateY          ParticlesMaterialFlags = 1
 )
 
@@ -62,7 +62,7 @@ func newParticlesMaterialFromPointer(ptr gdnative.Pointer) ParticlesMaterial {
 }
 
 /*
-ParticlesMaterial defines particle properties and behavior. It is used in the [code]process_material[/code] of [Particles] and [Particles2D] emitter nodes. Some of this material's properties are applied to each particle when emitted, while others can have a [CurveTexture] applied to vary values over the lifetime of the particle.
+ParticlesMaterial defines particle properties and behavior. It is used in the [code]process_material[/code] of [Particles] and [Particles2D] emitter nodes. Some of this material's properties are applied to each particle when emitted, while others can have a [CurveTexture] applied to vary values over the lifetime of the particle. When a randomness ratio is applied to a property it is used to scale that property by a random amount. The random ratio is used to interpolate between [code]1.0[/code] and a random number less than one, the result is multiplied by the property to obtain the randomized property. For example a random ratio of [code]0.4[/code] would scale the original property between [code]0.4-1.0[/code] of its original value.
 */
 type ParticlesMaterial struct {
 	Material

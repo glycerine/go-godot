@@ -17,12 +17,13 @@ import (
 type PerformanceMonitor int
 
 const (
+	PerformanceAudioOutputLatency           PerformanceMonitor = 27
 	PerformanceMemoryDynamic                PerformanceMonitor = 4
 	PerformanceMemoryDynamicMax             PerformanceMonitor = 6
 	PerformanceMemoryMessageBufferMax       PerformanceMonitor = 7
 	PerformanceMemoryStatic                 PerformanceMonitor = 3
 	PerformanceMemoryStaticMax              PerformanceMonitor = 5
-	PerformanceMonitorMax                   PerformanceMonitor = 27
+	PerformanceMonitorMax                   PerformanceMonitor = 28
 	PerformanceObjectCount                  PerformanceMonitor = 8
 	PerformanceObjectNodeCount              PerformanceMonitor = 10
 	PerformanceObjectResourceCount          PerformanceMonitor = 9

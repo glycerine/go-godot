@@ -23,7 +23,7 @@ func newScriptFromPointer(ptr gdnative.Pointer) Script {
 }
 
 /*
-A class stored as a resource. The script exends the functionality of all objects that instance it. The 'new' method of a script subclass creates a new instance. [method Object.set_script] extends an existing object, if that object's class matches one of the script's base classes.
+A class stored as a resource. A script exends the functionality of all objects that instance it. The [code]new[/code] method of a script subclass creates a new instance. [method Object.set_script] extends an existing object, if that object's class matches one of the script's base classes.
 */
 type Script struct {
 	Resource
@@ -35,7 +35,7 @@ func (o *Script) BaseClass() string {
 }
 
 /*
-        Returns true if the script can be instanced.
+        Returns [code]true[/code] if the script can be instanced.
 	Args: [], Returns: bool
 */
 func (o *Script) CanInstance() gdnative.Bool {
@@ -58,7 +58,7 @@ func (o *Script) CanInstance() gdnative.Bool {
 }
 
 /*
-
+        Returns the script directly inherited by this script.
 	Args: [], Returns: Script
 */
 func (o *Script) GetBaseScript() ScriptImplementer {
@@ -95,7 +95,7 @@ func (o *Script) GetBaseScript() ScriptImplementer {
 }
 
 /*
-
+        Returns the script's base type.
 	Args: [], Returns: String
 */
 func (o *Script) GetInstanceBaseType() gdnative.String {
@@ -141,7 +141,7 @@ func (o *Script) GetSourceCode() gdnative.String {
 }
 
 /*
-        Returns true if the script, or a base class, defines a signal with the given name.
+        Returns [code]true[/code] if the script, or a base class, defines a signal with the given name.
 	Args: [{ false signal_name String}], Returns: bool
 */
 func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
@@ -165,7 +165,7 @@ func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
 }
 
 /*
-        Returns true if the script contains non-empty source code.
+        Returns [code]true[/code] if the script contains non-empty source code.
 	Args: [], Returns: bool
 */
 func (o *Script) HasSourceCode() gdnative.Bool {
@@ -188,7 +188,7 @@ func (o *Script) HasSourceCode() gdnative.Bool {
 }
 
 /*
-        Returns true if 'base_object' is an instance of this script.
+        Returns [code]true[/code] if [code]base_object[/code] is an instance of this script.
 	Args: [{ false base_object Object}], Returns: bool
 */
 func (o *Script) InstanceHas(baseObject ObjectImplementer) gdnative.Bool {
@@ -212,7 +212,7 @@ func (o *Script) InstanceHas(baseObject ObjectImplementer) gdnative.Bool {
 }
 
 /*
-        Returns true if the script is a tool script. A tool script can run in the editor.
+        Returns [code]true[/code] if the script is a tool script. A tool script can run in the editor.
 	Args: [], Returns: bool
 */
 func (o *Script) IsTool() gdnative.Bool {

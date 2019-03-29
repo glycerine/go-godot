@@ -74,12 +74,96 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &AnimatedSprite3D{}
 		class.SetBaseObject(obj)
 		return class
+	case "AnimatedTexture":
+		class := &AnimatedTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "Animation":
 		class := &Animation{}
 		class.SetBaseObject(obj)
 		return class
+	case "AnimationNode":
+		class := &AnimationNode{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeAdd2":
+		class := &AnimationNodeAdd2{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeAdd3":
+		class := &AnimationNodeAdd3{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeAnimation":
+		class := &AnimationNodeAnimation{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeBlend2":
+		class := &AnimationNodeBlend2{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeBlend3":
+		class := &AnimationNodeBlend3{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeBlendSpace1D":
+		class := &AnimationNodeBlendSpace1D{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeBlendSpace2D":
+		class := &AnimationNodeBlendSpace2D{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeBlendTree":
+		class := &AnimationNodeBlendTree{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeOneShot":
+		class := &AnimationNodeOneShot{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeOutput":
+		class := &AnimationNodeOutput{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeStateMachine":
+		class := &AnimationNodeStateMachine{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeStateMachinePlayback":
+		class := &AnimationNodeStateMachinePlayback{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeStateMachineTransition":
+		class := &AnimationNodeStateMachineTransition{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeTimeScale":
+		class := &AnimationNodeTimeScale{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeTimeSeek":
+		class := &AnimationNodeTimeSeek{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationNodeTransition":
+		class := &AnimationNodeTransition{}
+		class.SetBaseObject(obj)
+		return class
 	case "AnimationPlayer":
 		class := &AnimationPlayer{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationRootNode":
+		class := &AnimationRootNode{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationTrackEditPlugin":
+		class := &AnimationTrackEditPlugin{}
+		class.SetBaseObject(obj)
+		return class
+	case "AnimationTree":
+		class := &AnimationTree{}
 		class.SetBaseObject(obj)
 		return class
 	case "AnimationTreePlayer":
@@ -194,6 +278,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &AudioEffectPitchShift{}
 		class.SetBaseObject(obj)
 		return class
+	case "AudioEffectRecord":
+		class := &AudioEffectRecord{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectReverb":
 		class := &AudioEffectReverb{}
 		class.SetBaseObject(obj)
@@ -204,6 +292,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "AudioStream":
 		class := &AudioStream{}
+		class.SetBaseObject(obj)
+		return class
+	case "AudioStreamMicrophone":
+		class := &AudioStreamMicrophone{}
 		class.SetBaseObject(obj)
 		return class
 	case "AudioStreamOGGVorbis":
@@ -258,6 +350,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &BitmapFont{}
 		class.SetBaseObject(obj)
 		return class
+	case "Bone2D":
+		class := &Bone2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "BoneAttachment":
 		class := &BoneAttachment{}
 		class.SetBaseObject(obj)
@@ -284,6 +380,50 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "ButtonGroup":
 		class := &ButtonGroup{}
+		class.SetBaseObject(obj)
+		return class
+	case "CPUParticles":
+		class := &CPUParticles{}
+		class.SetBaseObject(obj)
+		return class
+	case "CPUParticles2D":
+		class := &CPUParticles2D{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGBox":
+		class := &CSGBox{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGCombiner":
+		class := &CSGCombiner{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGCylinder":
+		class := &CSGCylinder{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGMesh":
+		class := &CSGMesh{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGPolygon":
+		class := &CSGPolygon{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGPrimitive":
+		class := &CSGPrimitive{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGShape":
+		class := &CSGShape{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGSphere":
+		class := &CSGSphere{}
+		class.SetBaseObject(obj)
+		return class
+	case "CSGTorus":
+		class := &CSGTorus{}
 		class.SetBaseObject(obj)
 		return class
 	case "Camera":
@@ -336,6 +476,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "CircleShape2D":
 		class := &CircleShape2D{}
+		class.SetBaseObject(obj)
+		return class
+	case "ClippedCamera":
+		class := &ClippedCamera{}
 		class.SetBaseObject(obj)
 		return class
 	case "CollisionObject":
@@ -438,6 +582,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &CylinderMesh{}
 		class.SetBaseObject(obj)
 		return class
+	case "CylinderShape":
+		class := &CylinderShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "DampedSpringJoint2D":
 		class := &DampedSpringJoint2D{}
 		class.SetBaseObject(obj)
@@ -474,12 +622,24 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &EditorImportPlugin{}
 		class.SetBaseObject(obj)
 		return class
+	case "EditorInspector":
+		class := &EditorInspector{}
+		class.SetBaseObject(obj)
+		return class
+	case "EditorInspectorPlugin":
+		class := &EditorInspectorPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorInterface":
 		class := &EditorInterface{}
 		class.SetBaseObject(obj)
 		return class
 	case "EditorPlugin":
 		class := &EditorPlugin{}
+		class.SetBaseObject(obj)
+		return class
+	case "EditorProperty":
+		class := &EditorProperty{}
 		class.SetBaseObject(obj)
 		return class
 	case "EditorResourceConversionPlugin":
@@ -518,12 +678,20 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &EditorSpatialGizmo{}
 		class.SetBaseObject(obj)
 		return class
+	case "EditorSpatialGizmoPlugin":
+		class := &EditorSpatialGizmoPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EncodedObjectAsID":
 		class := &EncodedObjectAsID{}
 		class.SetBaseObject(obj)
 		return class
 	case "Environment":
 		class := &Environment{}
+		class.SetBaseObject(obj)
+		return class
+	case "Expression":
+		class := &Expression{}
 		class.SetBaseObject(obj)
 		return class
 	case "FileDialog":
@@ -544,6 +712,14 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "GDNativeLibrary":
 		class := &GDNativeLibrary{}
+		class.SetBaseObject(obj)
+		return class
+	case "GDNativeLibraryResourceLoader":
+		class := &GDNativeLibraryResourceLoader{}
+		class.SetBaseObject(obj)
+		return class
+	case "GDNativeLibraryResourceSaver":
+		class := &GDNativeLibraryResourceSaver{}
 		class.SetBaseObject(obj)
 		return class
 	case "GDScript":
@@ -672,6 +848,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "InputEventKey":
 		class := &InputEventKey{}
+		class.SetBaseObject(obj)
+		return class
+	case "InputEventMIDI":
+		class := &InputEventMIDI{}
 		class.SetBaseObject(obj)
 		return class
 	case "InputEventMagnifyGesture":
@@ -814,6 +994,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &MeshInstance{}
 		class.SetBaseObject(obj)
 		return class
+	case "MeshInstance2D":
+		class := &MeshInstance2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "MeshLibrary":
 		class := &MeshLibrary{}
 		class.SetBaseObject(obj)
@@ -828,6 +1012,14 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "MultiMeshInstance":
 		class := &MultiMeshInstance{}
+		class.SetBaseObject(obj)
+		return class
+	case "MultiplayerAPI":
+		class := &MultiplayerAPI{}
+		class.SetBaseObject(obj)
+		return class
+	case "MultiplayerPeerGDNative":
+		class := &MultiplayerPeerGDNative{}
 		class.SetBaseObject(obj)
 		return class
 	case "NativeScript":
@@ -878,6 +1070,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &Node2D{}
 		class.SetBaseObject(obj)
 		return class
+	case "NoiseTexture":
+		class := &NoiseTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "Object":
 		class := &Object{}
 		class.SetBaseObject(obj)
@@ -888,6 +1084,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "OmniLight":
 		class := &OmniLight{}
+		class.SetBaseObject(obj)
+		return class
+	case "OpenSimplexNoise":
+		class := &OpenSimplexNoise{}
 		class.SetBaseObject(obj)
 		return class
 	case "OptionButton":
@@ -916,6 +1116,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "PacketPeer":
 		class := &PacketPeer{}
+		class.SetBaseObject(obj)
+		return class
+	case "PacketPeerGDNative":
+		class := &PacketPeerGDNative{}
 		class.SetBaseObject(obj)
 		return class
 	case "PacketPeerStream":
@@ -974,6 +1178,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &PathFollow2D{}
 		class.SetBaseObject(obj)
 		return class
+	case "PhysicalBone":
+		class := &PhysicalBone{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DDirectBodyState":
 		class := &Physics2DDirectBodyState{}
 		class.SetBaseObject(obj)
@@ -1016,6 +1224,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "PhysicsDirectSpaceState":
 		class := &PhysicsDirectSpaceState{}
+		class.SetBaseObject(obj)
+		return class
+	case "PhysicsMaterial":
+		class := &PhysicsMaterial{}
 		class.SetBaseObject(obj)
 		return class
 	case "PhysicsShapeQueryParameters":
@@ -1106,6 +1318,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &QuadMesh{}
 		class.SetBaseObject(obj)
 		return class
+	case "RandomNumberGenerator":
+		class := &RandomNumberGenerator{}
+		class.SetBaseObject(obj)
+		return class
 	case "Range":
 		class := &Range{}
 		class.SetBaseObject(obj)
@@ -1162,6 +1378,102 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &Resource{}
 		class.SetBaseObject(obj)
 		return class
+	case "ResourceFormatDDS":
+		class := &ResourceFormatDDS{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatImporter":
+		class := &ResourceFormatImporter{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoader":
+		class := &ResourceFormatLoader{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderBMFont":
+		class := &ResourceFormatLoaderBMFont{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderBinary":
+		class := &ResourceFormatLoaderBinary{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderDynamicFont":
+		class := &ResourceFormatLoaderDynamicFont{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderGDScript":
+		class := &ResourceFormatLoaderGDScript{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderImage":
+		class := &ResourceFormatLoaderImage{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderNativeScript":
+		class := &ResourceFormatLoaderNativeScript{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderShader":
+		class := &ResourceFormatLoaderShader{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderStreamTexture":
+		class := &ResourceFormatLoaderStreamTexture{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderText":
+		class := &ResourceFormatLoaderText{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderTextureLayered":
+		class := &ResourceFormatLoaderTextureLayered{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderTheora":
+		class := &ResourceFormatLoaderTheora{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderVideoStreamGDNative":
+		class := &ResourceFormatLoaderVideoStreamGDNative{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatLoaderWebm":
+		class := &ResourceFormatLoaderWebm{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatPKM":
+		class := &ResourceFormatPKM{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatPVR":
+		class := &ResourceFormatPVR{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaver":
+		class := &ResourceFormatSaver{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaverBinary":
+		class := &ResourceFormatSaverBinary{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaverGDScript":
+		class := &ResourceFormatSaverGDScript{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaverNativeScript":
+		class := &ResourceFormatSaverNativeScript{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaverShader":
+		class := &ResourceFormatSaverShader{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceFormatSaverText":
+		class := &ResourceFormatSaverText{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceImporter":
 		class := &ResourceImporter{}
 		class.SetBaseObject(obj)
@@ -1170,20 +1482,16 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &ResourceImporterOGGVorbis{}
 		class.SetBaseObject(obj)
 		return class
-	case "ResourceImporterTheora":
-		class := &ResourceImporterTheora{}
-		class.SetBaseObject(obj)
-		return class
-	case "ResourceImporterWebm":
-		class := &ResourceImporterWebm{}
-		class.SetBaseObject(obj)
-		return class
 	case "ResourceInteractiveLoader":
 		class := &ResourceInteractiveLoader{}
 		class.SetBaseObject(obj)
 		return class
 	case "ResourcePreloader":
 		class := &ResourcePreloader{}
+		class.SetBaseObject(obj)
+		return class
+	case "ResourceSaverPNG":
+		class := &ResourceSaverPNG{}
 		class.SetBaseObject(obj)
 		return class
 	case "RichTextLabel":
@@ -1196,6 +1504,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "RigidBody2D":
 		class := &RigidBody2D{}
+		class.SetBaseObject(obj)
+		return class
+	case "RootMotionView":
+		class := &RootMotionView{}
 		class.SetBaseObject(obj)
 		return class
 	case "SceneState":
@@ -1212,6 +1524,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "Script":
 		class := &Script{}
+		class.SetBaseObject(obj)
+		return class
+	case "ScriptCreateDialog":
+		class := &ScriptCreateDialog{}
 		class.SetBaseObject(obj)
 		return class
 	case "ScriptEditor":
@@ -1258,6 +1574,14 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &Skeleton{}
 		class.SetBaseObject(obj)
 		return class
+	case "Skeleton2D":
+		class := &Skeleton2D{}
+		class.SetBaseObject(obj)
+		return class
+	case "SkeletonIK":
+		class := &SkeletonIK{}
+		class.SetBaseObject(obj)
+		return class
 	case "Sky":
 		class := &Sky{}
 		class.SetBaseObject(obj)
@@ -1268,6 +1592,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "SliderJoint":
 		class := &SliderJoint{}
+		class.SetBaseObject(obj)
+		return class
+	case "SoftBody":
+		class := &SoftBody{}
 		class.SetBaseObject(obj)
 		return class
 	case "Spatial":
@@ -1306,6 +1634,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &SpotLight{}
 		class.SetBaseObject(obj)
 		return class
+	case "SpringArm":
+		class := &SpringArm{}
+		class.SetBaseObject(obj)
+		return class
 	case "Sprite":
 		class := &Sprite{}
 		class.SetBaseObject(obj)
@@ -1336,6 +1668,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "StreamPeerBuffer":
 		class := &StreamPeerBuffer{}
+		class.SetBaseObject(obj)
+		return class
+	case "StreamPeerGDNative":
+		class := &StreamPeerGDNative{}
 		class.SetBaseObject(obj)
 		return class
 	case "StreamPeerSSL":
@@ -1390,12 +1726,28 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &TextEdit{}
 		class.SetBaseObject(obj)
 		return class
+	case "TextFile":
+		class := &TextFile{}
+		class.SetBaseObject(obj)
+		return class
 	case "Texture":
 		class := &Texture{}
 		class.SetBaseObject(obj)
 		return class
+	case "Texture3D":
+		class := &Texture3D{}
+		class.SetBaseObject(obj)
+		return class
+	case "TextureArray":
+		class := &TextureArray{}
+		class.SetBaseObject(obj)
+		return class
 	case "TextureButton":
 		class := &TextureButton{}
+		class.SetBaseObject(obj)
+		return class
+	case "TextureLayered":
+		class := &TextureLayered{}
 		class.SetBaseObject(obj)
 		return class
 	case "TextureProgress":
@@ -1434,6 +1786,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &Translation{}
 		class.SetBaseObject(obj)
 		return class
+	case "TranslationLoaderPO":
+		class := &TranslationLoaderPO{}
+		class.SetBaseObject(obj)
+		return class
 	case "Tree":
 		class := &Tree{}
 		class.SetBaseObject(obj)
@@ -1448,6 +1804,14 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "Tween":
 		class := &Tween{}
+		class.SetBaseObject(obj)
+		return class
+	case "UPNP":
+		class := &UPNP{}
+		class.SetBaseObject(obj)
+		return class
+	case "UPNPDevice":
+		class := &UPNPDevice{}
 		class.SetBaseObject(obj)
 		return class
 	case "UndoRedo":
@@ -1488,6 +1852,10 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		return class
 	case "VideoStream":
 		class := &VideoStream{}
+		class.SetBaseObject(obj)
+		return class
+	case "VideoStreamGDNative":
+		class := &VideoStreamGDNative{}
 		class.SetBaseObject(obj)
 		return class
 	case "VideoStreamTheora":
@@ -1706,8 +2074,152 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &VisualScriptYieldSignal{}
 		class.SetBaseObject(obj)
 		return class
+	case "VisualShader":
+		class := &VisualShader{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNode":
+		class := &VisualShaderNode{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeColorConstant":
+		class := &VisualShaderNodeColorConstant{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeColorOp":
+		class := &VisualShaderNodeColorOp{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeColorUniform":
+		class := &VisualShaderNodeColorUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeCubeMap":
+		class := &VisualShaderNodeCubeMap{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeCubeMapUniform":
+		class := &VisualShaderNodeCubeMapUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeDotProduct":
+		class := &VisualShaderNodeDotProduct{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeInput":
+		class := &VisualShaderNodeInput{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeOutput":
+		class := &VisualShaderNodeOutput{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeScalarConstant":
+		class := &VisualShaderNodeScalarConstant{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeScalarFunc":
+		class := &VisualShaderNodeScalarFunc{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeScalarInterp":
+		class := &VisualShaderNodeScalarInterp{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeScalarOp":
+		class := &VisualShaderNodeScalarOp{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeScalarUniform":
+		class := &VisualShaderNodeScalarUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTexture":
+		class := &VisualShaderNodeTexture{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTextureUniform":
+		class := &VisualShaderNodeTextureUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformCompose":
+		class := &VisualShaderNodeTransformCompose{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformConstant":
+		class := &VisualShaderNodeTransformConstant{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformDecompose":
+		class := &VisualShaderNodeTransformDecompose{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformMult":
+		class := &VisualShaderNodeTransformMult{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformUniform":
+		class := &VisualShaderNodeTransformUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeTransformVecMult":
+		class := &VisualShaderNodeTransformVecMult{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeUniform":
+		class := &VisualShaderNodeUniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVec3Constant":
+		class := &VisualShaderNodeVec3Constant{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVec3Uniform":
+		class := &VisualShaderNodeVec3Uniform{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorCompose":
+		class := &VisualShaderNodeVectorCompose{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorDecompose":
+		class := &VisualShaderNodeVectorDecompose{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorFunc":
+		class := &VisualShaderNodeVectorFunc{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorInterp":
+		class := &VisualShaderNodeVectorInterp{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorLen":
+		class := &VisualShaderNodeVectorLen{}
+		class.SetBaseObject(obj)
+		return class
+	case "VisualShaderNodeVectorOp":
+		class := &VisualShaderNodeVectorOp{}
+		class.SetBaseObject(obj)
+		return class
 	case "WeakRef":
 		class := &WeakRef{}
+		class.SetBaseObject(obj)
+		return class
+	case "WebSocketClient":
+		class := &WebSocketClient{}
+		class.SetBaseObject(obj)
+		return class
+	case "WebSocketMultiplayerPeer":
+		class := &WebSocketMultiplayerPeer{}
+		class.SetBaseObject(obj)
+		return class
+	case "WebSocketPeer":
+		class := &WebSocketPeer{}
+		class.SetBaseObject(obj)
+		return class
+	case "WebSocketServer":
+		class := &WebSocketServer{}
 		class.SetBaseObject(obj)
 		return class
 	case "WindowDialog":

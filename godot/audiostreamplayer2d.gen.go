@@ -191,6 +191,29 @@ func (o *AudioStreamPlayer2D) GetMaxDistance() gdnative.Real {
 }
 
 /*
+        Undocumented
+	Args: [], Returns: float
+*/
+func (o *AudioStreamPlayer2D) GetPitchScale() gdnative.Real {
+	//log.Println("Calling AudioStreamPlayer2D.GetPitchScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer2D", "get_pitch_scale")
+
+	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyReal()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
         Returns the position in the [AudioStream].
 	Args: [], Returns: float
 */
@@ -248,6 +271,29 @@ func (o *AudioStreamPlayer2D) GetStream() AudioStreamImplementer {
 	}
 
 	return &ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *AudioStreamPlayer2D) GetStreamPaused() gdnative.Bool {
+	//log.Println("Calling AudioStreamPlayer2D.GetStreamPaused()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer2D", "get_stream_paused")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -468,6 +514,27 @@ func (o *AudioStreamPlayer2D) SetMaxDistance(pixels gdnative.Real) {
 
 /*
         Undocumented
+	Args: [{ false pitch_scale float}], Returns: void
+*/
+func (o *AudioStreamPlayer2D) SetPitchScale(pitchScale gdnative.Real) {
+	//log.Println("Calling AudioStreamPlayer2D.SetPitchScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pitchScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer2D", "set_pitch_scale")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
 func (o *AudioStreamPlayer2D) SetStream(stream AudioStreamImplementer) {
@@ -479,6 +546,27 @@ func (o *AudioStreamPlayer2D) SetStream(stream AudioStreamImplementer) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer2D", "set_stream")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false pause bool}], Returns: void
+*/
+func (o *AudioStreamPlayer2D) SetStreamPaused(pause gdnative.Bool) {
+	//log.Println("Calling AudioStreamPlayer2D.SetStreamPaused()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pause)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer2D", "set_stream_paused")
 
 	// Call the parent method.
 	// void
@@ -539,8 +627,10 @@ type AudioStreamPlayer2DImplementer interface {
 	GetAttenuation() gdnative.Real
 	GetBus() gdnative.String
 	GetMaxDistance() gdnative.Real
+	GetPitchScale() gdnative.Real
 	GetPlaybackPosition() gdnative.Real
 	GetStream() AudioStreamImplementer
+	GetStreamPaused() gdnative.Bool
 	GetVolumeDb() gdnative.Real
 	IsAutoplayEnabled() gdnative.Bool
 	IsPlaying() gdnative.Bool
@@ -551,7 +641,9 @@ type AudioStreamPlayer2DImplementer interface {
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetMaxDistance(pixels gdnative.Real)
+	SetPitchScale(pitchScale gdnative.Real)
 	SetStream(stream AudioStreamImplementer)
+	SetStreamPaused(pause gdnative.Bool)
 	SetVolumeDb(volumeDb gdnative.Real)
 	Stop()
 }

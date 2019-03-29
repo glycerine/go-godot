@@ -17,12 +17,13 @@ import (
 type _ResourceSaverSaverFlags int
 
 const (
-	_ResourceSaverFlagBundleResources      _ResourceSaverSaverFlags = 2
-	_ResourceSaverFlagChangePath           _ResourceSaverSaverFlags = 4
-	_ResourceSaverFlagCompress             _ResourceSaverSaverFlags = 32
-	_ResourceSaverFlagOmitEditorProperties _ResourceSaverSaverFlags = 8
-	_ResourceSaverFlagRelativePaths        _ResourceSaverSaverFlags = 1
-	_ResourceSaverFlagSaveBigEndian        _ResourceSaverSaverFlags = 16
+	_ResourceSaverFlagBundleResources         _ResourceSaverSaverFlags = 2
+	_ResourceSaverFlagChangePath              _ResourceSaverSaverFlags = 4
+	_ResourceSaverFlagCompress                _ResourceSaverSaverFlags = 32
+	_ResourceSaverFlagOmitEditorProperties    _ResourceSaverSaverFlags = 8
+	_ResourceSaverFlagRelativePaths           _ResourceSaverSaverFlags = 1
+	_ResourceSaverFlagReplaceSubresourcePaths _ResourceSaverSaverFlags = 64
+	_ResourceSaverFlagSaveBigEndian           _ResourceSaverSaverFlags = 16
 )
 
 //func NewresourceSaverFromPointer(ptr gdnative.Pointer) resourceSaver {
@@ -39,12 +40,12 @@ func newSingletonResourceSaver() *resourceSaver {
 }
 
 /*
-   Resource Saving Interface. This interface is used for saving resources to disk.
+   Resource saving interface, used for saving resources to disk.
 */
 var ResourceSaver = newSingletonResourceSaver()
 
 /*
-Resource Saving Interface. This interface is used for saving resources to disk.
+Resource saving interface, used for saving resources to disk.
 */
 type resourceSaver struct {
 	Object

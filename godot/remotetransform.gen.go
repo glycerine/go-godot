@@ -23,7 +23,7 @@ func newRemoteTransformFromPointer(ptr gdnative.Pointer) RemoteTransform {
 }
 
 /*
-RemoteTransform leads the [Transform] of another [Spatial] derived Node (called the remote node) in the scene. It can be set to track another Node's position, rotation and/or scale. It can update using either global or local coordinates.
+RemoteTransform pushes its own [Transform] to another [Spatial] derived Node (called the remote node) in the scene. It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.
 */
 type RemoteTransform struct {
 	Spatial

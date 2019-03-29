@@ -94,6 +94,43 @@ func (o *SpriteBase3D) X_QueueUpdate() {
 }
 
 /*
+
+	Args: [], Returns: TriangleMesh
+*/
+func (o *SpriteBase3D) GenerateTriangleMesh() TriangleMeshImplementer {
+	//log.Println("Calling SpriteBase3D.GenerateTriangleMesh()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpriteBase3D", "generate_triangle_mesh")
+
+	// Call the parent method.
+	// TriangleMesh
+	retPtr := gdnative.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := newTriangleMeshFromPointer(retPtr)
+
+	// Check to see if we already have an instance of this object in our Go instance registry.
+	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
+		return instance.(TriangleMeshImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TriangleMesh" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TriangleMeshImplementer)
+	}
+
+	return &ret
+}
+
+/*
         Undocumented
 	Args: [], Returns: enum.SpriteBase3D::AlphaCutMode
 */
@@ -564,6 +601,7 @@ type SpriteBase3DImplementer interface {
 	GeometryInstanceImplementer
 	X_ImUpdate()
 	X_QueueUpdate()
+	GenerateTriangleMesh() TriangleMeshImplementer
 	GetDrawFlag(flag gdnative.Int) gdnative.Bool
 	GetItemRect() gdnative.Rect2
 	GetModulate() gdnative.Color

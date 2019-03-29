@@ -240,6 +240,26 @@ func (o *EditorFileSystem) UpdateFile(path gdnative.String) {
 
 }
 
+/*
+
+	Args: [], Returns: void
+*/
+func (o *EditorFileSystem) UpdateScriptClasses() {
+	//log.Println("Calling EditorFileSystem.UpdateScriptClasses()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorFileSystem", "update_script_classes")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
 // EditorFileSystemImplementer is an interface that implements the methods
 // of the EditorFileSystem class.
 type EditorFileSystemImplementer interface {
@@ -252,4 +272,5 @@ type EditorFileSystemImplementer interface {
 	Scan()
 	ScanSources()
 	UpdateFile(path gdnative.String)
+	UpdateScriptClasses()
 }

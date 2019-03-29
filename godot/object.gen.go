@@ -17,9 +17,10 @@ import (
 type ObjectConnectFlags int
 
 const (
-	ObjectConnectDeferred ObjectConnectFlags = 1
-	ObjectConnectOneshot  ObjectConnectFlags = 4
-	ObjectConnectPersist  ObjectConnectFlags = 2
+	ObjectConnectDeferred         ObjectConnectFlags = 1
+	ObjectConnectOneshot          ObjectConnectFlags = 4
+	ObjectConnectPersist          ObjectConnectFlags = 2
+	ObjectConnectReferenceCounted ObjectConnectFlags = 8
 )
 
 //func NewObjectFromPointer(ptr gdnative.Pointer) Object {
@@ -32,7 +33,7 @@ func newObjectFromPointer(ptr gdnative.Pointer) Object {
 }
 
 /*
-Base class for all non built-in types. Everything not a built-in type starts the inheritance chain from this class. Objects do not manage memory, if inheriting from one the object will most likely have to be deleted manually (call the [method free] function from the script or delete from C++). Some derivatives add memory management, such as [Reference] (which keeps a reference count and deletes itself automatically when no longer referenced) and [Node], which deletes the children tree when deleted. Objects export properties, which are mainly useful for storage and editing, but not really so much in programming. Properties are exported in [method _get_property_list] and handled in [method _get] and [method _set]. However, scripting languages and C++ have simpler means to export them. Objects also receive notifications ([method _notification]). Notifications are a simple way to notify the object about simple events, so they can all be handled together.
+Base class for all non built-in types. Everything which is not a built-in type starts the inheritance chain from this class. Objects can be constructed from scripting languages, using [code]Object.new()[/code] in GDScript, [code]new Object[/code] in C#, or the "Construct Object" node in VisualScript. Objects do not manage memory, if inheriting from one the object will most likely have to be deleted manually (call the [method free] function from the script or delete from C++). Some derivatives add memory management, such as [Reference] (which keeps a reference count and deletes itself automatically when no longer referenced) and [Node], which deletes the children tree when deleted. Objects export properties, which are mainly useful for storage and editing, but not really so much in programming. Properties are exported in [method _get_property_list] and handled in [method _get] and [method _set]. However, scripting languages and C++ have simpler means to export them. Objects also receive notifications ([method _notification]). Notifications are a simple way to notify the object about simple events, so they can all be handled together.
 */
 type Object struct {
 	owner gdnative.Object
@@ -54,9 +55,9 @@ func (o *Object) GetBaseObject() gdnative.Object {
 
 /*
         Returns the given property. Returns [code]null[/code] if the [code]property[/code] does not exist.
-	Args: [{ false property String}], Returns: void
+	Args: [{ false property String}], Returns: Variant
 */
-func (o *Object) X_Get(property gdnative.String) {
+func (o *Object) X_Get(property gdnative.String) gdnative.Variant {
 	//log.Println("Calling Object.X_Get()")
 
 	// Build out the method's arguments
@@ -67,10 +68,13 @@ func (o *Object) X_Get(property gdnative.String) {
 	methodBind := gdnative.NewMethodBind("Object", "_get")
 
 	// Call the parent method.
-	// void
-	retPtr := gdnative.NewEmptyVoid()
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -446,7 +450,7 @@ func (o *Object) GetIncomingConnections() gdnative.Array {
 }
 
 /*
-
+        Get indexed object property by String. Property indices get accessed with colon separation, for example: [code]position:x[/code]
 	Args: [{ false property NodePath}], Returns: Variant
 */
 func (o *Object) GetIndexed(property gdnative.NodePath) gdnative.Variant {
@@ -924,6 +928,28 @@ func (o *Object) SetBlockSignals(enable gdnative.Bool) {
 
 /*
 
+	Args: [{ false property String} { false value Variant}], Returns: void
+*/
+func (o *Object) SetDeferred(property gdnative.String, value gdnative.Variant) {
+	//log.Println("Calling Object.SetDeferred()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_deferred")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+
 	Args: [{ false property NodePath} { false value Variant}], Returns: void
 */
 func (o *Object) SetIndexed(property gdnative.NodePath, value gdnative.Variant) {
@@ -1036,7 +1062,7 @@ func (o *Object) Tr(message gdnative.String) gdnative.String {
 // of the Object class.
 type ObjectImplementer interface {
 	Class
-	X_Get(property gdnative.String)
+	X_Get(property gdnative.String) gdnative.Variant
 	X_GetPropertyList() gdnative.Array
 	X_Init()
 	X_Notification(what gdnative.Int)
@@ -1072,6 +1098,7 @@ type ObjectImplementer interface {
 	PropertyListChangedNotify()
 	Set(property gdnative.String, value gdnative.Variant)
 	SetBlockSignals(enable gdnative.Bool)
+	SetDeferred(property gdnative.String, value gdnative.Variant)
 	SetIndexed(property gdnative.NodePath, value gdnative.Variant)
 	SetMessageTranslation(enable gdnative.Bool)
 	SetMeta(name gdnative.String, value gdnative.Variant)

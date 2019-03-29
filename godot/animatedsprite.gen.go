@@ -169,6 +169,29 @@ func (o *AnimatedSprite) GetOffset() gdnative.Vector2 {
 
 /*
         Undocumented
+	Args: [], Returns: float
+*/
+func (o *AnimatedSprite) GetSpeedScale() gdnative.Real {
+	//log.Println("Calling AnimatedSprite.GetSpeedScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimatedSprite", "get_speed_scale")
+
+	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyReal()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [], Returns: SpriteFrames
 */
 func (o *AnimatedSprite) GetSpriteFrames() SpriteFramesImplementer {
@@ -445,6 +468,27 @@ func (o *AnimatedSprite) SetOffset(offset gdnative.Vector2) {
 
 /*
         Undocumented
+	Args: [{ false speed_scale float}], Returns: void
+*/
+func (o *AnimatedSprite) SetSpeedScale(speedScale gdnative.Real) {
+	//log.Println("Calling AnimatedSprite.SetSpeedScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromReal(speedScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimatedSprite", "set_speed_scale")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false sprite_frames SpriteFrames}], Returns: void
 */
 func (o *AnimatedSprite) SetSpriteFrames(spriteFrames SpriteFramesImplementer) {
@@ -494,6 +538,7 @@ type AnimatedSpriteImplementer interface {
 	GetAnimation() gdnative.String
 	GetFrame() gdnative.Int
 	GetOffset() gdnative.Vector2
+	GetSpeedScale() gdnative.Real
 	GetSpriteFrames() SpriteFramesImplementer
 	IsCentered() gdnative.Bool
 	IsFlippedH() gdnative.Bool
@@ -506,6 +551,7 @@ type AnimatedSpriteImplementer interface {
 	SetFlipV(flipV gdnative.Bool)
 	SetFrame(frame gdnative.Int)
 	SetOffset(offset gdnative.Vector2)
+	SetSpeedScale(speedScale gdnative.Real)
 	SetSpriteFrames(spriteFrames SpriteFramesImplementer)
 	Stop()
 }

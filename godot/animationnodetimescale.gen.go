@@ -13,29 +13,29 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
-//func NewResourceImporterTheoraFromPointer(ptr gdnative.Pointer) ResourceImporterTheora {
-func newResourceImporterTheoraFromPointer(ptr gdnative.Pointer) ResourceImporterTheora {
+//func NewAnimationNodeTimeScaleFromPointer(ptr gdnative.Pointer) AnimationNodeTimeScale {
+func newAnimationNodeTimeScaleFromPointer(ptr gdnative.Pointer) AnimationNodeTimeScale {
 	owner := gdnative.NewObjectFromPointer(ptr)
-	obj := ResourceImporterTheora{}
+	obj := AnimationNodeTimeScale{}
 	obj.SetBaseObject(owner)
 
 	return obj
 }
 
 /*
-Undocumented
-*/
-type ResourceImporterTheora struct {
-	ResourceImporter
+
+ */
+type AnimationNodeTimeScale struct {
+	AnimationNode
 	owner gdnative.Object
 }
 
-func (o *ResourceImporterTheora) BaseClass() string {
-	return "ResourceImporterTheora"
+func (o *AnimationNodeTimeScale) BaseClass() string {
+	return "AnimationNodeTimeScale"
 }
 
-// ResourceImporterTheoraImplementer is an interface that implements the methods
-// of the ResourceImporterTheora class.
-type ResourceImporterTheoraImplementer interface {
-	ResourceImporterImplementer
+// AnimationNodeTimeScaleImplementer is an interface that implements the methods
+// of the AnimationNodeTimeScale class.
+type AnimationNodeTimeScaleImplementer interface {
+	AnimationNodeImplementer
 }

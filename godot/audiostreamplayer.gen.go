@@ -154,7 +154,30 @@ func (o *AudioStreamPlayer) GetMixTarget() AudioStreamPlayerMixTarget {
 }
 
 /*
-        Returns the position in the [AudioStream].
+        Undocumented
+	Args: [], Returns: float
+*/
+func (o *AudioStreamPlayer) GetPitchScale() gdnative.Real {
+	//log.Println("Calling AudioStreamPlayer.GetPitchScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_pitch_scale")
+
+	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyReal()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRealFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Returns the position in the [AudioStream] in seconds.
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer) GetPlaybackPosition() gdnative.Real {
@@ -211,6 +234,29 @@ func (o *AudioStreamPlayer) GetStream() AudioStreamImplementer {
 	}
 
 	return &ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *AudioStreamPlayer) GetStreamPaused() gdnative.Bool {
+	//log.Println("Calling AudioStreamPlayer.GetStreamPaused()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_stream_paused")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
 }
 
 /*
@@ -389,6 +435,27 @@ func (o *AudioStreamPlayer) SetMixTarget(mixTarget gdnative.Int) {
 
 /*
         Undocumented
+	Args: [{ false pitch_scale float}], Returns: void
+*/
+func (o *AudioStreamPlayer) SetPitchScale(pitchScale gdnative.Real) {
+	//log.Println("Calling AudioStreamPlayer.SetPitchScale()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pitchScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_pitch_scale")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
 func (o *AudioStreamPlayer) SetStream(stream AudioStreamImplementer) {
@@ -400,6 +467,27 @@ func (o *AudioStreamPlayer) SetStream(stream AudioStreamImplementer) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_stream")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false pause bool}], Returns: void
+*/
+func (o *AudioStreamPlayer) SetStreamPaused(pause gdnative.Bool) {
+	//log.Println("Calling AudioStreamPlayer.SetStreamPaused()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pause)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_stream_paused")
 
 	// Call the parent method.
 	// void
@@ -457,8 +545,10 @@ type AudioStreamPlayerImplementer interface {
 	X_IsActive() gdnative.Bool
 	X_SetPlaying(enable gdnative.Bool)
 	GetBus() gdnative.String
+	GetPitchScale() gdnative.Real
 	GetPlaybackPosition() gdnative.Real
 	GetStream() AudioStreamImplementer
+	GetStreamPaused() gdnative.Bool
 	GetVolumeDb() gdnative.Real
 	IsAutoplayEnabled() gdnative.Bool
 	IsPlaying() gdnative.Bool
@@ -467,7 +557,9 @@ type AudioStreamPlayerImplementer interface {
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetMixTarget(mixTarget gdnative.Int)
+	SetPitchScale(pitchScale gdnative.Real)
 	SetStream(stream AudioStreamImplementer)
+	SetStreamPaused(pause gdnative.Bool)
 	SetVolumeDb(volumeDb gdnative.Real)
 	Stop()
 }

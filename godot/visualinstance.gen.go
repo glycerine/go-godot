@@ -104,6 +104,30 @@ func (o *VisualInstance) GetLayerMask() gdnative.Int {
 }
 
 /*
+
+	Args: [{ false layer int}], Returns: bool
+*/
+func (o *VisualInstance) GetLayerMaskBit(layer gdnative.Int) gdnative.Bool {
+	//log.Println("Calling VisualInstance.GetLayerMaskBit()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualInstance", "get_layer_mask_bit")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
         Returns the transformed [AABB] (also known as the bounding box) for this VisualInstance. Transformed in this case means the [AABB] plus the position, rotation, and scale of the [Spatial]s [Transform]
 	Args: [], Returns: AABB
 */
@@ -168,6 +192,28 @@ func (o *VisualInstance) SetLayerMask(mask gdnative.Int) {
 
 }
 
+/*
+
+	Args: [{ false layer int} { false enabled bool}], Returns: void
+*/
+func (o *VisualInstance) SetLayerMaskBit(layer gdnative.Int, enabled gdnative.Bool) {
+	//log.Println("Calling VisualInstance.SetLayerMaskBit()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualInstance", "set_layer_mask_bit")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
 // VisualInstanceImplementer is an interface that implements the methods
 // of the VisualInstance class.
 type VisualInstanceImplementer interface {
@@ -175,7 +221,9 @@ type VisualInstanceImplementer interface {
 	X_GetVisualInstanceRid() gdnative.Rid
 	GetAabb() gdnative.Aabb
 	GetLayerMask() gdnative.Int
+	GetLayerMaskBit(layer gdnative.Int) gdnative.Bool
 	GetTransformedAabb() gdnative.Aabb
 	SetBase(base gdnative.Rid)
 	SetLayerMask(mask gdnative.Int)
+	SetLayerMaskBit(layer gdnative.Int, enabled gdnative.Bool)
 }

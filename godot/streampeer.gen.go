@@ -244,8 +244,8 @@ func (o *StreamPeer) GetPartialData(bytes gdnative.Int) gdnative.Array {
 }
 
 /*
-        Get a string with byte-length "bytes" from the stream.
-	Args: [{ false bytes int}], Returns: String
+        Get a string with byte-length [code]bytes[/code] from the stream. If [code]bytes[/code] is negative (default) the length will be read from the stream using the reverse process of [method put_string].
+	Args: [{-1 true bytes int}], Returns: String
 */
 func (o *StreamPeer) GetString(bytes gdnative.Int) gdnative.String {
 	//log.Println("Calling StreamPeer.GetString()")
@@ -360,8 +360,8 @@ func (o *StreamPeer) GetU8() gdnative.Int {
 }
 
 /*
-        Get a utf8 string with byte-length "bytes" from the stream (this decodes the string sent as utf8).
-	Args: [{ false bytes int}], Returns: String
+        Get a utf8 string with byte-length [code]bytes[/code] from the stream (this decodes the string sent as utf8). If [code]bytes[/code] is negative (default) the length will be read from the stream using the reverse process of [method put_utf8_string].
+	Args: [{-1 true bytes int}], Returns: String
 */
 func (o *StreamPeer) GetUtf8String(bytes gdnative.Int) gdnative.String {
 	//log.Println("Calling StreamPeer.GetUtf8String()")
@@ -604,6 +604,27 @@ func (o *StreamPeer) PutPartialData(data gdnative.PoolByteArray) gdnative.Array 
 }
 
 /*
+        Put a zero-terminated ascii string into the stream prepended by a 32 bits unsigned integer representing its size.
+	Args: [{ false value String}], Returns: void
+*/
+func (o *StreamPeer) PutString(value gdnative.String) {
+	//log.Println("Calling StreamPeer.PutString()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_string")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Put an unsigned 16 bit value into the stream.
 	Args: [{ false value int}], Returns: void
 */
@@ -688,7 +709,7 @@ func (o *StreamPeer) PutU8(value gdnative.Int) {
 }
 
 /*
-        Put a zero-terminated utf8 string into the stream.
+        Put a zero-terminated utf8 string into the stream prepended by a 32 bits unsigned integer representing its size.
 	Args: [{ false value String}], Returns: void
 */
 func (o *StreamPeer) PutUtf8String(value gdnative.String) {
@@ -778,6 +799,7 @@ type StreamPeerImplementer interface {
 	PutDouble(value gdnative.Real)
 	PutFloat(value gdnative.Real)
 	PutPartialData(data gdnative.PoolByteArray) gdnative.Array
+	PutString(value gdnative.String)
 	PutU16(value gdnative.Int)
 	PutU32(value gdnative.Int)
 	PutU64(value gdnative.Int)

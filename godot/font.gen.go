@@ -23,7 +23,7 @@ func newFontFromPointer(ptr gdnative.Pointer) Font {
 }
 
 /*
-Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
+Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts.
 */
 type Font struct {
 	Resource
@@ -36,18 +36,19 @@ func (o *Font) BaseClass() string {
 
 /*
         Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
-	Args: [{ false canvas_item RID} { false position Vector2} { false string String} {1,1,1,1 true modulate Color} {-1 true clip_w int}], Returns: void
+	Args: [{ false canvas_item RID} { false position Vector2} { false string String} {1,1,1,1 true modulate Color} {-1 true clip_w int} {1,1,1,1 true outline_modulate Color}], Returns: void
 */
-func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
+func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int, outlineModulate gdnative.Color) {
 	//log.Println("Calling Font.Draw()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(canvasItem)
 	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
 	ptrArguments[2] = gdnative.NewPointerFromString(string)
 	ptrArguments[3] = gdnative.NewPointerFromColor(modulate)
 	ptrArguments[4] = gdnative.NewPointerFromInt(clipW)
+	ptrArguments[5] = gdnative.NewPointerFromColor(outlineModulate)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Font", "draw")
@@ -61,18 +62,19 @@ func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string g
 
 /*
         Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
-	Args: [{ false canvas_item RID} { false position Vector2} { false char int} {-1 true next int} {1,1,1,1 true modulate Color}], Returns: float
+	Args: [{ false canvas_item RID} { false position Vector2} { false char int} {-1 true next int} {1,1,1,1 true modulate Color} {False true outline bool}], Returns: float
 */
-func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Real {
+func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color, outline gdnative.Bool) gdnative.Real {
 	//log.Println("Calling Font.DrawChar()")
 
 	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(canvasItem)
 	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
 	ptrArguments[2] = gdnative.NewPointerFromInt(char)
 	ptrArguments[3] = gdnative.NewPointerFromInt(next)
 	ptrArguments[4] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[5] = gdnative.NewPointerFromBool(outline)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Font", "draw_char")
@@ -184,6 +186,29 @@ func (o *Font) GetStringSize(string gdnative.String) gdnative.Vector2 {
 
 	Args: [], Returns: bool
 */
+func (o *Font) HasOutline() gdnative.Bool {
+	//log.Println("Calling Font.HasOutline()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "has_outline")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [], Returns: bool
+*/
 func (o *Font) IsDistanceFieldHint() gdnative.Bool {
 	//log.Println("Calling Font.IsDistanceFieldHint()")
 
@@ -227,12 +252,13 @@ func (o *Font) UpdateChanges() {
 // of the Font class.
 type FontImplementer interface {
 	ResourceImplementer
-	Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int)
-	DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Real
+	Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int, outlineModulate gdnative.Color)
+	DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color, outline gdnative.Bool) gdnative.Real
 	GetAscent() gdnative.Real
 	GetDescent() gdnative.Real
 	GetHeight() gdnative.Real
 	GetStringSize(string gdnative.String) gdnative.Vector2
+	HasOutline() gdnative.Bool
 	IsDistanceFieldHint() gdnative.Bool
 	UpdateChanges()
 }

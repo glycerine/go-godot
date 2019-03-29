@@ -245,6 +245,29 @@ func (o *Curve) GetMinValue() gdnative.Real {
 }
 
 /*
+        Returns the number of points describing the curve.
+	Args: [], Returns: int
+*/
+func (o *Curve) GetPointCount() gdnative.Int {
+	//log.Println("Calling Curve.GetPointCount()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve", "get_point_count")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
         Returns the left [code]TangentMode[/code] for the point at [code]index[/code].
 	Args: [{ false index int}], Returns: enum.Curve::TangentMode
 */
@@ -644,6 +667,7 @@ type CurveImplementer interface {
 	GetBakeResolution() gdnative.Int
 	GetMaxValue() gdnative.Real
 	GetMinValue() gdnative.Real
+	GetPointCount() gdnative.Int
 	GetPointLeftTangent(index gdnative.Int) gdnative.Real
 	GetPointPosition(index gdnative.Int) gdnative.Vector2
 	GetPointRightTangent(index gdnative.Int) gdnative.Real

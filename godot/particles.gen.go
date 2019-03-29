@@ -464,7 +464,7 @@ func (o *Particles) IsEmitting() gdnative.Bool {
 }
 
 /*
-
+        Restarts the particle emmission, clearing existing particles.
 	Args: [], Returns: void
 */
 func (o *Particles) Restart() {

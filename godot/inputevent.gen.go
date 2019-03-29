@@ -35,18 +35,18 @@ func (o *InputEvent) BaseClass() string {
 }
 
 /*
-        Returns [code]true[/code] if this event matches [code]event[/code].
-	Args: [{ false event InputEvent}], Returns: bool
+
+	Args: [{ false with_event InputEvent}], Returns: bool
 */
-func (o *InputEvent) ActionMatch(event InputEventImplementer) gdnative.Bool {
-	//log.Println("Calling InputEvent.ActionMatch()")
+func (o *InputEvent) Accumulate(withEvent InputEventImplementer) gdnative.Bool {
+	//log.Println("Calling InputEvent.Accumulate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetBaseObject())
+	ptrArguments[0] = gdnative.NewPointerFromObject(withEvent.GetBaseObject())
 
 	// Get the method bind
-	methodBind := gdnative.NewMethodBind("InputEvent", "action_match")
+	methodBind := gdnative.NewMethodBind("InputEvent", "accumulate")
 
 	// Call the parent method.
 	// bool
@@ -78,6 +78,30 @@ func (o *InputEvent) AsText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+
+	Args: [{ false action String}], Returns: float
+*/
+func (o *InputEvent) GetActionStrength(action gdnative.String) gdnative.Real {
+	//log.Println("Calling InputEvent.GetActionStrength()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "get_action_strength")
+
+	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyReal()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -333,8 +357,9 @@ func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vec
 // of the InputEvent class.
 type InputEventImplementer interface {
 	ResourceImplementer
-	ActionMatch(event InputEventImplementer) gdnative.Bool
+	Accumulate(withEvent InputEventImplementer) gdnative.Bool
 	AsText() gdnative.String
+	GetActionStrength(action gdnative.String) gdnative.Real
 	GetDevice() gdnative.Int
 	IsAction(action gdnative.String) gdnative.Bool
 	IsActionPressed(action gdnative.String) gdnative.Bool

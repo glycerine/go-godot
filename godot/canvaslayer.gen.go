@@ -35,6 +35,29 @@ func (o *CanvasLayer) BaseClass() string {
 }
 
 /*
+        Returns the RID of the canvas used by this layer.
+	Args: [], Returns: RID
+*/
+func (o *CanvasLayer) GetCanvas() gdnative.Rid {
+	//log.Println("Calling CanvasLayer.GetCanvas()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_canvas")
+
+	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
+	return ret
+}
+
+/*
         Undocumented
 	Args: [], Returns: Node
 */
@@ -210,43 +233,6 @@ func (o *CanvasLayer) GetTransform() gdnative.Transform2D {
 }
 
 /*
-        Return the [World2D] used by this layer.
-	Args: [], Returns: World2D
-*/
-func (o *CanvasLayer) GetWorld2D() World2DImplementer {
-	//log.Println("Calling CanvasLayer.GetWorld2D()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_world_2d")
-
-	// Call the parent method.
-	// World2D
-	retPtr := gdnative.NewEmptyObject()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := newWorld2DFromPointer(retPtr)
-
-	// Check to see if we already have an instance of this object in our Go instance registry.
-	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
-		return instance.(World2DImplementer)
-	}
-
-	// Check to see what kind of class this is and create it. This is generally used with
-	// GetNode().
-	className := ret.GetClass()
-	if className != "World2D" {
-		actualRet := getActualClass(className, ret.GetBaseObject())
-		return actualRet.(World2DImplementer)
-	}
-
-	return &ret
-}
-
-/*
         Undocumented
 	Args: [{ false viewport Object}], Returns: void
 */
@@ -397,6 +383,7 @@ func (o *CanvasLayer) SetTransform(transform gdnative.Transform2D) {
 // of the CanvasLayer class.
 type CanvasLayerImplementer interface {
 	NodeImplementer
+	GetCanvas() gdnative.Rid
 	GetCustomViewport() NodeImplementer
 	GetLayer() gdnative.Int
 	GetOffset() gdnative.Vector2
@@ -404,7 +391,6 @@ type CanvasLayerImplementer interface {
 	GetRotationDegrees() gdnative.Real
 	GetScale() gdnative.Vector2
 	GetTransform() gdnative.Transform2D
-	GetWorld2D() World2DImplementer
 	SetCustomViewport(viewport ObjectImplementer)
 	SetLayer(layer gdnative.Int)
 	SetOffset(offset gdnative.Vector2)

@@ -24,7 +24,7 @@ const (
 	TextureFlagMipmaps           TextureFlags = 1
 	TextureFlagMirroredRepeat    TextureFlags = 32
 	TextureFlagRepeat            TextureFlags = 2
-	TextureFlagVideoSurface      TextureFlags = 4096
+	TextureFlagVideoSurface      TextureFlags = 2048
 )
 
 //func NewTextureFromPointer(ptr gdnative.Pointer) Texture {
@@ -37,7 +37,7 @@ func newTextureFromPointer(ptr gdnative.Pointer) Texture {
 }
 
 /*
-A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite] or GUI [Control].
+A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite] or GUI [Control]. Textures are often created by loading them from a file. See [method @GDScript.load].
 */
 type Texture struct {
 	Resource

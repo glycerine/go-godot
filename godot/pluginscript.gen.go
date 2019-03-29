@@ -34,8 +34,46 @@ func (o *PluginScript) BaseClass() string {
 	return "PluginScript"
 }
 
+/*
+        Undocumented
+	Args: [], Returns: Object
+*/
+func (o *PluginScript) New() ObjectImplementer {
+	//log.Println("Calling PluginScript.New()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PluginScript", "new")
+
+	// Call the parent method.
+	// Object
+	retPtr := gdnative.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := newObjectFromPointer(retPtr)
+
+	// Check to see if we already have an instance of this object in our Go instance registry.
+	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
+		return instance.(ObjectImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
+	return &ret
+}
+
 // PluginScriptImplementer is an interface that implements the methods
 // of the PluginScript class.
 type PluginScriptImplementer interface {
 	ScriptImplementer
+	New() ObjectImplementer
 }

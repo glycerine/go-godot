@@ -69,6 +69,14 @@ const (
 	_OSSystemDirRingtones _OSSystemDir = 7
 )
 
+// _OSVideoDriver is an enum for VideoDriver values.
+type _OSVideoDriver int
+
+const (
+	_OSVideoDriverGles2 _OSVideoDriver = 1
+	_OSVideoDriverGles3 _OSVideoDriver = 0
+)
+
 // _OSWeekday is an enum for Weekday values.
 type _OSWeekday int
 
@@ -209,6 +217,27 @@ func (o *os) CenterWindow() {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("_OS", "center_window")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [], Returns: void
+*/
+func (o *os) CloseMidiInputs() {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.CloseMidiInputs()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "close_midi_inputs")
 
 	// Call the parent method.
 	// void
@@ -360,6 +389,55 @@ func (o *os) FindScancodeFromString(string gdnative.String) gdnative.Int {
 
 /*
         Undocumented
+	Args: [], Returns: int
+*/
+func (o *os) GetAudioDriverCount() gdnative.Int {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetAudioDriverCount()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_audio_driver_count")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [{ false driver int}], Returns: String
+*/
+func (o *os) GetAudioDriverName(driver gdnative.Int) gdnative.String {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetAudioDriverName()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(driver)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_audio_driver_name")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [], Returns: bool
 */
 func (o *os) GetBorderlessWindow() gdnative.Bool {
@@ -432,6 +510,30 @@ func (o *os) GetCmdlineArgs() gdnative.PoolStringArray {
 
 /*
         Undocumented
+	Args: [], Returns: PoolStringArray
+*/
+func (o *os) GetConnectedMidiInputs() gdnative.PoolStringArray {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetConnectedMidiInputs()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_connected_midi_inputs")
+
+	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [], Returns: int
 */
 func (o *os) GetCurrentScreen() gdnative.Int {
@@ -452,6 +554,30 @@ func (o *os) GetCurrentScreen() gdnative.Int {
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
 	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: enum._OS::VideoDriver
+*/
+func (o *os) GetCurrentVideoDriver() _OSVideoDriver {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetCurrentVideoDriver()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_current_video_driver")
+
+	// Call the parent method.
+	// enum._OS::VideoDriver
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return _OSVideoDriver(ret)
 }
 
 /*
@@ -623,6 +749,54 @@ func (o *os) GetExitCode() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: Vector2
+*/
+func (o *os) GetImeSelection() gdnative.Vector2 {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetImeSelection()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_ime_selection")
+
+	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: String
+*/
+func (o *os) GetImeText() gdnative.String {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetImeText()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_ime_text")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 	return ret
 }
 
@@ -1115,6 +1289,30 @@ func (o *os) GetSystemDir(dir gdnative.Int) gdnative.String {
         Undocumented
 	Args: [], Returns: int
 */
+func (o *os) GetSystemTimeMsecs() gdnative.Int {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetSystemTimeMsecs()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_system_time_msecs")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: int
+*/
 func (o *os) GetSystemTimeSecs() gdnative.Int {
 	o.ensureSingleton()
 	//log.Println("Calling _OS.GetSystemTimeSecs()")
@@ -1148,6 +1346,30 @@ func (o *os) GetTicksMsec() gdnative.Int {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("_OS", "get_ticks_msec")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: int
+*/
+func (o *os) GetTicksUsec() gdnative.Int {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetTicksUsec()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_ticks_usec")
 
 	// Call the parent method.
 	// int
@@ -1309,6 +1531,55 @@ func (o *os) GetUserDataDir() gdnative.String {
         Undocumented
 	Args: [], Returns: int
 */
+func (o *os) GetVideoDriverCount() gdnative.Int {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetVideoDriverCount()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_video_driver_count")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [{ false driver int}], Returns: String
+*/
+func (o *os) GetVideoDriverName(driver gdnative.Int) gdnative.String {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetVideoDriverName()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(driver)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_video_driver_name")
+
+	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: int
+*/
 func (o *os) GetVirtualKeyboardHeight() gdnative.Int {
 	o.ensureSingleton()
 	//log.Println("Calling _OS.GetVirtualKeyboardHeight()")
@@ -1326,6 +1597,30 @@ func (o *os) GetVirtualKeyboardHeight() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
+func (o *os) GetWindowPerPixelTransparencyEnabled() gdnative.Bool {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetWindowPerPixelTransparencyEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_window_per_pixel_transparency_enabled")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 	return ret
 }
 
@@ -1350,6 +1645,30 @@ func (o *os) GetWindowPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: Rect2
+*/
+func (o *os) GetWindowSafeArea() gdnative.Rect2 {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.GetWindowSafeArea()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "get_window_safe_area")
+
+	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 	return ret
 }
 
@@ -1693,6 +2012,30 @@ func (o *os) IsVsyncEnabled() gdnative.Bool {
         Undocumented
 	Args: [], Returns: bool
 */
+func (o *os) IsWindowAlwaysOnTop() gdnative.Bool {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.IsWindowAlwaysOnTop()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "is_window_always_on_top")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
+	Args: [], Returns: bool
+*/
 func (o *os) IsWindowFullscreen() gdnative.Bool {
 	o.ensureSingleton()
 	//log.Println("Calling _OS.IsWindowFullscreen()")
@@ -1812,6 +2155,27 @@ func (o *os) Kill(pid gdnative.Int) gdnative.Error {
 
 /*
         Undocumented
+	Args: [], Returns: void
+*/
+func (o *os) MoveWindowToForeground() {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.MoveWindowToForeground()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "move_window_to_foreground")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [], Returns: bool
 */
 func (o *os) NativeVideoIsPlaying() gdnative.Bool {
@@ -1917,6 +2281,27 @@ func (o *os) NativeVideoUnpause() {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("_OS", "native_video_unpause")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [], Returns: void
+*/
+func (o *os) OpenMidiInputs() {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.OpenMidiInputs()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "open_midi_inputs")
 
 	// Call the parent method.
 	// void
@@ -2035,6 +2420,31 @@ func (o *os) RequestAttention() {
 
 /*
         Undocumented
+	Args: [{ false name String}], Returns: bool
+*/
+func (o *os) RequestPermission(name gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.RequestPermission()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "request_permission")
+
+	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Undocumented
 	Args: [{ false borderless bool}], Returns: void
 */
 func (o *os) SetBorderlessWindow(borderless gdnative.Bool) {
@@ -2135,6 +2545,28 @@ func (o *os) SetIcon(icon ImageImplementer) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("_OS", "set_icon")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false active bool}], Returns: void
+*/
+func (o *os) SetImeActive(active gdnative.Bool) {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.SetImeActive()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(active)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "set_ime_active")
 
 	// Call the parent method.
 	// void
@@ -2304,6 +2736,28 @@ func (o *os) SetUseVsync(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false enabled bool}], Returns: void
 */
+func (o *os) SetWindowAlwaysOnTop(enabled gdnative.Bool) {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.SetWindowAlwaysOnTop()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "set_window_always_on_top")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
+*/
 func (o *os) SetWindowFullscreen(enabled gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling _OS.SetWindowFullscreen()")
@@ -2358,6 +2812,28 @@ func (o *os) SetWindowMinimized(enabled gdnative.Bool) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("_OS", "set_window_minimized")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
+*/
+func (o *os) SetWindowPerPixelTransparencyEnabled(enabled gdnative.Bool) {
+	o.ensureSingleton()
+	//log.Println("Calling _OS.SetWindowPerPixelTransparencyEnabled()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("_OS", "set_window_per_pixel_transparency_enabled")
 
 	// Call the parent method.
 	// void
@@ -2509,15 +2985,19 @@ type OSImplementer interface {
 	CanDraw() gdnative.Bool
 	CanUseThreads() gdnative.Bool
 	CenterWindow()
+	CloseMidiInputs()
 	DelayMsec(msec gdnative.Int)
 	DelayUsec(usec gdnative.Int)
 	DumpMemoryToFile(file gdnative.String)
 	DumpResourcesToFile(file gdnative.String)
 	Execute(path gdnative.String, arguments gdnative.PoolStringArray, blocking gdnative.Bool, output gdnative.Array) gdnative.Int
 	FindScancodeFromString(string gdnative.String) gdnative.Int
+	GetAudioDriverCount() gdnative.Int
+	GetAudioDriverName(driver gdnative.Int) gdnative.String
 	GetBorderlessWindow() gdnative.Bool
 	GetClipboard() gdnative.String
 	GetCmdlineArgs() gdnative.PoolStringArray
+	GetConnectedMidiInputs() gdnative.PoolStringArray
 	GetCurrentScreen() gdnative.Int
 	GetDate(utc gdnative.Bool) gdnative.Dictionary
 	GetDatetime(utc gdnative.Bool) gdnative.Dictionary
@@ -2526,6 +3006,8 @@ type OSImplementer interface {
 	GetEnvironment(environment gdnative.String) gdnative.String
 	GetExecutablePath() gdnative.String
 	GetExitCode() gdnative.Int
+	GetImeSelection() gdnative.Vector2
+	GetImeText() gdnative.String
 	GetLatinKeyboardVariant() gdnative.String
 	GetLocale() gdnative.String
 	GetModelName() gdnative.String
@@ -2544,16 +3026,22 @@ type OSImplementer interface {
 	GetStaticMemoryPeakUsage() gdnative.Int
 	GetStaticMemoryUsage() gdnative.Int
 	GetSystemDir(dir gdnative.Int) gdnative.String
+	GetSystemTimeMsecs() gdnative.Int
 	GetSystemTimeSecs() gdnative.Int
 	GetTicksMsec() gdnative.Int
+	GetTicksUsec() gdnative.Int
 	GetTime(utc gdnative.Bool) gdnative.Dictionary
 	GetTimeZoneInfo() gdnative.Dictionary
 	GetUniqueId() gdnative.String
 	GetUnixTime() gdnative.Int
 	GetUnixTimeFromDatetime(datetime gdnative.Dictionary) gdnative.Int
 	GetUserDataDir() gdnative.String
+	GetVideoDriverCount() gdnative.Int
+	GetVideoDriverName(driver gdnative.Int) gdnative.String
 	GetVirtualKeyboardHeight() gdnative.Int
+	GetWindowPerPixelTransparencyEnabled() gdnative.Bool
 	GetWindowPosition() gdnative.Vector2
+	GetWindowSafeArea() gdnative.Rect2
 	GetWindowSize() gdnative.Vector2
 	HasEnvironment(environment gdnative.String) gdnative.Bool
 	HasFeature(tagName gdnative.String) gdnative.Bool
@@ -2568,33 +3056,40 @@ type OSImplementer interface {
 	IsStdoutVerbose() gdnative.Bool
 	IsUserfsPersistent() gdnative.Bool
 	IsVsyncEnabled() gdnative.Bool
+	IsWindowAlwaysOnTop() gdnative.Bool
 	IsWindowFullscreen() gdnative.Bool
 	IsWindowMaximized() gdnative.Bool
 	IsWindowMinimized() gdnative.Bool
 	IsWindowResizable() gdnative.Bool
+	MoveWindowToForeground()
 	NativeVideoIsPlaying() gdnative.Bool
 	NativeVideoPause()
 	NativeVideoStop()
 	NativeVideoUnpause()
+	OpenMidiInputs()
 	PrintAllResources(tofile gdnative.String)
 	PrintAllTexturesBySize()
 	PrintResourcesByType(types gdnative.PoolStringArray)
 	PrintResourcesInUse(short gdnative.Bool)
 	RequestAttention()
+	RequestPermission(name gdnative.String) gdnative.Bool
 	SetBorderlessWindow(borderless gdnative.Bool)
 	SetClipboard(clipboard gdnative.String)
 	SetCurrentScreen(screen gdnative.Int)
 	SetExitCode(code gdnative.Int)
 	SetIcon(icon ImageImplementer)
+	SetImeActive(active gdnative.Bool)
 	SetImePosition(position gdnative.Vector2)
 	SetKeepScreenOn(enabled gdnative.Bool)
 	SetLowProcessorUsageMode(enable gdnative.Bool)
 	SetScreenOrientation(orientation gdnative.Int)
 	SetUseFileAccessSaveAndSwap(enabled gdnative.Bool)
 	SetUseVsync(enable gdnative.Bool)
+	SetWindowAlwaysOnTop(enabled gdnative.Bool)
 	SetWindowFullscreen(enabled gdnative.Bool)
 	SetWindowMaximized(enabled gdnative.Bool)
 	SetWindowMinimized(enabled gdnative.Bool)
+	SetWindowPerPixelTransparencyEnabled(enabled gdnative.Bool)
 	SetWindowPosition(position gdnative.Vector2)
 	SetWindowResizable(enabled gdnative.Bool)
 	SetWindowSize(size gdnative.Vector2)

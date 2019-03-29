@@ -55,7 +55,7 @@ func (o *PacketPeerUDP) Close() {
 }
 
 /*
-        Return the IP of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+        Return the IP of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
 	Args: [], Returns: String
 */
 func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
@@ -78,7 +78,7 @@ func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
 }
 
 /*
-        Return the port of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+        Return the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
 	Args: [], Returns: int
 */
 func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {

@@ -58,7 +58,7 @@ func (o *VisibilityNotifier) GetAabb() gdnative.Aabb {
 }
 
 /*
-        If [code]true[/code] the bounding box is on the screen.
+        If [code]true[/code], the bounding box is on the screen.
 	Args: [], Returns: bool
 */
 func (o *VisibilityNotifier) IsOnScreen() gdnative.Bool {

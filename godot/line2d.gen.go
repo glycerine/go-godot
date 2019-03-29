@@ -35,8 +35,9 @@ const (
 type Line2DLineTextureMode int
 
 const (
-	Line2DLineTextureNone Line2DLineTextureMode = 0
-	Line2DLineTextureTile Line2DLineTextureMode = 1
+	Line2DLineTextureNone    Line2DLineTextureMode = 0
+	Line2DLineTextureStretch Line2DLineTextureMode = 2
+	Line2DLineTextureTile    Line2DLineTextureMode = 1
 )
 
 //func NewLine2DFromPointer(ptr gdnative.Pointer) Line2D {

@@ -51,8 +51,8 @@ func newBakedLightmapFromPointer(ptr gdnative.Pointer) BakedLightmap {
 }
 
 /*
-
- */
+Baked lightmaps are an alternative workflow for adding indirect (or baked) lighting to a scene. Unlike the [GIProbe] approach, baked lightmaps work fine on low-end PCs and mobile devices as they consume almost no resources in run-time.
+*/
 type BakedLightmap struct {
 	VisualInstance
 	owner gdnative.Object

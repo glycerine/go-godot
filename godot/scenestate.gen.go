@@ -32,7 +32,7 @@ func newSceneStateFromPointer(ptr gdnative.Pointer) SceneState {
 }
 
 /*
-Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts associated with a scene.
+Maintains a list of resources, nodes, exported, and overridden properties, and built-in scripts associated with a scene.
 */
 type SceneState struct {
 	Reference

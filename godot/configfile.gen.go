@@ -23,7 +23,7 @@ func newConfigFileFromPointer(ptr gdnative.Pointer) ConfigFile {
 }
 
 /*
-This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key: [codeblock] [section] some_key=42 string_example="Hello World!" a_vector=Vector3( 1, 0, 2 ) [/codeblock] The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem. The following example shows how to parse an INI-style file from the system, read its contents and store new values in it: [codeblock] var config = ConfigFile.new() var err = config.load("user://settings.cfg") if err == OK: # if not, something went wrong with the file loading # Look for the display/width pair, and default to 1024 if missing var screen_width = get_value("display", "width", 1024) # Store a variable if and only if it hasn't been defined yet if not config.has_section_key("audio", "mute"): config.set_value("audio", "mute", false) # Save the changes by overwriting the previous file config.save("user://settings.cfg") [/codeblock]
+This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key: [codeblock] [section] some_key=42 string_example="Hello World!" a_vector=Vector3( 1, 0, 2 ) [/codeblock] The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem. The following example shows how to parse an INI-style file from the system, read its contents and store new values in it: [codeblock] var config = ConfigFile.new() var err = config.load("user://settings.cfg") if err == OK: # if not, something went wrong with the file loading # Look for the display/width pair, and default to 1024 if missing var screen_width = config.get_value("display", "width", 1024) # Store a variable if and only if it hasn't been defined yet if not config.has_section_key("audio", "mute"): config.set_value("audio", "mute", false) # Save the changes by overwriting the previous file config.save("user://settings.cfg") [/codeblock] Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.
 */
 type ConfigFile struct {
 	Reference
@@ -226,7 +226,7 @@ func (o *ConfigFile) Save(path gdnative.String) gdnative.Error {
 }
 
 /*
-        Assigns a value to the specified key of the the specified section. If the section and/or the key do not exist, they are created. Passing a [code]null[/code] value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
+        Assigns a value to the specified key of the specified section. If the section and/or the key do not exist, they are created. Passing a [code]null[/code] value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
 	Args: [{ false section String} { false key String} { false value Variant}], Returns: void
 */
 func (o *ConfigFile) SetValue(section gdnative.String, key gdnative.String, value gdnative.Variant) {

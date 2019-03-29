@@ -201,7 +201,7 @@ func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 }
 
 /*
-
+        Loads the contents of the .pck or .zip file specified by [code]pack[/code] into the resource filesystem (res://). Returns true on success. Note: If a file from [code]pack[/code] shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from [code]pack[/code].
 	Args: [{ false pack String}], Returns: bool
 */
 func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
@@ -251,7 +251,7 @@ func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 }
 
 /*
-
+        Returns true if the specified property exists and its initial value differs from the current value.
 	Args: [{ false name String}], Returns: bool
 */
 func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
@@ -276,7 +276,7 @@ func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool 
 }
 
 /*
-
+        Returns the initial value of the specified property. Returns null if the property does not exist.
 	Args: [{ false name String}], Returns: Variant
 */
 func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Variant {
@@ -301,7 +301,7 @@ func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Varia
 }
 
 /*
-
+        Saves the configuration to the project.godot file.
 	Args: [], Returns: enum.Error
 */
 func (o *projectSettings) Save() gdnative.Error {
@@ -325,7 +325,7 @@ func (o *projectSettings) Save() gdnative.Error {
 }
 
 /*
-
+        Saves the configuration to a custom file.
 	Args: [{ false file String}], Returns: enum.Error
 */
 func (o *projectSettings) SaveCustom(file gdnative.String) gdnative.Error {

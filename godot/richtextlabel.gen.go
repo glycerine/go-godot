@@ -27,18 +27,19 @@ const (
 type RichTextLabelItemType int
 
 const (
-	RichTextLabelItemAlign     RichTextLabelItemType = 7
-	RichTextLabelItemColor     RichTextLabelItemType = 5
-	RichTextLabelItemFont      RichTextLabelItemType = 4
-	RichTextLabelItemFrame     RichTextLabelItemType = 0
-	RichTextLabelItemImage     RichTextLabelItemType = 2
-	RichTextLabelItemIndent    RichTextLabelItemType = 8
-	RichTextLabelItemList      RichTextLabelItemType = 9
-	RichTextLabelItemMeta      RichTextLabelItemType = 11
-	RichTextLabelItemNewline   RichTextLabelItemType = 3
-	RichTextLabelItemTable     RichTextLabelItemType = 10
-	RichTextLabelItemText      RichTextLabelItemType = 1
-	RichTextLabelItemUnderline RichTextLabelItemType = 6
+	RichTextLabelItemAlign         RichTextLabelItemType = 8
+	RichTextLabelItemColor         RichTextLabelItemType = 5
+	RichTextLabelItemFont          RichTextLabelItemType = 4
+	RichTextLabelItemFrame         RichTextLabelItemType = 0
+	RichTextLabelItemImage         RichTextLabelItemType = 2
+	RichTextLabelItemIndent        RichTextLabelItemType = 9
+	RichTextLabelItemList          RichTextLabelItemType = 10
+	RichTextLabelItemMeta          RichTextLabelItemType = 12
+	RichTextLabelItemNewline       RichTextLabelItemType = 3
+	RichTextLabelItemStrikethrough RichTextLabelItemType = 7
+	RichTextLabelItemTable         RichTextLabelItemType = 11
+	RichTextLabelItemText          RichTextLabelItemType = 1
+	RichTextLabelItemUnderline     RichTextLabelItemType = 6
 )
 
 // RichTextLabelListType is an enum for ListType values.
@@ -219,6 +220,29 @@ func (o *RichTextLabel) GetBbcode() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
+	return ret
+}
+
+/*
+        Returns the height of the content.
+	Args: [], Returns: int
+*/
+func (o *RichTextLabel) GetContentHeight() gdnative.Int {
+	//log.Println("Calling RichTextLabel.GetContentHeight()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RichTextLabel", "get_content_height")
+
+	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 	return ret
 }
 
@@ -623,7 +647,7 @@ func (o *RichTextLabel) Pop() {
 }
 
 /*
-        Adds a [code][right][/code] tag to the tag stack.
+        Adds an alignment tag based on the given [code]align[/code] value. See [enum Align] for possible values.
 	Args: [{ false align int}], Returns: void
 */
 func (o *RichTextLabel) PushAlign(align gdnative.Int) {
@@ -644,7 +668,7 @@ func (o *RichTextLabel) PushAlign(align gdnative.Int) {
 }
 
 /*
-        Adds a [code][cell][/code] tag to the tag stack. Must be inside a [table] tag. See [method push_table] for details.
+        Adds a [code][cell][/code] tag to the tag stack. Must be inside a [code][table][/code] tag. See [method push_table] for details.
 	Args: [], Returns: void
 */
 func (o *RichTextLabel) PushCell() {
@@ -760,6 +784,26 @@ func (o *RichTextLabel) PushMeta(data gdnative.Variant) {
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RichTextLabel", "push_meta")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Adds a [code][s][/code] tag to the tag stack.
+	Args: [], Returns: void
+*/
+func (o *RichTextLabel) PushStrikethrough() {
+	//log.Println("Calling RichTextLabel.PushStrikethrough()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RichTextLabel", "push_strikethrough")
 
 	// Call the parent method.
 	// void
@@ -1117,6 +1161,7 @@ type RichTextLabelImplementer interface {
 	AddText(text gdnative.String)
 	Clear()
 	GetBbcode() gdnative.String
+	GetContentHeight() gdnative.Int
 	GetLineCount() gdnative.Int
 	GetPercentVisible() gdnative.Real
 	GetTabSize() gdnative.Int
@@ -1140,6 +1185,7 @@ type RichTextLabelImplementer interface {
 	PushIndent(level gdnative.Int)
 	PushList(aType gdnative.Int)
 	PushMeta(data gdnative.Variant)
+	PushStrikethrough()
 	PushTable(columns gdnative.Int)
 	PushUnderline()
 	RemoveLine(line gdnative.Int) gdnative.Bool

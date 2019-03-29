@@ -23,7 +23,7 @@ func newGraphEditFromPointer(ptr gdnative.Pointer) GraphEdit {
 }
 
 /*
-GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
+GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [member OS.low_processor_usage_mode]) when using GraphEdits.
 */
 type GraphEdit struct {
 	Control
@@ -436,7 +436,7 @@ func (o *GraphEdit) DisconnectNode(from gdnative.String, fromPort gdnative.Int, 
 }
 
 /*
-        Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
+        Return an Array containing the list of connections. A connection consists in a structure of the form {from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }
 	Args: [], Returns: Array
 */
 func (o *GraphEdit) GetConnectionList() gdnative.Array {
@@ -525,6 +525,43 @@ func (o *GraphEdit) GetZoom() gdnative.Real {
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
+}
+
+/*
+
+	Args: [], Returns: HBoxContainer
+*/
+func (o *GraphEdit) GetZoomHbox() HBoxContainerImplementer {
+	//log.Println("Calling GraphEdit.GetZoomHbox()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "get_zoom_hbox")
+
+	// Call the parent method.
+	// HBoxContainer
+	retPtr := gdnative.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := newHBoxContainerFromPointer(retPtr)
+
+	// Check to see if we already have an instance of this object in our Go instance registry.
+	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
+		return instance.(HBoxContainerImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "HBoxContainer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(HBoxContainerImplementer)
+	}
+
+	return &ret
 }
 
 /*
@@ -690,6 +727,31 @@ func (o *GraphEdit) RemoveValidRightDisconnectType(aType gdnative.Int) {
 }
 
 /*
+
+	Args: [{ false from String} { false from_port int} { false to String} { false to_port int} { false amount float}], Returns: void
+*/
+func (o *GraphEdit) SetConnectionActivity(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int, amount gdnative.Real) {
+	//log.Println("Calling GraphEdit.SetConnectionActivity()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(from)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[2] = gdnative.NewPointerFromString(to)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toPort)
+	ptrArguments[4] = gdnative.NewPointerFromReal(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_connection_activity")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Undocumented
 	Args: [{ false enable bool}], Returns: void
 */
@@ -840,6 +902,7 @@ type GraphEditImplementer interface {
 	GetScrollOfs() gdnative.Vector2
 	GetSnap() gdnative.Int
 	GetZoom() gdnative.Real
+	GetZoomHbox() HBoxContainerImplementer
 	IsNodeConnected(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Bool
 	IsRightDisconnectsEnabled() gdnative.Bool
 	IsUsingSnap() gdnative.Bool
@@ -847,6 +910,7 @@ type GraphEditImplementer interface {
 	RemoveValidConnectionType(fromType gdnative.Int, toType gdnative.Int)
 	RemoveValidLeftDisconnectType(aType gdnative.Int)
 	RemoveValidRightDisconnectType(aType gdnative.Int)
+	SetConnectionActivity(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int, amount gdnative.Real)
 	SetRightDisconnects(enable gdnative.Bool)
 	SetScrollOfs(ofs gdnative.Vector2)
 	SetSelected(node ObjectImplementer)

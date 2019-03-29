@@ -58,7 +58,7 @@ func (o *VisibilityNotifier2D) GetRect() gdnative.Rect2 {
 }
 
 /*
-        If [code]true[/code] the bounding rectangle is on the screen.
+        If [code]true[/code], the bounding rectangle is on the screen.
 	Args: [], Returns: bool
 */
 func (o *VisibilityNotifier2D) IsOnScreen() gdnative.Bool {
