@@ -56,7 +56,7 @@ func (o *EditorSpatialGizmo) AddCollisionSegments(segments gdnative.PoolVector3A
 }
 
 /*
-        Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
+        Adds collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
 	Args: [{ false triangles TriangleMesh}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMeshImplementer) {
@@ -77,7 +77,7 @@ func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMeshImpleme
 }
 
 /*
-        Add a list of handles (points) which can be used to deform the object being edited. There are virtual functions which will be called upon editing of these handles. Call this function during [method redraw].
+        Adds a list of handles (points) which can be used to deform the object being edited. There are virtual functions which will be called upon editing of these handles. Call this function during [method redraw].
 	Args: [{ false handles PoolVector3Array} { false material Material} {False true billboard bool} {False true secondary bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, material MaterialImplementer, billboard gdnative.Bool, secondary gdnative.Bool) {
@@ -101,7 +101,7 @@ func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, mater
 }
 
 /*
-        Add lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
+        Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
 	Args: [{ false lines PoolVector3Array} { false material Material} {False true billboard bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material MaterialImplementer, billboard gdnative.Bool) {
@@ -148,7 +148,7 @@ func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMeshImplementer, billboard gdnati
 }
 
 /*
-        Add an unscaled billboard for visualization. Call this function during [method redraw].
+        Adds an unscaled billboard for visualization. Call this function during [method redraw].
 	Args: [{ false material Material} {1 true default_scale float}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Real) {
@@ -190,7 +190,7 @@ func (o *EditorSpatialGizmo) Clear() {
 }
 
 /*
-        Commit a handle being edited (handles must have been previously added by [method add_handles]). If the cancel parameter is true, an option to restore the edited value to the original is provided.
+        Commit a handle being edited (handles must have been previously added by [method add_handles]). If the [code]cancel[/code] parameter is [code]true[/code], an option to restore the edited value to the original is provided.
 	Args: [{ false index int} { false restore Variant} { false cancel bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore gdnative.Variant, cancel gdnative.Bool) {
@@ -213,7 +213,7 @@ func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore gdnative.V
 }
 
 /*
-        Get the name of an edited handle (handles must have been previously added by [method add_handles]). Handles can be named for reference to the user when editing.
+        Gets the name of an edited handle (handles must have been previously added by [method add_handles]). Handles can be named for reference to the user when editing.
 	Args: [{ false index int}], Returns: String
 */
 func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
@@ -237,7 +237,7 @@ func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
 }
 
 /*
-        Get actual value of a handle. This value can be anything and used for eventually undoing the motion when calling [method commit_handle].
+        Gets actual value of a handle. This value can be anything and used for eventually undoing the motion when calling [method commit_handle].
 	Args: [{ false index int}], Returns: Variant
 */
 func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant {
@@ -261,7 +261,7 @@ func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant
 }
 
 /*
-        Return the [EditorSpatialGizmoPlugin] that owns this gizmo. It's useful to retrieve materials using [method EditorSpatialGizmoPlugin.get_material].
+        Returns the [EditorSpatialGizmoPlugin] that owns this gizmo. It's useful to retrieve materials using [method EditorSpatialGizmoPlugin.get_material].
 	Args: [], Returns: EditorSpatialGizmoPlugin
 */
 func (o *EditorSpatialGizmo) GetPlugin() EditorSpatialGizmoPluginImplementer {
@@ -335,7 +335,7 @@ func (o *EditorSpatialGizmo) GetSpatialNode() SpatialImplementer {
 }
 
 /*
-        Get whether a handle is highlighted or not.
+        Gets whether a handle is highlighted or not.
 	Args: [{ false index int}], Returns: bool
 */
 func (o *EditorSpatialGizmo) IsHandleHighlighted(index gdnative.Int) gdnative.Bool {

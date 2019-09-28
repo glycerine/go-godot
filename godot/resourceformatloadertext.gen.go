@@ -23,8 +23,8 @@ func newResourceFormatLoaderTextFromPointer(ptr gdnative.Pointer) ResourceFormat
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderText struct {
 	ResourceFormatLoader
 	owner gdnative.Object

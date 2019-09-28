@@ -23,7 +23,7 @@ func newSpinBoxFromPointer(ptr gdnative.Pointer) SpinBox {
 }
 
 /*
-SpinBox is a numerical input text field. It allows entering integers and floats.
+SpinBox is a numerical input text field. It allows entering integers and floats. [b]Example:[/b] [codeblock] var spin_box = SpinBox.new() add_child(spin_box) var line_edit = spin_box.get_line_edit() line_edit.context_menu_enabled = false spin_box.align = LineEdit.ALIGN_RIGHT [/codeblock] The above code will create a [SpinBox], disable context menu on it and set the text alignment to right. See [Range] class for more options over the [SpinBox].
 */
 type SpinBox struct {
 	Range
@@ -161,7 +161,7 @@ func (o *SpinBox) GetAlign() LineEditAlign {
 }
 
 /*
-
+        Returns the [LineEdit] instance from this [SpinBox]. You can use it to access properties and methods of [LineEdit].
 	Args: [], Returns: LineEdit
 */
 func (o *SpinBox) GetLineEdit() LineEditImplementer {

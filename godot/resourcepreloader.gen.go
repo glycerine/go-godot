@@ -23,7 +23,7 @@ func newResourcePreloaderFromPointer(ptr gdnative.Pointer) ResourcePreloader {
 }
 
 /*
-This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader.
+This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader. GDScript has a simplified [method @GDScript.preload] built-in method which can be used in most situations, leaving the use of [ResourcePreloader] for more advanced scenarios.
 */
 type ResourcePreloader struct {
 	Node
@@ -162,7 +162,7 @@ func (o *ResourcePreloader) GetResourceList() gdnative.PoolStringArray {
 }
 
 /*
-        Returns true if the preloader contains a resource associated to [code]name[/code].
+        Returns [code]true[/code] if the preloader contains a resource associated to [code]name[/code].
 	Args: [{ false name String}], Returns: bool
 */
 func (o *ResourcePreloader) HasResource(name gdnative.String) gdnative.Bool {

@@ -35,7 +35,7 @@ func (o *Node2D) BaseClass() string {
 }
 
 /*
-        Multiplies the current scale by the 'ratio' vector.
+        Multiplies the current scale by the [code]ratio[/code] vector.
 	Args: [{ false ratio Vector2}], Returns: void
 */
 func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
@@ -56,7 +56,7 @@ func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
 }
 
 /*
-        Returns the angle between the node and the 'point' in radians.
+        Returns the angle between the node and the [code]point[/code] in radians.
 	Args: [{ false point Vector2}], Returns: float
 */
 func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Real {
@@ -311,7 +311,7 @@ func (o *Node2D) GetZIndex() gdnative.Int {
 }
 
 /*
-        Adds the 'offset' vector to the node's global position.
+        Adds the [code]offset[/code] vector to the node's global position.
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *Node2D) GlobalTranslate(offset gdnative.Vector2) {
@@ -355,7 +355,7 @@ func (o *Node2D) IsZRelative() gdnative.Bool {
 }
 
 /*
-        Rotates the node so it points towards the 'point'.
+        Rotates the node so it points towards the [code]point[/code], which is expected to use global coordinates.
 	Args: [{ false point Vector2}], Returns: void
 */
 func (o *Node2D) LookAt(point gdnative.Vector2) {
@@ -376,7 +376,7 @@ func (o *Node2D) LookAt(point gdnative.Vector2) {
 }
 
 /*
-        Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+        Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is [code]false[/code], normalizes the movement.
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
 func (o *Node2D) MoveLocalX(delta gdnative.Real, scaled gdnative.Bool) {
@@ -398,7 +398,7 @@ func (o *Node2D) MoveLocalX(delta gdnative.Real, scaled gdnative.Bool) {
 }
 
 /*
-        Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+        Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is [code]false[/code], normalizes the movement.
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
 func (o *Node2D) MoveLocalY(delta gdnative.Real, scaled gdnative.Bool) {

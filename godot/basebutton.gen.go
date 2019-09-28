@@ -220,7 +220,7 @@ func (o *BaseButton) GetButtonMask() gdnative.Int {
 }
 
 /*
-        Return the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the DRAW_* enum.
+        Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [code]DRAW_*[/code] enum.
 	Args: [], Returns: enum.BaseButton::DrawMode
 */
 func (o *BaseButton) GetDrawMode() BaseButtonDrawMode {
@@ -326,7 +326,7 @@ func (o *BaseButton) IsDisabled() gdnative.Bool {
 }
 
 /*
-        Return true if the mouse has entered the button and has not left it yet.
+        Returns [code]true[/code] if the mouse has entered the button and has not left it yet.
 	Args: [], Returns: bool
 */
 func (o *BaseButton) IsHovered() gdnative.Bool {

@@ -23,7 +23,7 @@ func newMeshLibraryFromPointer(ptr gdnative.Pointer) MeshLibrary {
 }
 
 /*
-Library of meshes. Contains a list of [Mesh] resources, each with name and ID. Useful for GridMap or painting Terrain.
+A library of meshes. Contains a list of [Mesh] resources, each with a name and ID. This resource is used in [GridMap].
 */
 type MeshLibrary struct {
 	Resource
@@ -35,7 +35,7 @@ func (o *MeshLibrary) BaseClass() string {
 }
 
 /*
-        Clear the library.
+        Clears the library.
 	Args: [], Returns: void
 */
 func (o *MeshLibrary) Clear() {
@@ -55,7 +55,7 @@ func (o *MeshLibrary) Clear() {
 }
 
 /*
-        Create a new item in the library, supplied an id.
+        Create a new item in the library, supplied as an ID.
 	Args: [{ false id int}], Returns: void
 */
 func (o *MeshLibrary) CreateItem(id gdnative.Int) {
@@ -100,7 +100,7 @@ func (o *MeshLibrary) FindItemByName(name gdnative.String) gdnative.Int {
 }
 
 /*
-        Return the list of items.
+        Returns the list of items.
 	Args: [], Returns: PoolIntArray
 */
 func (o *MeshLibrary) GetItemList() gdnative.PoolIntArray {
@@ -123,7 +123,7 @@ func (o *MeshLibrary) GetItemList() gdnative.PoolIntArray {
 }
 
 /*
-        Return the mesh of the item.
+        Returns the mesh of the item.
 	Args: [{ false id int}], Returns: Mesh
 */
 func (o *MeshLibrary) GetItemMesh(id gdnative.Int) MeshImplementer {
@@ -161,7 +161,7 @@ func (o *MeshLibrary) GetItemMesh(id gdnative.Int) MeshImplementer {
 }
 
 /*
-        Return the name of the item.
+        Returns the name of the item.
 	Args: [{ false id int}], Returns: String
 */
 func (o *MeshLibrary) GetItemName(id gdnative.Int) gdnative.String {
@@ -223,7 +223,7 @@ func (o *MeshLibrary) GetItemNavmesh(id gdnative.Int) NavigationMeshImplementer 
 }
 
 /*
-
+        Returns a generated item preview (a 3D rendering in isometric perspective). [b]Note:[/b] Since item previews are only generated in an editor context, this function will return an empty [Texture] in a running project.
 	Args: [{ false id int}], Returns: Texture
 */
 func (o *MeshLibrary) GetItemPreview(id gdnative.Int) TextureImplementer {
@@ -285,7 +285,7 @@ func (o *MeshLibrary) GetItemShapes(id gdnative.Int) gdnative.Array {
 }
 
 /*
-        Get an unused id for a new item.
+        Gets an unused ID for a new item.
 	Args: [], Returns: int
 */
 func (o *MeshLibrary) GetLastUnusedItemId() gdnative.Int {
@@ -308,7 +308,7 @@ func (o *MeshLibrary) GetLastUnusedItemId() gdnative.Int {
 }
 
 /*
-        Remove the item.
+        Removes the item.
 	Args: [{ false id int}], Returns: void
 */
 func (o *MeshLibrary) RemoveItem(id gdnative.Int) {
@@ -329,7 +329,7 @@ func (o *MeshLibrary) RemoveItem(id gdnative.Int) {
 }
 
 /*
-        Set the mesh of the item.
+        Sets the item's mesh.
 	Args: [{ false id int} { false mesh Mesh}], Returns: void
 */
 func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh MeshImplementer) {
@@ -351,7 +351,7 @@ func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh MeshImplementer) {
 }
 
 /*
-        Set the name of the item.
+        Sets the item's name.
 	Args: [{ false id int} { false name String}], Returns: void
 */
 func (o *MeshLibrary) SetItemName(id gdnative.Int, name gdnative.String) {

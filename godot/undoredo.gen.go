@@ -32,7 +32,7 @@ func newUndoRedoFromPointer(ptr gdnative.Pointer) UndoRedo {
 }
 
 /*
-Helper to manage UndoRedo in the editor or custom tools. It works by registering methods and property changes inside 'actions'. Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action. Here's an example on how to add an action to Godot editor's own 'undoredo': [codeblock] var undo_redo = get_undo_redo() # Method of EditorPlugin. func do_something(): pass # Put your code here. func undo_something(): pass # Put here the code that reverts what's done by "do_something()". func _on_MyButton_pressed(): var node = get_node("MyNode2D") undo_redo.create_action("Move the node") undo_redo.add_do_method(self, "do_something") undo_redo.add_undo_method(self, "undo_something") undo_redo.add_do_property(node, "position", Vector2(100,100)) undo_redo.add_undo_property(node, "position", node.position) undo_redo.commit_action() [/codeblock] [method create_action], [method add_do_method], [method add_undo_method], [method add_do_property], [method add_undo_property], and [method commit_action] should be called one after the other, like in the example. Not doing so could lead to crashes. If you don't need to register a method you can leave [method add_do_method] and [method add_undo_method] out, and so it goes for properties. You can register more than one method/property.
+Helper to manage undo/redo operations in the editor or custom tools. It works by registering methods and property changes inside "actions". Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action. Here's an example on how to add an action to the Godot editor's own [UndoRedo], from a plugin: [codeblock] var undo_redo = get_undo_redo() # Method of EditorPlugin. func do_something(): pass # Put your code here. func undo_something(): pass # Put here the code that reverts what's done by "do_something()". func _on_MyButton_pressed(): var node = get_node("MyNode2D") undo_redo.create_action("Move the node") undo_redo.add_do_method(self, "do_something") undo_redo.add_undo_method(self, "undo_something") undo_redo.add_do_property(node, "position", Vector2(100,100)) undo_redo.add_undo_property(node, "position", node.position) undo_redo.commit_action() [/codeblock] [method create_action], [method add_do_method], [method add_undo_method], [method add_do_property], [method add_undo_property], and [method commit_action] should be called one after the other, like in the example. Not doing so could lead to crashes. If you don't need to register a method, you can leave [method add_do_method] and [method add_undo_method] out; the same goes for properties. You can also register more than one method/property.
 */
 type UndoRedo struct {
 	Object
@@ -69,7 +69,7 @@ func (o *UndoRedo) AddDoMethod(object ObjectImplementer, method gdnative.String)
 }
 
 /*
-        Register a property value change for 'do'.
+        Register a property value change for "do".
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
 func (o *UndoRedo) AddDoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant) {
@@ -92,7 +92,7 @@ func (o *UndoRedo) AddDoProperty(object ObjectImplementer, property gdnative.Str
 }
 
 /*
-        Register a reference for 'do' that will be erased if the 'do' history is lost. This is useful mostly for new nodes created for the 'do' call. Do not use for resources.
+        Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.
 	Args: [{ false object Object}], Returns: void
 */
 func (o *UndoRedo) AddDoReference(object ObjectImplementer) {
@@ -138,7 +138,7 @@ func (o *UndoRedo) AddUndoMethod(object ObjectImplementer, method gdnative.Strin
 }
 
 /*
-        Register a property value change for 'undo'.
+        Register a property value change for "undo".
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
 func (o *UndoRedo) AddUndoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant) {
@@ -161,7 +161,7 @@ func (o *UndoRedo) AddUndoProperty(object ObjectImplementer, property gdnative.S
 }
 
 /*
-        Register a reference for 'undo' that will be erased if the 'undo' history is lost. This is useful mostly for nodes removed with the 'do' call (not the 'undo' call!).
+        Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
 	Args: [{ false object Object}], Returns: void
 */
 func (o *UndoRedo) AddUndoReference(object ObjectImplementer) {
@@ -203,7 +203,7 @@ func (o *UndoRedo) ClearHistory(increaseVersion gdnative.Bool) {
 }
 
 /*
-        Commit the action. All 'do' methods/properties are called/set when this function is called.
+        Commit the action. All "do" methods/properties are called/set when this function is called.
 	Args: [], Returns: void
 */
 func (o *UndoRedo) CommitAction() {
@@ -245,7 +245,7 @@ func (o *UndoRedo) CreateAction(name gdnative.String, mergeMode gdnative.Int) {
 }
 
 /*
-        Get the name of the current action.
+        Gets the name of the current action.
 	Args: [], Returns: String
 */
 func (o *UndoRedo) GetCurrentActionName() gdnative.String {
@@ -268,7 +268,7 @@ func (o *UndoRedo) GetCurrentActionName() gdnative.String {
 }
 
 /*
-        Get the version, each time a new action is committed, the version number of the UndoRedo is increased automatically. This is useful mostly to check if something changed from a saved version.
+        Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is increased automatically. This is useful mostly to check if something changed from a saved version.
 	Args: [], Returns: int
 */
 func (o *UndoRedo) GetVersion() gdnative.Int {
@@ -291,7 +291,7 @@ func (o *UndoRedo) GetVersion() gdnative.Int {
 }
 
 /*
-
+        Returns [code]true[/code] if the [UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [method commit_action]).
 	Args: [], Returns: bool
 */
 func (o *UndoRedo) IsCommitingAction() gdnative.Bool {
@@ -314,7 +314,7 @@ func (o *UndoRedo) IsCommitingAction() gdnative.Bool {
 }
 
 /*
-        Redo last action.
+        Redo the last action.
 	Args: [], Returns: bool
 */
 func (o *UndoRedo) Redo() gdnative.Bool {
@@ -337,7 +337,7 @@ func (o *UndoRedo) Redo() gdnative.Bool {
 }
 
 /*
-        Undo last action.
+        Undo the last action.
 	Args: [], Returns: bool
 */
 func (o *UndoRedo) Undo() gdnative.Bool {

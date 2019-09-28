@@ -105,7 +105,7 @@ func (o *Shader) GetDefaultTextureParam(param gdnative.String) TextureImplemente
 }
 
 /*
-        Returns the shader mode for the shader, either [code]MODE_CANVAS_ITEM[/code], [code]MODE_SPATIAL[/code] or [code]MODE_PARTICLES[/code]
+        Returns the shader mode for the shader, either [constant MODE_CANVAS_ITEM], [constant MODE_SPATIAL] or [constant MODE_PARTICLES]
 	Args: [], Returns: enum.Shader::Mode
 */
 func (o *Shader) GetMode() ShaderMode {

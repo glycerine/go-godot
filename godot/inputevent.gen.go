@@ -35,7 +35,7 @@ func (o *InputEvent) BaseClass() string {
 }
 
 /*
-
+        Returns [code]true[/code] if the given input event and this input event can be added together (only for events of type [InputEventMouseMotion]). The given input event's position, global position and speed will be copied. The resulting [code]relative[/code] is a sum of both events. Both events' modifiers have to be identical.
 	Args: [{ false with_event InputEvent}], Returns: bool
 */
 func (o *InputEvent) Accumulate(withEvent InputEventImplementer) gdnative.Bool {
@@ -82,7 +82,7 @@ func (o *InputEvent) AsText() gdnative.String {
 }
 
 /*
-
+        Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting the value of events of type [InputEventJoypadMotion].
 	Args: [{ false action String}], Returns: float
 */
 func (o *InputEvent) GetActionStrength(action gdnative.String) gdnative.Real {
@@ -153,7 +153,7 @@ func (o *InputEvent) IsAction(action gdnative.String) gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if the given action is being pressed (and is not an echo event for [InputEventKey] events). Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
 	Args: [{ false action String}], Returns: bool
 */
 func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
@@ -177,7 +177,7 @@ func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
 	Args: [{ false action String}], Returns: bool
 */
 func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
@@ -201,7 +201,7 @@ func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if this input event's type is one of the [code]InputEvent[/code] constants.
+        Returns [code]true[/code] if this input event's type is one that can be assigned to an input action.
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsActionType() gdnative.Bool {
@@ -224,7 +224,7 @@ func (o *InputEvent) IsActionType() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if this input event is an echo event (only for events of type KEY).
+        Returns [code]true[/code] if this input event is an echo event (only for events of type [InputEventKey]).
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsEcho() gdnative.Bool {
@@ -247,7 +247,7 @@ func (o *InputEvent) IsEcho() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if this input event is pressed. Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if this input event is pressed. Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsPressed() gdnative.Bool {
@@ -291,7 +291,7 @@ func (o *InputEvent) SetDevice(device gdnative.Int) {
 }
 
 /*
-
+        Returns [code]true[/code] if the given input event is checking for the same key ([InputEventKey]), button ([InputEventJoypadButton]) or action ([InputEventAction]).
 	Args: [{ false event InputEvent}], Returns: bool
 */
 func (o *InputEvent) ShortcutMatch(event InputEventImplementer) gdnative.Bool {
@@ -315,7 +315,7 @@ func (o *InputEvent) ShortcutMatch(event InputEventImplementer) gdnative.Bool {
 }
 
 /*
-
+        Returns a copy of the given input event which has been offset by [code]local_ofs[/code] and transformed by [code]xform[/code]. Relevant for events of type [InputEventMouseButton], [InputEventMouseMotion], [InputEventScreenTouch], [InputEventScreenDrag], [InputEventMagnifyGesture] and [InputEventPanGesture].
 	Args: [{ false xform Transform2D} {(0, 0) true local_ofs Vector2}], Returns: InputEvent
 */
 func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vector2) InputEventImplementer {

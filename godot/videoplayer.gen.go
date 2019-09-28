@@ -23,7 +23,7 @@ func newVideoPlayerFromPointer(ptr gdnative.Pointer) VideoPlayer {
 }
 
 /*
-Control node for playing video streams. Supported formats are WebM and OGV Theora.
+Control node for playing video streams. Supported formats are [url=https://www.webmproject.org/]WebM[/url] and [url=https://www.theora.org/]Ogg Theora[/url].
 */
 type VideoPlayer struct {
 	Control

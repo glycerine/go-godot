@@ -23,8 +23,8 @@ func newResourceFormatLoaderWebmFromPointer(ptr gdnative.Pointer) ResourceFormat
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderWebm struct {
 	ResourceFormatLoader
 	owner gdnative.Object

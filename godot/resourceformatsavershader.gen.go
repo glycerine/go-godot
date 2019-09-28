@@ -23,8 +23,8 @@ func newResourceFormatSaverShaderFromPointer(ptr gdnative.Pointer) ResourceForma
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatSaverShader struct {
 	ResourceFormatSaver
 	owner gdnative.Object

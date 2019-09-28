@@ -511,7 +511,7 @@ func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath gdnative.String) {
 }
 
 /*
-        Saves the scene. Returns either OK or ERR_CANT_CREATE. See [@GlobalScope] constants.
+        Saves the scene. Returns either [code]OK[/code] or [code]ERR_CANT_CREATE[/code] (see [@GlobalScope] constants).
 	Args: [], Returns: enum.Error
 */
 func (o *EditorInterface) SaveScene() gdnative.Error {
@@ -556,7 +556,7 @@ func (o *EditorInterface) SaveSceneAs(path gdnative.String, withPreview gdnative
 }
 
 /*
-
+        Selects the file, with the path provided by [code]file[/code], in the FileSystem dock.
 	Args: [{ false file String}], Returns: void
 */
 func (o *EditorInterface) SelectFile(file gdnative.String) {

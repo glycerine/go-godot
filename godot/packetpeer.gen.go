@@ -23,7 +23,7 @@ func newPacketPeerFromPointer(ptr gdnative.Pointer) PacketPeer {
 }
 
 /*
-PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low level bytes or having to worry about network ordering.
+PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low-level bytes or having to worry about network ordering.
 */
 type PacketPeer struct {
 	Reference
@@ -35,7 +35,7 @@ func (o *PacketPeer) BaseClass() string {
 }
 
 /*
-        Return the number of packets currently available in the ring-buffer.
+        Returns the number of packets currently available in the ring-buffer.
 	Args: [], Returns: int
 */
 func (o *PacketPeer) GetAvailablePacketCount() gdnative.Int {
@@ -58,7 +58,7 @@ func (o *PacketPeer) GetAvailablePacketCount() gdnative.Int {
 }
 
 /*
-        Get a raw packet.
+        Gets a raw packet.
 	Args: [], Returns: PoolByteArray
 */
 func (o *PacketPeer) GetPacket() gdnative.PoolByteArray {
@@ -81,7 +81,7 @@ func (o *PacketPeer) GetPacket() gdnative.PoolByteArray {
 }
 
 /*
-        Return the error state of the last packet received (via [method get_packet] and [method get_var]).
+        Returns the error state of the last packet received (via [method get_packet] and [method get_var]).
 	Args: [], Returns: enum.Error
 */
 func (o *PacketPeer) GetPacketError() gdnative.Error {
@@ -104,7 +104,7 @@ func (o *PacketPeer) GetPacketError() gdnative.Error {
 }
 
 /*
-        Get a Variant.
+        Gets a Variant. If [code]allow_objects[/code] (or [member allow_object_decoding]) is [code]true[/code], decoding objects is allowed. [b]Warning:[/b] Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
 	Args: [], Returns: Variant
 */
 func (o *PacketPeer) GetVar() gdnative.Variant {
@@ -150,7 +150,7 @@ func (o *PacketPeer) IsObjectDecodingAllowed() gdnative.Bool {
 }
 
 /*
-        Send a raw packet.
+        Sends a raw packet.
 	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
 func (o *PacketPeer) PutPacket(buffer gdnative.PoolByteArray) gdnative.Error {
@@ -174,7 +174,7 @@ func (o *PacketPeer) PutPacket(buffer gdnative.PoolByteArray) gdnative.Error {
 }
 
 /*
-        Send a Variant as a packet.
+        Sends a [Variant] as a packet. If [code]full_objects[/code] (or [member allow_object_decoding]) is [code]true[/code], encoding objects is allowed (and can potentially include code).
 	Args: [{ false var Variant}], Returns: enum.Error
 */
 func (o *PacketPeer) PutVar(variable gdnative.Variant) gdnative.Error {

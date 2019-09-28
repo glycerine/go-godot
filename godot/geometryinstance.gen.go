@@ -41,7 +41,7 @@ func newGeometryInstanceFromPointer(ptr gdnative.Pointer) GeometryInstance {
 }
 
 /*
-Base node for geometry based visual instances. Shares some common functionality like visibility and custom materials.
+Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
 */
 type GeometryInstance struct {
 	VisualInstance
@@ -99,7 +99,7 @@ func (o *GeometryInstance) GetExtraCullMargin() gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *GeometryInstance) GetFlag(flag gdnative.Int) gdnative.Bool {
@@ -294,7 +294,7 @@ func (o *GeometryInstance) SetExtraCullMargin(margin gdnative.Real) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int} { false value bool}], Returns: void
 */
 func (o *GeometryInstance) SetFlag(flag gdnative.Int, value gdnative.Bool) {

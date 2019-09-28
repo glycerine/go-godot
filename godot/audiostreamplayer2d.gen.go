@@ -366,7 +366,7 @@ func (o *AudioStreamPlayer2D) IsPlaying() gdnative.Bool {
 }
 
 /*
-        Plays the audio from the given position 'from_position', in seconds.
+        Plays the audio from the given position [code]from_position[/code], in seconds.
 	Args: [{0 true from_position float}], Returns: void
 */
 func (o *AudioStreamPlayer2D) Play(fromPosition gdnative.Real) {

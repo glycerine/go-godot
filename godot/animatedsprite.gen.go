@@ -297,7 +297,7 @@ func (o *AnimatedSprite) IsFlippedV() gdnative.Bool {
 }
 
 /*
-        Return true if an animation if currently being played.
+        Returns [code]true[/code] if an animation is currently being played.
 	Args: [], Returns: bool
 */
 func (o *AnimatedSprite) IsPlaying() gdnative.Bool {
@@ -320,7 +320,7 @@ func (o *AnimatedSprite) IsPlaying() gdnative.Bool {
 }
 
 /*
-        Play the animation set in parameter. If no parameter is provided, the current animation is played.
+        Plays the animation named [code]anim[/code]. If no [code]anim[/code] is provided, the current animation is played. If [code]backwards[/code] is [code]true[/code], the animation will be played in reverse.
 	Args: [{ true anim String}], Returns: void
 */
 func (o *AnimatedSprite) Play(anim gdnative.String) {
@@ -509,7 +509,7 @@ func (o *AnimatedSprite) SetSpriteFrames(spriteFrames SpriteFramesImplementer) {
 }
 
 /*
-        Stop the current animation (does not reset the frame counter).
+        Stops the current animation (does not reset the frame counter).
 	Args: [], Returns: void
 */
 func (o *AnimatedSprite) Stop() {

@@ -62,12 +62,12 @@ func newSingletonPerformance() *performance {
 }
 
 /*
-   This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the [i]Monitor[/i] tab in the editor's [i]Debugger[/i] panel. By using the [method get_monitor] method of this class, you can access this data from your code. Note that a few of these monitors are only available in debug mode and will always return 0 when used in a release build. Many of these monitors are not updated in real-time, so there may be a short delay between changes.
+   This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the [b]Monitor[/b] tab in the editor's [b]Debugger[/b] panel. By using the [method get_monitor] method of this class, you can access this data from your code. [b]Note:[/b] A few of these monitors are only available in debug mode and will always return 0 when used in a release build. [b]Note:[/b] Many of these monitors are not updated in real-time, so there may be a short delay between changes.
 */
 var Performance = newSingletonPerformance()
 
 /*
-This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the [i]Monitor[/i] tab in the editor's [i]Debugger[/i] panel. By using the [method get_monitor] method of this class, you can access this data from your code. Note that a few of these monitors are only available in debug mode and will always return 0 when used in a release build. Many of these monitors are not updated in real-time, so there may be a short delay between changes.
+This class provides access to a number of different monitors related to performance, such as memory usage, draw calls, and FPS. These are the same as the values displayed in the [b]Monitor[/b] tab in the editor's [b]Debugger[/b] panel. By using the [method get_monitor] method of this class, you can access this data from your code. [b]Note:[/b] A few of these monitors are only available in debug mode and will always return 0 when used in a release build. [b]Note:[/b] Many of these monitors are not updated in real-time, so there may be a short delay between changes.
 */
 type performance struct {
 	Object
@@ -92,7 +92,7 @@ func (o *performance) BaseClass() string {
 }
 
 /*
-        Returns the value of one of the available monitors. You should provide one of this class's constants as the argument, like this: [codeblock] print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console [/codeblock]
+        Returns the value of one of the available monitors. You should provide one of the [enum Monitor] constants as the argument, like this: [codeblock] print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console [/codeblock]
 	Args: [{ false monitor int}], Returns: float
 */
 func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Real {

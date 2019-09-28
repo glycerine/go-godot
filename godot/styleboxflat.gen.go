@@ -23,7 +23,7 @@ func newStyleBoxFlatFromPointer(ptr gdnative.Pointer) StyleBoxFlat {
 }
 
 /*
-This stylebox can be used to achieve all kinds of looks without the need of a texture. Those properties are customizable: - Color - Border width (individual width for each border) - Rounded corners (individual radius for each corner) - Shadow Setting corner radius to high values is allowed. As soon as corners would overlap the stylebox will switch to a relative system. Example: [codeblock] height = 30 corner_radius_top_left = 50 corner_radius_bottom_left = 100 [/codeblock] The relative system now would take the 1:2 ratio of the two left corners to calculate the actual corner width. Both corners added will [b]never[/b] be more than the height. Result: [codeblock] corner_radius_top_left: 10 corner_radius_bottom_left: 20 [/codeblock]
+This stylebox can be used to achieve all kinds of looks without the need of a texture. Those properties are customizable: - Color - Border width (individual width for each border) - Rounded corners (individual radius for each corner) - Shadow Setting corner radius to high values is allowed. As soon as corners would overlap, the stylebox will switch to a relative system. Example: [codeblock] height = 30 corner_radius_top_left = 50 corner_radius_bottom_left = 100 [/codeblock] The relative system now would take the 1:2 ratio of the two left corners to calculate the actual corner width. Both corners added will [b]never[/b] be more than the height. Result: [codeblock] corner_radius_top_left: 10 corner_radius_bottom_left: 20 [/codeblock]
 */
 type StyleBoxFlat struct {
 	StyleBox
@@ -127,7 +127,7 @@ func (o *StyleBoxFlat) GetBorderColor() gdnative.Color {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int}], Returns: int
 */
 func (o *StyleBoxFlat) GetBorderWidth(margin gdnative.Int) gdnative.Int {
@@ -197,7 +197,7 @@ func (o *StyleBoxFlat) GetCornerDetail() gdnative.Int {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false corner int}], Returns: int
 */
 func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
@@ -221,7 +221,7 @@ func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Real {
@@ -442,7 +442,7 @@ func (o *StyleBoxFlat) SetBorderColor(color gdnative.Color) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int} { false width int}], Returns: void
 */
 func (o *StyleBoxFlat) SetBorderWidth(margin gdnative.Int, width gdnative.Int) {
@@ -506,7 +506,7 @@ func (o *StyleBoxFlat) SetCornerDetail(detail gdnative.Int) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false corner int} { false radius int}], Returns: void
 */
 func (o *StyleBoxFlat) SetCornerRadius(corner gdnative.Int, radius gdnative.Int) {
@@ -594,7 +594,7 @@ func (o *StyleBoxFlat) SetDrawCenter(drawCenter gdnative.Bool) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int} { false size float}], Returns: void
 */
 func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Real) {

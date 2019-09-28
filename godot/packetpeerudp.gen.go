@@ -35,7 +35,7 @@ func (o *PacketPeerUDP) BaseClass() string {
 }
 
 /*
-        Close the UDP socket the [code]PacketPeerUDP[/code] is currently listening on.
+        Closes the UDP socket the [PacketPeerUDP] is currently listening on.
 	Args: [], Returns: void
 */
 func (o *PacketPeerUDP) Close() {
@@ -55,7 +55,7 @@ func (o *PacketPeerUDP) Close() {
 }
 
 /*
-        Return the IP of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
+        Returns the IP of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
 	Args: [], Returns: String
 */
 func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
@@ -78,7 +78,7 @@ func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
 }
 
 /*
-        Return the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
+        Returns the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]).
 	Args: [], Returns: int
 */
 func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
@@ -101,7 +101,7 @@ func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
 }
 
 /*
-        Return whether this [code]PacketPeerUDP[/code] is listening.
+        Returns whether this [PacketPeerUDP] is listening.
 	Args: [], Returns: bool
 */
 func (o *PacketPeerUDP) IsListening() gdnative.Bool {
@@ -124,7 +124,7 @@ func (o *PacketPeerUDP) IsListening() gdnative.Bool {
 }
 
 /*
-        Make this [code]PacketPeerUDP[/code] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+        Makes this [PacketPeerUDP] listen on the [code]port[/code] binding to [code]bind_address[/code] with a buffer size [code]recv_buf_size[/code]. If [code]bind_address[/code] is set to [code]"*"[/code] (default), the peer will listen on all available addresses (both IPv4 and IPv6). If [code]bind_address[/code] is set to [code]"0.0.0.0"[/code] (for IPv4) or [code]"::"[/code] (for IPv6), the peer will listen on all available addresses matching that IP type. If [code]bind_address[/code] is set to any valid address (e.g. [code]"192.168.1.101"[/code], [code]"::1"[/code], etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 	Args: [{ false port int} {* true bind_address String} {65536 true recv_buf_size int}], Returns: enum.Error
 */
 func (o *PacketPeerUDP) Listen(port gdnative.Int, bindAddress gdnative.String, recvBufSize gdnative.Int) gdnative.Error {
@@ -150,7 +150,7 @@ func (o *PacketPeerUDP) Listen(port gdnative.Int, bindAddress gdnative.String, r
 }
 
 /*
-        Set the destination address and port for sending packets and variables, a hostname will be resolved using if valid.
+        Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.
 	Args: [{ false host String} { false port int}], Returns: enum.Error
 */
 func (o *PacketPeerUDP) SetDestAddress(host gdnative.String, port gdnative.Int) gdnative.Error {
@@ -175,7 +175,7 @@ func (o *PacketPeerUDP) SetDestAddress(host gdnative.String, port gdnative.Int) 
 }
 
 /*
-        Wait for a packet to arrive on the listening port, see [method listen].
+        Waits for a packet to arrive on the listening port. See [method listen].
 	Args: [], Returns: enum.Error
 */
 func (o *PacketPeerUDP) Wait() gdnative.Error {

@@ -63,7 +63,7 @@ func (o *BakedLightmap) BaseClass() string {
 }
 
 /*
-
+        Bakes the lightmaps within the currently edited scene.
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: enum.BakedLightmap::BakeError
 */
 func (o *BakedLightmap) Bake(fromNode ObjectImplementer, createVisualDebug gdnative.Bool) BakedLightmapBakeError {
@@ -88,7 +88,7 @@ func (o *BakedLightmap) Bake(fromNode ObjectImplementer, createVisualDebug gdnat
 }
 
 /*
-
+        Executes a dry run bake of lightmaps within the currently edited scene.
 	Args: [], Returns: void
 */
 func (o *BakedLightmap) DebugBake() {

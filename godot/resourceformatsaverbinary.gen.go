@@ -23,8 +23,8 @@ func newResourceFormatSaverBinaryFromPointer(ptr gdnative.Pointer) ResourceForma
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatSaverBinary struct {
 	ResourceFormatSaver
 	owner gdnative.Object

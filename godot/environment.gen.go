@@ -84,7 +84,7 @@ func newEnvironmentFromPointer(ptr gdnative.Pointer) Environment {
 }
 
 /*
-Resource for environment nodes (like [WorldEnvironment]) that define multiple environment operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is: - DOF Blur - Motion Blur - Bloom - Tonemap (auto exposure) - Adjustments
+Resource for environment nodes (like [WorldEnvironment]) that define multiple environment operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is: - Depth of Field Blur - Glow - Tonemap (Auto Exposure) - Adjustments
 */
 type Environment struct {
 	Resource
@@ -1803,7 +1803,7 @@ func (o *Environment) IsGlowEnabled() gdnative.Bool {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *Environment) IsGlowLevelEnabled(idx gdnative.Int) gdnative.Bool {
@@ -2820,7 +2820,7 @@ func (o *Environment) SetGlowIntensity(intensity gdnative.Real) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false idx int} { false enabled bool}], Returns: void
 */
 func (o *Environment) SetGlowLevel(idx gdnative.Int, enabled gdnative.Bool) {

@@ -23,7 +23,7 @@ func newPopupMenuFromPointer(ptr gdnative.Pointer) PopupMenu {
 }
 
 /*
-PopupMenu is the typical Control that displays a list of options. They are popular in toolbars or context menus.
+[PopupMenu] is a [Control] that displays a list of options. They are popular in toolbars or context menus.
 */
 type PopupMenu struct {
 	Popup
@@ -120,7 +120,7 @@ func (o *PopupMenu) X_SubmenuTimeout() {
 }
 
 /*
-        Add a new checkable item with text "label". An id can optionally be provided, as well as an accelerator. If no id is provided, one will be created from the index. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
+        Adds a new checkable item with text [code]label[/code]. An [code]id[/code] can optionally be provided, as well as an accelerator ([code]accel[/code]). If no [code]id[/code] is provided, one will be created from the index. If no [code]accel[/code] is provided then the default [code]0[/code] will be assigned to it. See [method get_item_accelerator] for more info on accelerators. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
@@ -143,7 +143,7 @@ func (o *PopupMenu) AddCheckItem(label gdnative.String, id gdnative.Int, accel g
 }
 
 /*
-
+        Adds a new checkable item and assigns the specified [ShortCut] to it. Sets the label of the checkbox to the [ShortCut]'s name. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
@@ -166,7 +166,7 @@ func (o *PopupMenu) AddCheckShortcut(shortcut ShortCutImplementer, id gdnative.I
 }
 
 /*
-        Add a new checkable item with text "label" and icon "texture". An id can optionally be provided, as well as an accelerator. If no id is provided, one will be created from the index. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
+        Adds a new checkable item with text [code]label[/code] and icon [code]texture[/code]. An [code]id[/code] can optionally be provided, as well as an accelerator ([code]accel[/code]). If no [code]id[/code] is provided, one will be created from the index. If no [code]accel[/code] is provided then the default [code]0[/code] will be assigned to it. See [method get_item_accelerator] for more info on accelerators. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddIconCheckItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
@@ -190,7 +190,7 @@ func (o *PopupMenu) AddIconCheckItem(texture TextureImplementer, label gdnative.
 }
 
 /*
-
+        Adds a new checkable item and assigns the specified [ShortCut] and icon [code]texture[/code] to it. Sets the label of the checkbox to the [ShortCut]'s name. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddIconCheckShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
@@ -214,7 +214,7 @@ func (o *PopupMenu) AddIconCheckShortcut(texture TextureImplementer, shortcut Sh
 }
 
 /*
-        Add a new item with text "label" and icon "texture". An id can optionally be provided, as well as an accelerator keybinding. If no id is provided, one will be created from the index.
+        Adds a new item with text [code]label[/code] and icon [code]texture[/code]. An [code]id[/code] can optionally be provided, as well as an accelerator ([code]accel[/code]). If no [code]id[/code] is provided, one will be created from the index. If no [code]accel[/code] is provided then the default [code]0[/code] will be assigned to it. See [method get_item_accelerator] for more info on accelerators.
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
@@ -238,7 +238,7 @@ func (o *PopupMenu) AddIconItem(texture TextureImplementer, label gdnative.Strin
 }
 
 /*
-
+        Adds a new item and assigns the specified [ShortCut] and icon [code]texture[/code] to it. Sets the label of the checkbox to the [ShortCut]'s name. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index.
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddIconShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
@@ -262,7 +262,7 @@ func (o *PopupMenu) AddIconShortcut(texture TextureImplementer, shortcut ShortCu
 }
 
 /*
-        Add a new item with text "label". An id can optionally be provided, as well as an accelerator keybinding. If no id is provided, one will be created from the index.
+        Adds a new item with text [code]label[/code]. An [code]id[/code] can optionally be provided, as well as an accelerator ([code]accel[/code]). If no [code]id[/code] is provided, one will be created from the index. If no [code]accel[/code] is provided then the default [code]0[/code] will be assigned to it. See [method get_item_accelerator] for more info on accelerators.
 	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
@@ -285,7 +285,7 @@ func (o *PopupMenu) AddItem(label gdnative.String, id gdnative.Int, accel gdnati
 }
 
 /*
-        The same as [method add_check_item] but the inserted item will look as a radio button. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+        Adds a new radio button with text [code]label[/code]. An [code]id[/code] can optionally be provided, as well as an accelerator ([code]accel[/code]). If no [code]id[/code] is provided, one will be created from the index. If no [code]accel[/code] is provided then the default [code]0[/code] will be assigned to it. See [method get_item_accelerator] for more info on accelerators. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddRadioCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
@@ -308,7 +308,7 @@ func (o *PopupMenu) AddRadioCheckItem(label gdnative.String, id gdnative.Int, ac
 }
 
 /*
-
+        Adds a new radio check button and assigns a [ShortCut] to it. Sets the label of the checkbox to the [ShortCut]'s name. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddRadioCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
@@ -331,7 +331,7 @@ func (o *PopupMenu) AddRadioCheckShortcut(shortcut ShortCutImplementer, id gdnat
 }
 
 /*
-        Add a separator between items. Separators also occupy an index.
+        Adds a separator between items. Separators also occupy an index.
 	Args: [{ true label String}], Returns: void
 */
 func (o *PopupMenu) AddSeparator(label gdnative.String) {
@@ -352,7 +352,7 @@ func (o *PopupMenu) AddSeparator(label gdnative.String) {
 }
 
 /*
-
+        Adds a [ShortCut]. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index.
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
@@ -375,7 +375,7 @@ func (o *PopupMenu) AddShortcut(shortcut ShortCutImplementer, id gdnative.Int, g
 }
 
 /*
-        Adds an item with a submenu. The submenu is the name of a child PopupMenu node that would be shown when the item is clicked. An id can optionally be provided, but if is isn't provided, one will be created from the index.
+        Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The [code]submenu[/code] argument is the name of the child [PopupMenu] node that will be shown when the item is clicked. An [code]id[/code] can optionally be provided. If no [code]id[/code] is provided, one will be created from the index.
 	Args: [{ false label String} { false submenu String} {-1 true id int}], Returns: void
 */
 func (o *PopupMenu) AddSubmenuItem(label gdnative.String, submenu gdnative.String, id gdnative.Int) {
@@ -398,7 +398,7 @@ func (o *PopupMenu) AddSubmenuItem(label gdnative.String, submenu gdnative.Strin
 }
 
 /*
-        Clear the popup menu, in effect removing all items.
+        Removes all items from the [PopupMenu].
 	Args: [], Returns: void
 */
 func (o *PopupMenu) Clear() {
@@ -418,7 +418,7 @@ func (o *PopupMenu) Clear() {
 }
 
 /*
-        Return the accelerator of the item at index "idx". Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+        Returns the accelerator of the item at index [code]idx[/code]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
 	Args: [{ false idx int}], Returns: int
 */
 func (o *PopupMenu) GetItemAccelerator(idx gdnative.Int) gdnative.Int {
@@ -442,7 +442,7 @@ func (o *PopupMenu) GetItemAccelerator(idx gdnative.Int) gdnative.Int {
 }
 
 /*
-        Return the amount of items.
+        Returns the number of items in the [PopupMenu].
 	Args: [], Returns: int
 */
 func (o *PopupMenu) GetItemCount() gdnative.Int {
@@ -465,7 +465,7 @@ func (o *PopupMenu) GetItemCount() gdnative.Int {
 }
 
 /*
-        Return the icon of the item at index "idx".
+        Returns the icon of the item at index [code]idx[/code].
 	Args: [{ false idx int}], Returns: Texture
 */
 func (o *PopupMenu) GetItemIcon(idx gdnative.Int) TextureImplementer {
@@ -503,7 +503,7 @@ func (o *PopupMenu) GetItemIcon(idx gdnative.Int) TextureImplementer {
 }
 
 /*
-        Return the id of the item at index "idx".
+        Returns the id of the item at index [code]idx[/code]. [code]id[/code] can be manually assigned, while index can not.
 	Args: [{ false idx int}], Returns: int
 */
 func (o *PopupMenu) GetItemId(idx gdnative.Int) gdnative.Int {
@@ -527,7 +527,7 @@ func (o *PopupMenu) GetItemId(idx gdnative.Int) gdnative.Int {
 }
 
 /*
-        Find and return the index of the item containing a given id.
+        Returns the index of the item containing the specified [code]id[/code]. Index is automatically assigned to each item by the engine. Index can not be set manually.
 	Args: [{ false id int}], Returns: int
 */
 func (o *PopupMenu) GetItemIndex(id gdnative.Int) gdnative.Int {
@@ -551,7 +551,7 @@ func (o *PopupMenu) GetItemIndex(id gdnative.Int) gdnative.Int {
 }
 
 /*
-        Return the metadata of an item, which might be of any type. You can set it with [method set_item_metadata], which provides a simple way of assigning context data to items.
+        Returns the metadata of the specified item, which might be of any type. You can set it with [method set_item_metadata], which provides a simple way of assigning context data to items.
 	Args: [{ false idx int}], Returns: Variant
 */
 func (o *PopupMenu) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
@@ -575,7 +575,7 @@ func (o *PopupMenu) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 }
 
 /*
-
+        Returns the [ShortCut] associated with the specified [code]idx[/code] item.
 	Args: [{ false idx int}], Returns: ShortCut
 */
 func (o *PopupMenu) GetItemShortcut(idx gdnative.Int) ShortCutImplementer {
@@ -613,7 +613,7 @@ func (o *PopupMenu) GetItemShortcut(idx gdnative.Int) ShortCutImplementer {
 }
 
 /*
-        Return the submenu name of the item at index "idx".
+        Returns the submenu name of the item at index [code]idx[/code]. See [method add_submenu_item] for more info on how to add a submenu.
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemSubmenu(idx gdnative.Int) gdnative.String {
@@ -637,7 +637,7 @@ func (o *PopupMenu) GetItemSubmenu(idx gdnative.Int) gdnative.String {
 }
 
 /*
-        Return the text of the item at index "idx".
+        Returns the text of the item at index [code]idx[/code].
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemText(idx gdnative.Int) gdnative.String {
@@ -661,7 +661,7 @@ func (o *PopupMenu) GetItemText(idx gdnative.Int) gdnative.String {
 }
 
 /*
-
+        Returns the tooltip associated with the specified index index [code]idx[/code].
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemTooltip(idx gdnative.Int) gdnative.String {
@@ -777,7 +777,7 @@ func (o *PopupMenu) IsHideOnStateItemSelection() gdnative.Bool {
 }
 
 /*
-
+        Returns whether the popup will be hidden when the window loses focus or not.
 	Args: [], Returns: bool
 */
 func (o *PopupMenu) IsHideOnWindowLoseFocus() gdnative.Bool {
@@ -800,7 +800,7 @@ func (o *PopupMenu) IsHideOnWindowLoseFocus() gdnative.Bool {
 }
 
 /*
-        Return whether the item at index "idx" is checkable in some way, i.e., whether has a checkbox or radio button. Note that checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
+        Returns [code]true[/code] if the item at index [code]idx[/code] is checkable in some way, i.e. if it has a checkbox or radio button. [b]Note:[/b] Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
@@ -824,7 +824,7 @@ func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Return whether the item at index "idx" is checked.
+        Returns [code]true[/code] if the item at index [code]idx[/code] is checked.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
@@ -848,7 +848,7 @@ func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Return whether the item at index "idx" is disabled. When it is disabled it can't be selected, or its action invoked.
+        Returns [code]true[/code] if the item at index [code]idx[/code] is disabled. When it is disabled it can't be selected, or its action invoked. See [method set_item_disabled] for more info on how to disable an item.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
@@ -872,7 +872,7 @@ func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Return whether the item at index "idx" has radio-button-style checkability. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+        Returns [code]true[/code] if the item at index [code]idx[/code] has radio button-style checkability. [b]Note:[/b] This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemRadioCheckable(idx gdnative.Int) gdnative.Bool {
@@ -896,7 +896,7 @@ func (o *PopupMenu) IsItemRadioCheckable(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Return whether the item is a separator. If it is, it would be displayed as a line.
+        Returns [code]true[/code] if the item is a separator. If it is, it will be displayed as a line. See [method add_separator] for more info on how to add a separator.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
@@ -920,7 +920,7 @@ func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-
+        Returns whether the shortcut of the specified item [code]idx[/code] is disabled or not.
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemShortcutDisabled(idx gdnative.Int) gdnative.Bool {
@@ -944,7 +944,7 @@ func (o *PopupMenu) IsItemShortcutDisabled(idx gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Removes the item at index "idx" from the menu. Note that the indexes of items after the removed item are going to be shifted by one.
+        Removes the item at index [code]idx[/code] from the menu. [b]Note:[/b] The indices of items after the removed item will be shifted by one.
 	Args: [{ false idx int}], Returns: void
 */
 func (o *PopupMenu) RemoveItem(idx gdnative.Int) {
@@ -1028,7 +1028,7 @@ func (o *PopupMenu) SetHideOnStateItemSelection(enable gdnative.Bool) {
 }
 
 /*
-
+        Hides the [PopupMenu] when the window loses focus.
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetHideOnWindowLoseFocus(enable gdnative.Bool) {
@@ -1049,7 +1049,7 @@ func (o *PopupMenu) SetHideOnWindowLoseFocus(enable gdnative.Bool) {
 }
 
 /*
-        Set the accelerator of the item at index "idx". Accelerators are special combinations of keys that activate the item, no matter which control is focused.
+        Sets the accelerator of the item at index [code]idx[/code]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
 	Args: [{ false idx int} { false accel int}], Returns: void
 */
 func (o *PopupMenu) SetItemAccelerator(idx gdnative.Int, accel gdnative.Int) {
@@ -1071,7 +1071,7 @@ func (o *PopupMenu) SetItemAccelerator(idx gdnative.Int, accel gdnative.Int) {
 }
 
 /*
-        Set whether the item at index "idx" has a checkbox. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
+        Sets whether the item at index [code]idx[/code] has a checkbox. If [code]false[/code], sets the type of the item to plain text. [b]Note:[/b] Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool) {
@@ -1093,7 +1093,7 @@ func (o *PopupMenu) SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool) {
 }
 
 /*
-        The same as [method set_item_as_checkable] but placing a radio button in case of enabling. If used for disabling, it's the same. Remember this is just cosmetic and you have to add the logic for checking/unchecking items in radio groups.
+        Sets the type of the item at the specified index [code]idx[/code] to radio button. If false, sets the type of the item to plain text.
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsRadioCheckable(idx gdnative.Int, enable gdnative.Bool) {
@@ -1115,7 +1115,7 @@ func (o *PopupMenu) SetItemAsRadioCheckable(idx gdnative.Int, enable gdnative.Bo
 }
 
 /*
-        Mark the item at index "idx" as a separator, which means that it would be displayed as a line.
+        Mark the item at index [code]idx[/code] as a separator, which means that it would be displayed as a line. If [code]false[/code], sets the type of the item to plain text.
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool) {
@@ -1137,7 +1137,7 @@ func (o *PopupMenu) SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool) {
 }
 
 /*
-        Set the checkstate status of the item at index "idx".
+        Sets the checkstate status of the item at index [code]idx[/code].
 	Args: [{ false idx int} { false checked bool}], Returns: void
 */
 func (o *PopupMenu) SetItemChecked(idx gdnative.Int, checked gdnative.Bool) {
@@ -1159,7 +1159,7 @@ func (o *PopupMenu) SetItemChecked(idx gdnative.Int, checked gdnative.Bool) {
 }
 
 /*
-        Sets whether the item at index "idx" is disabled or not. When it is disabled it can't be selected, or its action invoked.
+        Sets whether the item at index [code]idx[/code] is disabled or not. When it is disabled, it can't be selected and its action can't be invoked.
 	Args: [{ false idx int} { false disabled bool}], Returns: void
 */
 func (o *PopupMenu) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
@@ -1181,7 +1181,7 @@ func (o *PopupMenu) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
 }
 
 /*
-
+        Replaces the [Texture] icon of the specified [code]idx[/code].
 	Args: [{ false idx int} { false icon Texture}], Returns: void
 */
 func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon TextureImplementer) {
@@ -1203,7 +1203,7 @@ func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon TextureImplementer) {
 }
 
 /*
-        Set the id of the item at index "idx".
+        Sets the [code]id[/code] of the item at index [code]idx[/code].
 	Args: [{ false idx int} { false id int}], Returns: void
 */
 func (o *PopupMenu) SetItemId(idx gdnative.Int, id gdnative.Int) {
@@ -1225,7 +1225,7 @@ func (o *PopupMenu) SetItemId(idx gdnative.Int, id gdnative.Int) {
 }
 
 /*
-        Sets the metadata of an item, which might be of any type. You can later get it with [method get_item_metadata], which provides a simple way of assigning context data to items.
+        Sets the metadata of an item, which may be of any type. You can later get it with [method get_item_metadata], which provides a simple way of assigning context data to items.
 	Args: [{ false idx int} { false metadata Variant}], Returns: void
 */
 func (o *PopupMenu) SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant) {
@@ -1269,7 +1269,7 @@ func (o *PopupMenu) SetItemMultistate(idx gdnative.Int, state gdnative.Int) {
 }
 
 /*
-
+        Sets a [ShortCut] for the specified item [code]idx[/code].
 	Args: [{ false idx int} { false shortcut ShortCut} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplementer, global gdnative.Bool) {
@@ -1292,7 +1292,7 @@ func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplement
 }
 
 /*
-
+        Disables the [ShortCut] of the specified index [code]idx[/code].
 	Args: [{ false idx int} { false disabled bool}], Returns: void
 */
 func (o *PopupMenu) SetItemShortcutDisabled(idx gdnative.Int, disabled gdnative.Bool) {
@@ -1314,7 +1314,7 @@ func (o *PopupMenu) SetItemShortcutDisabled(idx gdnative.Int, disabled gdnative.
 }
 
 /*
-        Sets the submenu of the item at index "idx". The submenu is the name of a child PopupMenu node that would be shown when the item is clicked.
+        Sets the submenu of the item at index [code]idx[/code]. The submenu is the name of a child [PopupMenu] node that would be shown when the item is clicked.
 	Args: [{ false idx int} { false submenu String}], Returns: void
 */
 func (o *PopupMenu) SetItemSubmenu(idx gdnative.Int, submenu gdnative.String) {
@@ -1336,7 +1336,7 @@ func (o *PopupMenu) SetItemSubmenu(idx gdnative.Int, submenu gdnative.String) {
 }
 
 /*
-        Set the text of the item at index "idx".
+        Sets the text of the item at index [code]idx[/code].
 	Args: [{ false idx int} { false text String}], Returns: void
 */
 func (o *PopupMenu) SetItemText(idx gdnative.Int, text gdnative.String) {
@@ -1358,7 +1358,7 @@ func (o *PopupMenu) SetItemText(idx gdnative.Int, text gdnative.String) {
 }
 
 /*
-
+        Sets the [String] tooltip of the item at the specified index [code]idx[/code].
 	Args: [{ false idx int} { false tooltip String}], Returns: void
 */
 func (o *PopupMenu) SetItemTooltip(idx gdnative.Int, tooltip gdnative.String) {
@@ -1401,7 +1401,7 @@ func (o *PopupMenu) SetSubmenuPopupDelay(seconds gdnative.Real) {
 }
 
 /*
-
+        Toggles the check state of the item of the specified index [code]idx[/code].
 	Args: [{ false idx int}], Returns: void
 */
 func (o *PopupMenu) ToggleItemChecked(idx gdnative.Int) {

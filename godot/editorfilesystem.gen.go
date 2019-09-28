@@ -35,7 +35,7 @@ func (o *EditorFileSystem) BaseClass() string {
 }
 
 /*
-        Get the type of the file, given the full path.
+        Gets the type of the file, given the full path.
 	Args: [{ false path String}], Returns: String
 */
 func (o *EditorFileSystem) GetFileType(path gdnative.String) gdnative.String {
@@ -59,7 +59,7 @@ func (o *EditorFileSystem) GetFileType(path gdnative.String) gdnative.String {
 }
 
 /*
-        Get the root directory object.
+        Gets the root directory object.
 	Args: [], Returns: EditorFileSystemDirectory
 */
 func (o *EditorFileSystem) GetFilesystem() EditorFileSystemDirectoryImplementer {
@@ -134,7 +134,7 @@ func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSys
 }
 
 /*
-        Return the scan progress for 0 to 1 if the FS is being scanned.
+        Returns the scan progress for 0 to 1 if the FS is being scanned.
 	Args: [], Returns: float
 */
 func (o *EditorFileSystem) GetScanningProgress() gdnative.Real {
@@ -157,7 +157,7 @@ func (o *EditorFileSystem) GetScanningProgress() gdnative.Real {
 }
 
 /*
-        Return true of the filesystem is being scanned.
+        Returns [code]true[/code] of the filesystem is being scanned.
 	Args: [], Returns: bool
 */
 func (o *EditorFileSystem) IsScanning() gdnative.Bool {

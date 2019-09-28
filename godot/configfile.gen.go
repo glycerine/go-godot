@@ -23,7 +23,7 @@ func newConfigFileFromPointer(ptr gdnative.Pointer) ConfigFile {
 }
 
 /*
-This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key: [codeblock] [section] some_key=42 string_example="Hello World!" a_vector=Vector3( 1, 0, 2 ) [/codeblock] The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem. The following example shows how to parse an INI-style file from the system, read its contents and store new values in it: [codeblock] var config = ConfigFile.new() var err = config.load("user://settings.cfg") if err == OK: # if not, something went wrong with the file loading # Look for the display/width pair, and default to 1024 if missing var screen_width = config.get_value("display", "width", 1024) # Store a variable if and only if it hasn't been defined yet if not config.has_section_key("audio", "mute"): config.set_value("audio", "mute", false) # Save the changes by overwriting the previous file config.save("user://settings.cfg") [/codeblock] Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.
+This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key: [codeblock] [section] some_key=42 string_example="Hello World!" a_vector=Vector3( 1, 0, 2 ) [/codeblock] The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem. The following example shows how to parse an INI-style file from the system, read its contents and store new values in it: [codeblock] var config = ConfigFile.new() var err = config.load("user://settings.cfg") if err == OK: # If not, something went wrong with the file loading # Look for the display/width pair, and default to 1024 if missing var screen_width = config.get_value("display", "width", 1024) # Store a variable if and only if it hasn't been defined yet if not config.has_section_key("audio", "mute"): config.set_value("audio", "mute", false) # Save the changes by overwriting the previous file config.save("user://settings.cfg") [/codeblock] Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.
 */
 type ConfigFile struct {
 	Reference
@@ -178,7 +178,7 @@ func (o *ConfigFile) HasSectionKey(section gdnative.String, key gdnative.String)
 }
 
 /*
-        Loads the config file specified as a parameter. The file's contents are parsed and loaded in the ConfigFile object which the method was called on. Returns one of the [code]OK[/code], [code]FAILED[/code] or [code]ERR_*[/code] constants listed in [@GlobalScope]. If the load was successful, the return value is [code]OK[/code].
+        Loads the config file specified as a parameter. The file's contents are parsed and loaded in the ConfigFile object which the method was called on. Returns one of the [constant OK], [constant FAILED] or [code]ERR_*[/code] constants listed in [@GlobalScope]. If the load was successful, the return value is [constant OK].
 	Args: [{ false path String}], Returns: enum.Error
 */
 func (o *ConfigFile) Load(path gdnative.String) gdnative.Error {
@@ -202,7 +202,7 @@ func (o *ConfigFile) Load(path gdnative.String) gdnative.Error {
 }
 
 /*
-        Saves the contents of the ConfigFile object to the file specified as a parameter. The output file uses an INI-style structure. Returns one of the [code]OK[/code], [code]FAILED[/code] or [code]ERR_*[/code] constants listed in [@GlobalScope]. If the load was successful, the return value is [code]OK[/code].
+        Saves the contents of the ConfigFile object to the file specified as a parameter. The output file uses an INI-style structure. Returns one of the [constant OK], [constant FAILED] or [code]ERR_*[/code] constants listed in [@GlobalScope]. If the load was successful, the return value is [constant OK].
 	Args: [{ false path String}], Returns: enum.Error
 */
 func (o *ConfigFile) Save(path gdnative.String) gdnative.Error {

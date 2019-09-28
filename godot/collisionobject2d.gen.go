@@ -35,7 +35,7 @@ func (o *CollisionObject2D) BaseClass() string {
 }
 
 /*
-        Accepts unhandled [InputEvent]s. [code]shape_idx[/code] is the child index of the clicked [Shape2D]. Connect to the [code]input_event[/code] signal to easily pick up these events.
+        Accepts unhandled [InputEvent]s. Requires [member input_pickable] to be [code]true[/code]. [code]shape_idx[/code] is the child index of the clicked [Shape2D]. Connect to the [code]input_event[/code] signal to easily pick up these events.
 	Args: [{ false viewport Object} { false event InputEvent} { false shape_idx int}], Returns: void
 */
 func (o *CollisionObject2D) X_InputEvent(viewport ObjectImplementer, event InputEventImplementer, shapeIdx gdnative.Int) {
@@ -199,7 +199,7 @@ func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId gdnative.Int) gdnative.
 }
 
 /*
-        Returns [code]true[/code] if collisions for the shape owner originating from this [code]CollisionObject2D[/code] will not be reported to collided with [code]CollisionObject2D[/code]s.
+        Returns [code]true[/code] if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s.
 	Args: [{ false owner_id int}], Returns: bool
 */
 func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId gdnative.Int) gdnative.Bool {
@@ -526,7 +526,7 @@ func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId gdnative.Int, disabled
 }
 
 /*
-        If [code]enable[/code] is [code]true[/code], collisions for the shape owner originating from this [code]CollisionObject2D[/code] will not be reported to collided with [code]CollisionObject2D[/code]s.
+        If [code]enable[/code] is [code]true[/code], collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s.
 	Args: [{ false owner_id int} { false enable bool}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerSetOneWayCollision(ownerId gdnative.Int, enable gdnative.Bool) {

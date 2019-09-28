@@ -79,7 +79,7 @@ func (o *BitMap) X_SetData(arg0 gdnative.Dictionary) {
 }
 
 /*
-        Creates a bitmap with the specified size, filled with false.
+        Creates a bitmap with the specified size, filled with [code]false[/code].
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *BitMap) Create(size gdnative.Vector2) {
@@ -100,7 +100,7 @@ func (o *BitMap) Create(size gdnative.Vector2) {
 }
 
 /*
-        Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to false if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and true in other case.
+        Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to [code]false[/code] if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and [code]true[/code] in other case.
 	Args: [{ false image Image} {0.1 true threshold float}], Returns: void
 */
 func (o *BitMap) CreateFromImageAlpha(image ImageImplementer, threshold gdnative.Real) {
@@ -169,7 +169,7 @@ func (o *BitMap) GetSize() gdnative.Vector2 {
 }
 
 /*
-        Returns the amount of bitmap elements that are set to true.
+        Returns the amount of bitmap elements that are set to [code]true[/code].
 	Args: [], Returns: int
 */
 func (o *BitMap) GetTrueBitCount() gdnative.Int {

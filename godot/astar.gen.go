@@ -23,7 +23,7 @@ func newAStarFromPointer(ptr gdnative.Pointer) AStar {
 }
 
 /*
-A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting an efficiently directed path between multiple points. It enjoys widespread use due to its performance and accuracy. Godot's A* implementation make use of vectors as points. You must add points manually with [method AStar.add_point] and create segments manually with [method AStar.connect_points]. So you can test if there is a path between two points with the [method AStar.are_points_connected] function, get the list of existing ids in the found path with [method AStar.get_id_path], or the points list with [method AStar.get_point_path].
+A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting an efficiently directed path between multiple points. It enjoys widespread use due to its performance and accuracy. Godot's A* implementation make use of vectors as points. You must add points manually with [method add_point] and create segments manually with [method connect_points]. So you can test if there is a path between two points with the [method are_points_connected] function, get the list of existing ids in the found path with [method get_id_path], or the points list with [method get_point_path].
 */
 type AStar struct {
 	Reference
@@ -85,7 +85,7 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
 }
 
 /*
-        Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
+        Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var astar = AStar.new() astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1 [/codeblock] If there already exists a point for the given [code]id[/code], its position and weight scale are updated to the given values.
 	Args: [{ false id int} { false position Vector3} {1 true weight_scale float}], Returns: void
 */
 func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Real) {
@@ -153,7 +153,7 @@ func (o *AStar) Clear() {
 }
 
 /*
-        Creates a segment between the given points. If [code]bidirectional[/code] is [code]false[/code], only movement from [code]id[/code] to [code]to_id[/code] is allowed, not the reverse direction. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1, 1, 0)) as.add_point(2, Vector3(0, 5, 0)) as.connect_points(1, 2, false) [/codeblock]
+        Creates a segment between the given points. If [code]bidirectional[/code] is [code]false[/code], only movement from [code]id[/code] to [code]to_id[/code] is allowed, not the reverse direction. [codeblock] var astar = AStar.new() astar.add_point(1, Vector3(1, 1, 0)) astar.add_point(2, Vector3(0, 5, 0)) astar.connect_points(1, 2, false) [/codeblock]
 	Args: [{ false id int} { false to_id int} {True true bidirectional bool}], Returns: void
 */
 func (o *AStar) ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional gdnative.Bool) {
@@ -198,7 +198,7 @@ func (o *AStar) DisconnectPoints(id gdnative.Int, toId gdnative.Int) {
 }
 
 /*
-        Returns the next available point id with no point associated to it.
+        Returns the next available point ID with no point associated to it.
 	Args: [], Returns: int
 */
 func (o *AStar) GetAvailablePointId() gdnative.Int {
@@ -221,7 +221,7 @@ func (o *AStar) GetAvailablePointId() gdnative.Int {
 }
 
 /*
-        Returns the id of the closest point to [code]to_position[/code]. Returns -1 if there are no points in the points pool.
+        Returns the ID of the closest point to [code]to_position[/code]. Returns -1 if there are no points in the points pool.
 	Args: [{ false to_position Vector3}], Returns: int
 */
 func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
@@ -245,7 +245,7 @@ func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
 }
 
 /*
-        Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 5, 0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3, 3, 0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y = 0[/code] to [code]y = 5[/code]. It's the closest position in the segment to the given point.
+        Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var astar = AStar.new() astar.add_point(1, Vector3(0, 0, 0)) astar.add_point(2, Vector3(0, 5, 0)) astar.connect_points(1, 2) var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y = 0[/code] to [code]y = 5[/code]. It's the closest position in the segment to the given point.
 	Args: [{ false to_position Vector3}], Returns: Vector3
 */
 func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnative.Vector3 {
@@ -269,7 +269,7 @@ func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnativ
 }
 
 /*
-        Returns an array with the ids of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 1, 0), 1) # default weight is 1 as.add_point(3, Vector3(1, 1, 0)) as.add_point(4, Vector3(2, 0, 0)) as.connect_points(1, 2, false) as.connect_points(2, 3, false) as.connect_points(4, 3, false) as.connect_points(1, 4, false) as.connect_points(5, 4, false) var res = as.get_id_path(1, 3) # returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+        Returns an array with the IDs of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var astar = AStar.new() astar.add_point(1, Vector3(0, 0, 0)) astar.add_point(2, Vector3(0, 1, 0), 1) # Default weight is 1 astar.add_point(3, Vector3(1, 1, 0)) astar.add_point(4, Vector3(2, 0, 0)) astar.connect_points(1, 2, false) astar.connect_points(2, 3, false) astar.connect_points(4, 3, false) astar.connect_points(1, 4, false) var res = astar.get_id_path(1, 3) # Returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
 	Args: [{ false from_id int} { false to_id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolIntArray {
@@ -294,7 +294,7 @@ func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolI
 }
 
 /*
-        Returns an array with the ids of the points that form the connect with the given point. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0, 0, 0)) as.add_point(2, Vector3(0, 1, 0)) as.add_point(3, Vector3(1, 1, 0)) as.add_point(4, Vector3(2, 0, 0)) as.connect_points(1, 2, true) as.connect_points(1, 3, true) var neighbors = as.get_point_connections(1) # returns [2, 3] [/codeblock]
+        Returns an array with the IDs of the points that form the connection with the given point. [codeblock] var astar = AStar.new() astar.add_point(1, Vector3(0, 0, 0)) astar.add_point(2, Vector3(0, 1, 0)) astar.add_point(3, Vector3(1, 1, 0)) astar.add_point(4, Vector3(2, 0, 0)) astar.connect_points(1, 2, true) astar.connect_points(1, 3, true) var neighbors = astar.get_point_connections(1) # Returns [2, 3] [/codeblock]
 	Args: [{ false id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {
@@ -343,7 +343,7 @@ func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.Po
 }
 
 /*
-        Returns the position of the point associated with the given id.
+        Returns the position of the point associated with the given [code]id[/code].
 	Args: [{ false id int}], Returns: Vector3
 */
 func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
@@ -367,7 +367,7 @@ func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
 }
 
 /*
-        Returns the weight scale of the point associated with the given id.
+        Returns the weight scale of the point associated with the given [code]id[/code].
 	Args: [{ false id int}], Returns: float
 */
 func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Real {
@@ -414,7 +414,7 @@ func (o *AStar) GetPoints() gdnative.Array {
 }
 
 /*
-        Returns whether a point associated with the given id exists.
+        Returns whether a point associated with the given [code]id[/code] exists.
 	Args: [{ false id int}], Returns: bool
 */
 func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
@@ -438,7 +438,7 @@ func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Removes the point associated with the given id from the points pool.
+        Removes the point associated with the given [code]id[/code] from the points pool.
 	Args: [{ false id int}], Returns: void
 */
 func (o *AStar) RemovePoint(id gdnative.Int) {
@@ -459,7 +459,7 @@ func (o *AStar) RemovePoint(id gdnative.Int) {
 }
 
 /*
-        Sets the position for the point with the given id.
+        Sets the [code]position[/code] for the point with the given [code]id[/code].
 	Args: [{ false id int} { false position Vector3}], Returns: void
 */
 func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
@@ -481,7 +481,7 @@ func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
 }
 
 /*
-        Sets the [code]weight_scale[/code] for the point with the given id.
+        Sets the [code]weight_scale[/code] for the point with the given [code]id[/code].
 	Args: [{ false id int} { false weight_scale float}], Returns: void
 */
 func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Real) {

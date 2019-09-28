@@ -345,7 +345,7 @@ func (o *Physics2DShapeQueryParameters) SetMotion(motion gdnative.Vector2) {
 }
 
 /*
-        Set the [Shape2D] that will be used for collision/intersection queries.
+        Sets the [Shape2D] that will be used for collision/intersection queries.
 	Args: [{ false shape Resource}], Returns: void
 */
 func (o *Physics2DShapeQueryParameters) SetShape(shape ResourceImplementer) {

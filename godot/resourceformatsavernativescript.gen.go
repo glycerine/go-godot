@@ -23,8 +23,8 @@ func newResourceFormatSaverNativeScriptFromPointer(ptr gdnative.Pointer) Resourc
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatSaverNativeScript struct {
 	ResourceFormatSaver
 	owner gdnative.Object

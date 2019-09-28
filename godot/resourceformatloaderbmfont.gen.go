@@ -23,8 +23,8 @@ func newResourceFormatLoaderBMFontFromPointer(ptr gdnative.Pointer) ResourceForm
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderBMFont struct {
 	ResourceFormatLoader
 	owner gdnative.Object

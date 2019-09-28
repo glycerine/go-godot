@@ -79,7 +79,7 @@ func (o *Popup) PopupMethod(bounds gdnative.Rect2) {
 }
 
 /*
-        Popup (show the control in modal form) in the center of the screen relative to its current canvas transform, at the current size, or at a size determined by "size".
+        Popup (show the control in modal form) in the center of the screen relative to its current canvas transform, at the current size, or at a size determined by [code]size[/code].
 	Args: [{(0, 0) true size Vector2}], Returns: void
 */
 func (o *Popup) PopupCentered(size gdnative.Vector2) {

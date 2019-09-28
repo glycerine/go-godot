@@ -169,12 +169,12 @@ func newSingletonPhysics2DServer() *physics2DServer {
 }
 
 /*
-   Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
+   Physics2DServer is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 var Physics2DServer = newSingletonPhysics2DServer()
 
 /*
-Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
+Physics2DServer is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 type physics2DServer struct {
 	Object
@@ -365,7 +365,7 @@ func (o *physics2DServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.In
 }
 
 /*
-        Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
+        Returns an area parameter value. See [enum AreaParameter] for a list of available parameters.
 	Args: [{ false area RID} { false param int}], Returns: Variant
 */
 func (o *physics2DServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdnative.Variant {
@@ -683,7 +683,7 @@ func (o *physics2DServer) AreaSetMonitorable(area gdnative.Rid, monitorable gdna
 }
 
 /*
-        Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+        Sets the value for an area parameter. See [enum AreaParameter] for a list of available parameters.
 	Args: [{ false area RID} { false param int} { false value Variant}], Returns: void
 */
 func (o *physics2DServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant) {
@@ -802,7 +802,7 @@ func (o *physics2DServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
 }
 
 /*
-        Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+        Sets the space override mode for the area. See [enum AreaSpaceOverrideMode] for a list of available modes.
 	Args: [{ false area RID} { false mode int}], Returns: void
 */
 func (o *physics2DServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnative.Int) {
@@ -1103,7 +1103,7 @@ func (o *physics2DServer) BodyClearShapes(body gdnative.Rid) {
 }
 
 /*
-        Creates a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
+        Creates a physics body.
 	Args: [], Returns: RID
 */
 func (o *physics2DServer) BodyCreate() gdnative.Rid {
@@ -1341,7 +1341,7 @@ func (o *physics2DServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.In
 }
 
 /*
-        Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Returns the value of a body parameter. See [enum BodyParameter] for a list of available parameters.
 	Args: [{ false body RID} { false param int}], Returns: float
 */
 func (o *physics2DServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real {
@@ -1661,7 +1661,7 @@ func (o *physics2DServer) BodySetCollisionMask(body gdnative.Rid, mask gdnative.
 }
 
 /*
-        Sets the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+        Sets the continuous collision detection mode using one of the [enum CCDMode] constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
 	Args: [{ false body RID} { false mode int}], Returns: void
 */
 func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body gdnative.Rid, mode gdnative.Int) {
@@ -1732,7 +1732,7 @@ func (o *physics2DServer) BodySetMaxContactsReported(body gdnative.Rid, amount g
 }
 
 /*
-        Sets the body mode, from one of the constants BODY_MODE*.
+        Sets the body mode using one of the [enum BodyMode] constants.
 	Args: [{ false body RID} { false mode int}], Returns: void
 */
 func (o *physics2DServer) BodySetMode(body gdnative.Rid, mode gdnative.Int) {
@@ -1778,7 +1778,7 @@ func (o *physics2DServer) BodySetOmitForceIntegration(body gdnative.Rid, enable 
 }
 
 /*
-        Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Sets a body parameter. See [enum BodyParameter] for a list of available parameters.
 	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
 func (o *physics2DServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real) {
@@ -1946,7 +1946,7 @@ func (o *physics2DServer) BodySetSpace(body gdnative.Rid, space gdnative.Rid) {
 }
 
 /*
-        Sets a body state (see BODY_STATE* constants).
+        Sets a body state using one of the [enum BodyState] constants.
 	Args: [{ false body RID} { false state int} { false value Variant}], Returns: void
 */
 func (o *physics2DServer) BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant) {
@@ -1970,7 +1970,7 @@ func (o *physics2DServer) BodySetState(body gdnative.Rid, state gdnative.Int, va
 }
 
 /*
-        Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
+        Returns [code]true[/code] if a collision would result from moving in the given direction from a given point in space. Margin increases the size of the shapes involved in the collision detection. [Physics2DTestMotionResult] can be passed to return additional information in.
 	Args: [{ false body RID} { false from Transform2D} { false motion Vector2} { false infinite_inertia bool} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
 func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, infiniteInertia gdnative.Bool, margin gdnative.Real, result Physics2DTestMotionResultImplementer) gdnative.Bool {
@@ -2150,7 +2150,7 @@ func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.Rid, param gd
 }
 
 /*
-        Sets a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
+        Sets a damped spring joint parameter. See [enum DampedStringParam] for a list of available parameters.
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physics2DServer) DampedStringJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
@@ -2196,7 +2196,7 @@ func (o *physics2DServer) FreeRid(rid gdnative.Rid) {
 }
 
 /*
-        Returns information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
+        Returns information about the current state of the 2D physics engine. See [enum ProcessInfo] for a list of available states.
 	Args: [{ false process_info int}], Returns: int
 */
 func (o *physics2DServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
@@ -2221,7 +2221,7 @@ func (o *physics2DServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int 
 }
 
 /*
-        Creates a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
+        Creates a groove joint between two bodies. If not specified, the bodies are assumed to be the joint itself.
 	Args: [{ false groove1_a Vector2} { false groove2_a Vector2} { false anchor_b Vector2} {[RID] true body_a RID} {[RID] true body_b RID}], Returns: RID
 */
 func (o *physics2DServer) GrooveJointCreate(groove1A gdnative.Vector2, groove2A gdnative.Vector2, anchorB gdnative.Vector2, bodyA gdnative.Rid, bodyB gdnative.Rid) gdnative.Rid {
@@ -2276,7 +2276,7 @@ func (o *physics2DServer) JointGetParam(joint gdnative.Rid, param gdnative.Int) 
 }
 
 /*
-        Returns the type of a joint (see JOINT_* constants).
+        Returns a joint's type (see [enum JointType]).
 	Args: [{ false joint RID}], Returns: enum.Physics2DServer::JointType
 */
 func (o *physics2DServer) JointGetType(joint gdnative.Rid) Physics2DServerJointType {
@@ -2301,7 +2301,7 @@ func (o *physics2DServer) JointGetType(joint gdnative.Rid) Physics2DServerJointT
 }
 
 /*
-        Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
+        Sets a joint parameter. See [enum JointParam] for a list of available parameters.
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physics2DServer) JointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
@@ -2495,7 +2495,7 @@ func (o *physics2DServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 }
 
 /*
-        Returns the type of shape (see SHAPE_* constants).
+        Returns a shape's type (see [enum ShapeType]).
 	Args: [{ false shape RID}], Returns: enum.Physics2DServer::ShapeType
 */
 func (o *physics2DServer) ShapeGetType(shape gdnative.Rid) Physics2DServerShapeType {
@@ -2680,7 +2680,7 @@ func (o *physics2DServer) SpaceSetActive(space gdnative.Rid, active gdnative.Boo
 }
 
 /*
-        Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+        Sets the value for a space parameter. See [enum SpaceParameter] for a list of available parameters.
 	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
 func (o *physics2DServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real) {

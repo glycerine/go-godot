@@ -34,7 +34,7 @@ func newStreamPeerSSLFromPointer(ptr gdnative.Pointer) StreamPeerSSL {
 }
 
 /*
-SSL Stream peer. This object can be used to connect to SSL servers.
+SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
 */
 type StreamPeerSSL struct {
 	StreamPeer
@@ -46,7 +46,7 @@ func (o *StreamPeerSSL) BaseClass() string {
 }
 
 /*
-
+        Accepts a peer connection as a server using the given [code]private_key[/code] and providing the given [code]certificate[/code] to the client. You can pass the optional [code]chain[/code] parameter to provide additional CA chain information along with the certificate.
 	Args: [{ false base StreamPeer}], Returns: enum.Error
 */
 func (o *StreamPeerSSL) AcceptStream(base StreamPeerImplementer) gdnative.Error {
@@ -70,7 +70,7 @@ func (o *StreamPeerSSL) AcceptStream(base StreamPeerImplementer) gdnative.Error 
 }
 
 /*
-        Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
+        Connects to a peer using an underlying [StreamPeer] [code]stream[/code]. If [code]validate_certs[/code] is [code]true[/code], [StreamPeerSSL] will validate that the certificate presented by the peer matches the [code]for_hostname[/code].
 	Args: [{ false stream StreamPeer} {False true validate_certs bool} { true for_hostname String}], Returns: enum.Error
 */
 func (o *StreamPeerSSL) ConnectToStream(stream StreamPeerImplementer, validateCerts gdnative.Bool, forHostname gdnative.String) gdnative.Error {
@@ -96,7 +96,7 @@ func (o *StreamPeerSSL) ConnectToStream(stream StreamPeerImplementer, validateCe
 }
 
 /*
-        Disconnect from host.
+        Disconnects from host.
 	Args: [], Returns: void
 */
 func (o *StreamPeerSSL) DisconnectFromStream() {
@@ -116,7 +116,7 @@ func (o *StreamPeerSSL) DisconnectFromStream() {
 }
 
 /*
-        Return the status of the connection, one of STATUS_* enum.
+        Returns the status of the connection. See [enum Status] for values.
 	Args: [], Returns: enum.StreamPeerSSL::Status
 */
 func (o *StreamPeerSSL) GetStatus() StreamPeerSSLStatus {
@@ -162,7 +162,7 @@ func (o *StreamPeerSSL) IsBlockingHandshakeEnabled() gdnative.Bool {
 }
 
 /*
-        Poll the connection to check for incoming bytes. Call this right before "get_available_bytes()" for it to work properly.
+        Poll the connection to check for incoming bytes. Call this right before [method StreamPeer.get_available_bytes] for it to work properly.
 	Args: [], Returns: void
 */
 func (o *StreamPeerSSL) Poll() {

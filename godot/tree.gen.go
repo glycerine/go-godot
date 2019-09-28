@@ -41,7 +41,7 @@ func newTreeFromPointer(ptr gdnative.Pointer) Tree {
 }
 
 /*
-This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions. Trees are built via code, using [TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added. [codeblock] func _ready(): var tree = Tree.new() var root = tree.create_item() tree.set_hide_root(true) var child1 = tree.create_item(root) var child2 = tree.create_item(root) var subchild1 = tree.create_item(child1) subchild1.set_text(0, "Subchild1") [/codeblock]
+This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions. Trees are built via code, using [TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added. [codeblock] func _ready(): var tree = Tree.new() var root = tree.create_item() tree.set_hide_root(true) var child1 = tree.create_item(root) var child2 = tree.create_item(root) var subchild1 = tree.create_item(child1) subchild1.set_text(0, "Subchild1") [/codeblock] To iterate over all the [TreeItem] objects in a [Tree] object, use [method TreeItem.get_next] and [method TreeItem.get_children] after getting the root through [method get_root].
 */
 type Tree struct {
 	Control
@@ -241,7 +241,7 @@ func (o *Tree) Clear() {
 }
 
 /*
-        Create an item in the tree and add it as the last child of [code]parent[/code]. If parent is not given, it will be added as the root's last child, or it'll the be the root itself if the tree is empty.
+        Create an item in the tree and add it as the last child of [code]parent[/code]. If [code]parent[/code] is [code]null[/code], it will be added as the root's last child, or it'll be the the root itself if the tree is empty.
 	Args: [{Null true parent Object} {-1 true idx int}], Returns: TreeItem
 */
 func (o *Tree) CreateItem(parent ObjectImplementer, idx gdnative.Int) TreeItemImplementer {
@@ -487,7 +487,7 @@ func (o *Tree) GetDropModeFlags() gdnative.Int {
 }
 
 /*
-        If [member drop_mode_flags] includes [code]DROP_MODE_INBETWEEN[/code], returns -1 if [code]position[/code] is the upper part of a tree item at that position, 1 for the lower part, and additionally 0 for the middle part if [member drop_mode_flags] includes [code]DROP_MODE_ON_ITEM[/code]. Otherwise, returns 0. If there are no tree item at [code]position[/code], returns -100.
+        If [member drop_mode_flags] includes [constant DROP_MODE_INBETWEEN], returns -1 if [code]position[/code] is the upper part of a tree item at that position, 1 for the lower part, and additionally 0 for the middle part if [member drop_mode_flags] includes [constant DROP_MODE_ON_ITEM]. Otherwise, returns 0. If there are no tree items at [code]position[/code], returns -100.
 	Args: [{ false position Vector2}], Returns: int
 */
 func (o *Tree) GetDropSectionAtPosition(position gdnative.Vector2) gdnative.Int {
@@ -926,7 +926,7 @@ func (o *Tree) SetAllowRmbSelect(allow gdnative.Bool) {
 }
 
 /*
-        If [code]true[/code], the column will have the "Expand" flag of [Control].
+        If [code]true[/code], the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio].
 	Args: [{ false column int} { false expand bool}], Returns: void
 */
 func (o *Tree) SetColumnExpand(column gdnative.Int, expand gdnative.Bool) {
@@ -948,7 +948,7 @@ func (o *Tree) SetColumnExpand(column gdnative.Int, expand gdnative.Bool) {
 }
 
 /*
-        Set the minimum width of a column.
+        Sets the minimum width of a column. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio].
 	Args: [{ false column int} { false min_width int}], Returns: void
 */
 func (o *Tree) SetColumnMinWidth(column gdnative.Int, minWidth gdnative.Int) {
@@ -970,7 +970,7 @@ func (o *Tree) SetColumnMinWidth(column gdnative.Int, minWidth gdnative.Int) {
 }
 
 /*
-        Set the title of a column.
+        Sets the title of a column.
 	Args: [{ false column int} { false title String}], Returns: void
 */
 func (o *Tree) SetColumnTitle(column gdnative.Int, title gdnative.String) {

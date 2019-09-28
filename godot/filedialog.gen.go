@@ -383,7 +383,7 @@ func (o *FileDialog) X_UpdateFileList() {
 }
 
 /*
-        Add a custom filter. Example: [code]add_filter("*.png ; PNG Images")[/code]
+        Adds [code]filter[/code] as a custom filter; [code]filter[/code] should be of the form [code]"filename.extension ; Description"[/code]. For example, [code]"*.png ; PNG Images"[/code].
 	Args: [{ false filter String}], Returns: void
 */
 func (o *FileDialog) AddFilter(filter gdnative.String) {
@@ -619,7 +619,7 @@ func (o *FileDialog) GetMode() FileDialogMode {
 }
 
 /*
-        Return the vertical box container of the dialog, custom controls can be added to it.
+        Returns the vertical box container of the dialog, custom controls can be added to it.
 	Args: [], Returns: VBoxContainer
 */
 func (o *FileDialog) GetVbox() VBoxContainerImplementer {

@@ -23,7 +23,7 @@ func newEditorResourcePreviewGeneratorFromPointer(ptr gdnative.Pointer) EditorRe
 }
 
 /*
-Custom code to generate previews. Please check "file_dialog/thumbnail_size" in EditorSettings to find out the right size to do previews at.
+Custom code to generate previews. Please check [code]file_dialog/thumbnail_size[/code] in [EditorSettings] to find out the right size to do previews at.
 */
 type EditorResourcePreviewGenerator struct {
 	Reference
@@ -113,7 +113,7 @@ func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String, 
 }
 
 /*
-        Return if your generator supports this resource type.
+        Returns [code]true[/code] if your generator supports the resource of type [code]type[/code].
 	Args: [{ false type String}], Returns: bool
 */
 func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative.Bool {

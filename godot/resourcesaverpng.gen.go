@@ -23,8 +23,8 @@ func newResourceSaverPNGFromPointer(ptr gdnative.Pointer) ResourceSaverPNG {
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceSaverPNG struct {
 	ResourceFormatSaver
 	owner gdnative.Object

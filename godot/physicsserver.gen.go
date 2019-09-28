@@ -260,12 +260,12 @@ func newSingletonPhysicsServer() *physicsServer {
 }
 
 /*
-   Everything related to physics in 3D.
+   PhysicsServer is the server responsible for all 3D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 var PhysicsServer = newSingletonPhysicsServer()
 
 /*
-Everything related to physics in 3D.
+PhysicsServer is the server responsible for all 3D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 type physicsServer struct {
 	Object
@@ -408,7 +408,7 @@ func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int 
 }
 
 /*
-        Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
+        Returns an area parameter value. A list of available parameters is on the [code]AREA_PARAM_*[/code] constants.
 	Args: [{ false area RID} { false param int}], Returns: Variant
 */
 func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdnative.Variant {
@@ -751,7 +751,7 @@ func (o *physicsServer) AreaSetMonitorable(area gdnative.Rid, monitorable gdnati
 }
 
 /*
-        Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+        Sets the value for an area parameter. A list of available parameters is on the [code]AREA_PARAM_*[/code] constants.
 	Args: [{ false area RID} { false param int} { false value Variant}], Returns: void
 */
 func (o *physicsServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant) {
@@ -869,7 +869,7 @@ func (o *physicsServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
 }
 
 /*
-        Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+        Sets the space override mode for the area. The modes are described in the constants [code]AREA_SPACE_OVERRIDE_*[/code].
 	Args: [{ false area RID} { false mode int}], Returns: void
 */
 func (o *physicsServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnative.Int) {
@@ -1363,7 +1363,7 @@ func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int 
 }
 
 /*
-        Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Returns the value of a body parameter. A list of available parameters is on the [code]BODY_PARAM_*[/code] constants.
 	Args: [{ false body RID} { false param int}], Returns: float
 */
 func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real {
@@ -1593,7 +1593,7 @@ func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnati
 }
 
 /*
-        If [code]true[/code], the body can be detected by rays
+        If [code]true[/code], the body can be detected by rays.
 	Args: [{ false body RID}], Returns: bool
 */
 func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
@@ -1897,7 +1897,7 @@ func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gd
 }
 
 /*
-        Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Sets a body parameter. A list of available parameters is on the [code]BODY_PARAM_*[/code] constants.
 	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real) {
@@ -2215,7 +2215,7 @@ func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnati
 }
 
 /*
-        Returns an Info defined by the [enum PhysicsServer.ProcessInfo] input given.
+        Returns an Info defined by the [enum ProcessInfo] input given.
 	Args: [{ false process_info int}], Returns: int
 */
 func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
@@ -2721,7 +2721,7 @@ func (o *physicsServer) SetActive(active gdnative.Bool) {
 }
 
 /*
-        Creates a shape of type SHAPE_*. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
+        Creates a shape of type [code]SHAPE_*[/code]. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
 	Args: [{ false type int}], Returns: RID
 */
 func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
@@ -2771,7 +2771,7 @@ func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 }
 
 /*
-        Returns the type of shape (see SHAPE_* constants).
+        Returns the type of shape (see [code]SHAPE_*[/code] constants).
 	Args: [{ false shape RID}], Returns: enum.PhysicsServer::ShapeType
 */
 func (o *physicsServer) ShapeGetType(shape gdnative.Rid) PhysicsServerShapeType {
@@ -3006,7 +3006,7 @@ func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
 }
 
 /*
-        Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+        Sets the value for a space parameter. A list of available parameters is on the [code]SPACE_PARAM_*[/code] constants.
 	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real) {

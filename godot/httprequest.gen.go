@@ -279,7 +279,7 @@ func (o *HTTPRequest) IsUsingThreads() gdnative.Bool {
 }
 
 /*
-        Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request]. Returns [code]OK[/code] if request is successfully created. (Does not imply that the server has responded), [code]ERR_UNCONFIGURED[/code] if not in the tree, [code]ERR_BUSY[/code] if still processing previous request, [code]ERR_INVALID_PARAMETER[/code] if given string is not a valid URL format, or [code]ERR_CANT_CONNECT[/code] if not using thread and the [HTTPClient] cannot connect to host.
+        Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request]. Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.
 	Args: [{ false url String} {[] true custom_headers PoolStringArray} {True true ssl_validate_domain bool} {0 true method int} { true request_data String}], Returns: enum.Error
 */
 func (o *HTTPRequest) Request(url gdnative.String, customHeaders gdnative.PoolStringArray, sslValidateDomain gdnative.Bool, method gdnative.Int, requestData gdnative.String) gdnative.Error {

@@ -23,8 +23,8 @@ func newAnimationNodeStateMachinePlaybackFromPointer(ptr gdnative.Pointer) Anima
 }
 
 /*
-
- */
+Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine]. Retrieve with [code]$AnimationTree.get("parameters/playback")[/code]. [b]Example:[/b] [codeblock] var state_machine = $AnimationTree.get("parameters/playback") state_machine.travel("some_state") [/codeblock]
+*/
 type AnimationNodeStateMachinePlayback struct {
 	Resource
 	owner gdnative.Object
@@ -35,7 +35,7 @@ func (o *AnimationNodeStateMachinePlayback) BaseClass() string {
 }
 
 /*
-
+        Returns the currently playing animation state.
 	Args: [], Returns: String
 */
 func (o *AnimationNodeStateMachinePlayback) GetCurrentNode() gdnative.String {
@@ -81,7 +81,7 @@ func (o *AnimationNodeStateMachinePlayback) GetTravelPath() gdnative.PoolStringA
 }
 
 /*
-
+        Returns [code]true[/code] if an animation is playing.
 	Args: [], Returns: bool
 */
 func (o *AnimationNodeStateMachinePlayback) IsPlaying() gdnative.Bool {
@@ -104,7 +104,7 @@ func (o *AnimationNodeStateMachinePlayback) IsPlaying() gdnative.Bool {
 }
 
 /*
-
+        Starts playing the given animation.
 	Args: [{ false node String}], Returns: void
 */
 func (o *AnimationNodeStateMachinePlayback) Start(node gdnative.String) {
@@ -125,7 +125,7 @@ func (o *AnimationNodeStateMachinePlayback) Start(node gdnative.String) {
 }
 
 /*
-
+        Stops the currently playing animation.
 	Args: [], Returns: void
 */
 func (o *AnimationNodeStateMachinePlayback) Stop() {
@@ -145,7 +145,7 @@ func (o *AnimationNodeStateMachinePlayback) Stop() {
 }
 
 /*
-
+        Transitions from the current state to another one, following the shortest path.
 	Args: [{ false to_node String}], Returns: void
 */
 func (o *AnimationNodeStateMachinePlayback) Travel(toNode gdnative.String) {

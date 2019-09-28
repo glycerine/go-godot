@@ -27,12 +27,12 @@ func newSingletonEngine() *engine {
 }
 
 /*
-   The [code]Engine[/code] class allows you to query and modify the game's run-time parameters, such as frames per second, time scale, and others.
+   The [Engine] class allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
 */
 var Engine = newSingletonEngine()
 
 /*
-The [code]Engine[/code] class allows you to query and modify the game's run-time parameters, such as frames per second, time scale, and others.
+The [Engine] class allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
 */
 type engine struct {
 	Object

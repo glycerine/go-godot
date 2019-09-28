@@ -32,7 +32,7 @@ func newAnimationPlayerFromPointer(ptr gdnative.Pointer) AnimationPlayer {
 }
 
 /*
-An animation player is used for general purpose playback of [Animation] resources. It contains a dictionary of animations (referenced by name) and custom blend times between their transitions. Additionally, animations can be played and blended in different channels.
+An animation player is used for general-purpose playback of [Animation] resources. It contains a dictionary of animations (referenced by name) and custom blend times between their transitions. Additionally, animations can be played and blended in different channels.
 */
 type AnimationPlayer struct {
 	Node
@@ -177,7 +177,7 @@ func (o *AnimationPlayer) AnimationSetNext(animFrom gdnative.String, animTo gdna
 }
 
 /*
-        [code]AnimationPlayer[/code] caches animated nodes. It may not notice if a node disappears, so clear_caches forces it to update the cache again.
+        [AnimationPlayer] caches animated nodes. It may not notice if a node disappears; [method clear_caches] forces it to update the cache again.
 	Args: [], Returns: void
 */
 func (o *AnimationPlayer) ClearCaches() {
@@ -217,7 +217,7 @@ func (o *AnimationPlayer) ClearQueue() {
 }
 
 /*
-        Returns the name of [code]animation[/code] or empty string if not found.
+        Returns the name of [code]animation[/code] or an empty string if not found.
 	Args: [{ false animation Animation}], Returns: String
 */
 func (o *AnimationPlayer) FindAnimation(animation AnimationImplementer) gdnative.String {
@@ -371,7 +371,7 @@ func (o *AnimationPlayer) GetAutoplay() gdnative.String {
 }
 
 /*
-        Get the blend time (in seconds) between two animations, referenced by their names.
+        Gets the blend time (in seconds) between two animations, referenced by their names.
 	Args: [{ false anim_from String} { false anim_to String}], Returns: float
 */
 func (o *AnimationPlayer) GetBlendTime(animFrom gdnative.String, animTo gdnative.String) gdnative.Real {
@@ -488,7 +488,7 @@ func (o *AnimationPlayer) GetDefaultBlendTime() gdnative.Real {
 }
 
 /*
-        Get the actual playing speed of current animation or 0 if not playing. This speed is the [code]playback_speed[/code] property multiplied by [code]custom_speed[/code] argument specified when calling the [code]play[/code] method.
+        Gets the actual playing speed of current animation or 0 if not playing. This speed is the [code]playback_speed[/code] property multiplied by [code]custom_speed[/code] argument specified when calling the [code]play[/code] method.
 	Args: [], Returns: float
 */
 func (o *AnimationPlayer) GetPlayingSpeed() gdnative.Real {
@@ -511,7 +511,7 @@ func (o *AnimationPlayer) GetPlayingSpeed() gdnative.Real {
 }
 
 /*
-
+        Returns a list of the animation names that are currently queued to play.
 	Args: [], Returns: PoolStringArray
 */
 func (o *AnimationPlayer) GetQueue() gdnative.PoolStringArray {
@@ -580,7 +580,7 @@ func (o *AnimationPlayer) GetSpeedScale() gdnative.Real {
 }
 
 /*
-        Returns [code]true[/code] if the [code]AnimationPlayer[/code] stores an [Animation] with key [code]name[/code].
+        Returns [code]true[/code] if the [AnimationPlayer] stores an [Animation] with key [code]name[/code].
 	Args: [{ false name String}], Returns: bool
 */
 func (o *AnimationPlayer) HasAnimation(name gdnative.String) gdnative.Bool {
@@ -650,7 +650,7 @@ func (o *AnimationPlayer) IsPlaying() gdnative.Bool {
 }
 
 /*
-        Play the animation with key [code]name[/code]. Custom speed and blend times can be set. If custom speed is negative (-1), 'from_end' being true can play the animation backwards. If the animation has been paused by [code]stop(true)[/code] it will be resumed. Calling [code]play()[/code] without arguments will also resume the animation.
+        Plays the animation with key [code]name[/code]. Custom speed and blend times can be set. If [code]custom_speed[/code] is negative and [code]from_end[/code] is [code]true[/code], the animation will play backwards. If the animation has been paused by [method stop], it will be resumed. Calling [method play] without arguments will also resume the animation.
 	Args: [{ true name String} {-1 true custom_blend float} {1 true custom_speed float} {False true from_end bool}], Returns: void
 */
 func (o *AnimationPlayer) Play(name gdnative.String, customBlend gdnative.Real, customSpeed gdnative.Real, fromEnd gdnative.Bool) {
@@ -674,7 +674,7 @@ func (o *AnimationPlayer) Play(name gdnative.String, customBlend gdnative.Real, 
 }
 
 /*
-        Play the animation with key [code]name[/code] in reverse. If the animation has been paused by [code]stop(true)[/code] it will be resumed backwards. Calling [code]play_backwards()[/code] without arguments will also resume the animation backwards.
+        Plays the animation with key [code]name[/code] in reverse. If the animation has been paused by [code]stop(true)[/code], it will be resumed backwards. Calling [code]play_backwards()[/code] without arguments will also resume the animation backwards.
 	Args: [{ true name String} {-1 true custom_blend float}], Returns: void
 */
 func (o *AnimationPlayer) PlayBackwards(name gdnative.String, customBlend gdnative.Real) {
@@ -696,7 +696,7 @@ func (o *AnimationPlayer) PlayBackwards(name gdnative.String, customBlend gdnati
 }
 
 /*
-        Queue an animation for playback once the current one is done.
+        Queues an animation for playback once the current one is done. [b]Note:[/b] If a looped animation is currently playing, the queued animation will never play unless the looped animation is stopped somehow.
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationPlayer) Queue(name gdnative.String) {
@@ -717,7 +717,7 @@ func (o *AnimationPlayer) Queue(name gdnative.String) {
 }
 
 /*
-        Remove the animation with key [code]name[/code].
+        Removes the animation with key [code]name[/code].
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationPlayer) RemoveAnimation(name gdnative.String) {
@@ -738,7 +738,7 @@ func (o *AnimationPlayer) RemoveAnimation(name gdnative.String) {
 }
 
 /*
-        Rename an existing animation with key [code]name[/code] to [code]newname[/code].
+        Renames an existing animation with key [code]name[/code] to [code]newname[/code].
 	Args: [{ false name String} { false newname String}], Returns: void
 */
 func (o *AnimationPlayer) RenameAnimation(name gdnative.String, newname gdnative.String) {
@@ -760,7 +760,7 @@ func (o *AnimationPlayer) RenameAnimation(name gdnative.String, newname gdnative
 }
 
 /*
-        Seek the animation to the [code]seconds[/code] point in time (in seconds). If [code]update[/code] is [code]true[/code], the animation updates too, otherwise it updates at process time. Events between the current frame and [code]seconds[/code] are skipped.
+        Seeks the animation to the [code]seconds[/code] point in time (in seconds). If [code]update[/code] is [code]true[/code], the animation updates too, otherwise it updates at process time. Events between the current frame and [code]seconds[/code] are skipped.
 	Args: [{ false seconds float} {False true update bool}], Returns: void
 */
 func (o *AnimationPlayer) Seek(seconds gdnative.Real, update gdnative.Bool) {
@@ -866,7 +866,7 @@ func (o *AnimationPlayer) SetAutoplay(name gdnative.String) {
 }
 
 /*
-        Specify a blend time (in seconds) between two animations, referenced by their names.
+        Specifies a blend time (in seconds) between two animations, referenced by their names.
 	Args: [{ false anim_from String} { false anim_to String} { false sec float}], Returns: void
 */
 func (o *AnimationPlayer) SetBlendTime(animFrom gdnative.String, animTo gdnative.String, sec gdnative.Real) {
@@ -973,7 +973,7 @@ func (o *AnimationPlayer) SetSpeedScale(speed gdnative.Real) {
 }
 
 /*
-        Stop the currently playing animation. If [code]reset[/code] is [code]true[/code], the animation position is reset to [code]0[/code] and the playback speed is reset to [code]1.0[/code]. If [code]reset[/code] is [code]false[/code], then calling [code]play()[/code] without arguments or [code]play("same_as_before")[/code] will resume the animation. Works the same for the [code]play_backwards()[/code] method.
+        Stops the currently playing animation. If [code]reset[/code] is [code]true[/code], the animation position is reset to [code]0[/code] and the playback speed is reset to [code]1.0[/code]. If [code]reset[/code] is [code]false[/code], then calling [method play] without arguments or [code]play("same_as_before")[/code] will resume the animation. Works the same for the [method play_backwards].
 	Args: [{True true reset bool}], Returns: void
 */
 func (o *AnimationPlayer) Stop(reset gdnative.Bool) {

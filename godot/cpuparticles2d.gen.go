@@ -69,8 +69,8 @@ func newCPUParticles2DFromPointer(ptr gdnative.Pointer) CPUParticles2D {
 }
 
 /*
-
- */
+CPU-based 2D particle node used to create a variety of particle systems and effects. See also [Particles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.
+*/
 type CPUParticles2D struct {
 	Node2D
 	owner gdnative.Object
@@ -101,7 +101,7 @@ func (o *CPUParticles2D) X_UpdateRenderThread() {
 }
 
 /*
-
+        Sets this node's properties to match a given [Particles2D] node with an assigned [ParticlesMaterial].
 	Args: [{ false particles Object}], Returns: void
 */
 func (o *CPUParticles2D) ConvertFromParticles(particles ObjectImplementer) {
@@ -564,7 +564,7 @@ func (o *CPUParticles2D) GetOneShot() gdnative.Bool {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: float
 */
 func (o *CPUParticles2D) GetParam(param gdnative.Int) gdnative.Real {
@@ -588,7 +588,7 @@ func (o *CPUParticles2D) GetParam(param gdnative.Int) gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: Curve
 */
 func (o *CPUParticles2D) GetParamCurve(param gdnative.Int) CurveImplementer {
@@ -626,7 +626,7 @@ func (o *CPUParticles2D) GetParamCurve(param gdnative.Int) CurveImplementer {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: float
 */
 func (o *CPUParticles2D) GetParamRandomness(param gdnative.Int) gdnative.Real {
@@ -650,7 +650,7 @@ func (o *CPUParticles2D) GetParamRandomness(param gdnative.Int) gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *CPUParticles2D) GetParticleFlag(flag gdnative.Int) gdnative.Bool {
@@ -849,7 +849,7 @@ func (o *CPUParticles2D) IsEmitting() gdnative.Bool {
 }
 
 /*
-
+        Restarts the particle emitter.
 	Args: [], Returns: void
 */
 func (o *CPUParticles2D) Restart() {
@@ -1268,7 +1268,7 @@ func (o *CPUParticles2D) SetOneShot(enable gdnative.Bool) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *CPUParticles2D) SetParam(param gdnative.Int, value gdnative.Real) {
@@ -1290,7 +1290,7 @@ func (o *CPUParticles2D) SetParam(param gdnative.Int, value gdnative.Real) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false curve Curve}], Returns: void
 */
 func (o *CPUParticles2D) SetParamCurve(param gdnative.Int, curve CurveImplementer) {
@@ -1312,7 +1312,7 @@ func (o *CPUParticles2D) SetParamCurve(param gdnative.Int, curve CurveImplemente
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false randomness float}], Returns: void
 */
 func (o *CPUParticles2D) SetParamRandomness(param gdnative.Int, randomness gdnative.Real) {
@@ -1334,7 +1334,7 @@ func (o *CPUParticles2D) SetParamRandomness(param gdnative.Int, randomness gdnat
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int} { false enable bool}], Returns: void
 */
 func (o *CPUParticles2D) SetParticleFlag(flag gdnative.Int, enable gdnative.Bool) {

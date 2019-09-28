@@ -23,8 +23,8 @@ func newResourceFormatPVRFromPointer(ptr gdnative.Pointer) ResourceFormatPVR {
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatPVR struct {
 	ResourceFormatLoader
 	owner gdnative.Object

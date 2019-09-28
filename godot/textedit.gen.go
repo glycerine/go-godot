@@ -240,7 +240,7 @@ func (o *TextEdit) X_VScrollInput() {
 }
 
 /*
-        Add color region (given the delimiters) and its colors.
+        Adds color region (given the delimiters) and its colors.
 	Args: [{ false begin_key String} { false end_key String} { false color Color} {False true line_only bool}], Returns: void
 */
 func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.String, color gdnative.Color, lineOnly gdnative.Bool) {
@@ -264,7 +264,7 @@ func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.Stri
 }
 
 /*
-        Add a keyword and its color.
+        Adds a [code]keyword[/code] and its [Color].
 	Args: [{ false keyword String} { false color Color}], Returns: void
 */
 func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color gdnative.Color) {
@@ -286,7 +286,7 @@ func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color gdnative.Color
 }
 
 /*
-
+        Returns if the given line is foldable, that is, it has indented lines right below it.
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
@@ -310,7 +310,7 @@ func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Clear all the syntax coloring information.
+        Clears all the syntax coloring information.
 	Args: [], Returns: void
 */
 func (o *TextEdit) ClearColors() {
@@ -330,7 +330,7 @@ func (o *TextEdit) ClearColors() {
 }
 
 /*
-        Clear the undo history.
+        Clears the undo history.
 	Args: [], Returns: void
 */
 func (o *TextEdit) ClearUndoHistory() {
@@ -350,7 +350,7 @@ func (o *TextEdit) ClearUndoHistory() {
 }
 
 /*
-        Copy the current selection.
+        Copy's the current text selection.
 	Args: [], Returns: void
 */
 func (o *TextEdit) Copy() {
@@ -416,7 +416,7 @@ func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Real {
 }
 
 /*
-        Return the column the editing cursor is at.
+        Returns the column the editing cursor is at.
 	Args: [], Returns: int
 */
 func (o *TextEdit) CursorGetColumn() gdnative.Int {
@@ -439,7 +439,7 @@ func (o *TextEdit) CursorGetColumn() gdnative.Int {
 }
 
 /*
-        Return the line the editing cursor is at.
+        Returns the line the editing cursor is at.
 	Args: [], Returns: int
 */
 func (o *TextEdit) CursorGetLine() gdnative.Int {
@@ -548,7 +548,7 @@ func (o *TextEdit) CursorSetBlockMode(enable gdnative.Bool) {
 }
 
 /*
-
+        Moves the cursor at the specified [code]column[/code] index. If [code]adjust_viewport[/code] is set to true, the viewport will center at the cursor position after the move occurs.
 	Args: [{ false column int} {True true adjust_viewport bool}], Returns: void
 */
 func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.Bool) {
@@ -570,7 +570,7 @@ func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.
 }
 
 /*
-
+        Moves the cursor at the specified [code]line[/code] index. If [code]adjust_viewport[/code] is set to true, the viewport will center at the cursor position after the move occurs. If [code]can_be_hidden[/code] is set to true, the specified [code]line[/code] can be hidden using [method set_line_as_hidden].
 	Args: [{ false line int} {True true adjust_viewport bool} {True true can_be_hidden bool} {0 true wrap_index int}], Returns: void
 */
 func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool, wrapIndex gdnative.Int) {
@@ -594,7 +594,7 @@ func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool
 }
 
 /*
-        Cut the current selection.
+        Cut's the current selection.
 	Args: [], Returns: void
 */
 func (o *TextEdit) Cut() {
@@ -614,7 +614,7 @@ func (o *TextEdit) Cut() {
 }
 
 /*
-        Clears the current selection.
+        Deselects the current selection.
 	Args: [], Returns: void
 */
 func (o *TextEdit) Deselect() {
@@ -634,7 +634,7 @@ func (o *TextEdit) Deselect() {
 }
 
 /*
-
+        Folds all lines that are possible to be folded (see [method can_fold]).
 	Args: [], Returns: void
 */
 func (o *TextEdit) FoldAllLines() {
@@ -654,7 +654,7 @@ func (o *TextEdit) FoldAllLines() {
 }
 
 /*
-
+        Folds the given line, if possible (see [method can_fold]).
 	Args: [{ false line int}], Returns: void
 */
 func (o *TextEdit) FoldLine(line gdnative.Int) {
@@ -675,7 +675,7 @@ func (o *TextEdit) FoldLine(line gdnative.Int) {
 }
 
 /*
-        Return an array containing the line number of each breakpoint.
+        Returns an array containing the line number of each breakpoint.
 	Args: [], Returns: Array
 */
 func (o *TextEdit) GetBreakpoints() gdnative.Array {
@@ -698,7 +698,7 @@ func (o *TextEdit) GetBreakpoints() gdnative.Array {
 }
 
 /*
-
+        Returns the [Color] of the specified [code]keyword[/code].
 	Args: [{ false keyword String}], Returns: Color
 */
 func (o *TextEdit) GetKeywordColor(keyword gdnative.String) gdnative.Color {
@@ -722,7 +722,7 @@ func (o *TextEdit) GetKeywordColor(keyword gdnative.String) gdnative.Color {
 }
 
 /*
-        Return the text of a specific line.
+        Returns the text of a specific line.
 	Args: [{ false line int}], Returns: String
 */
 func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
@@ -746,7 +746,7 @@ func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
 }
 
 /*
-        Return the amount of total lines in the text.
+        Returns the amount of total lines in the text.
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetLineCount() gdnative.Int {
@@ -769,7 +769,7 @@ func (o *TextEdit) GetLineCount() gdnative.Int {
 }
 
 /*
-
+        Returns the [PopupMenu] of this [TextEdit]. By default, this menu is displayed when right-clicking on the [TextEdit].
 	Args: [], Returns: PopupMenu
 */
 func (o *TextEdit) GetMenu() PopupMenuImplementer {
@@ -806,7 +806,7 @@ func (o *TextEdit) GetMenu() PopupMenuImplementer {
 }
 
 /*
-        Return the selection begin column.
+        Returns the selection begin column.
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
@@ -829,7 +829,7 @@ func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
 }
 
 /*
-        Return the selection begin line.
+        Returns the selection begin line.
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
@@ -852,7 +852,7 @@ func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
 }
 
 /*
-        Return the text inside the selection.
+        Returns the text inside the selection.
 	Args: [], Returns: String
 */
 func (o *TextEdit) GetSelectionText() gdnative.String {
@@ -875,7 +875,7 @@ func (o *TextEdit) GetSelectionText() gdnative.String {
 }
 
 /*
-        Return the selection end column.
+        Returns the selection end column.
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
@@ -898,7 +898,7 @@ func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
 }
 
 /*
-        Return the selection end line.
+        Returns the selection end line.
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionToLine() gdnative.Int {
@@ -967,7 +967,7 @@ func (o *TextEdit) GetVScrollSpeed() gdnative.Real {
 }
 
 /*
-
+        Returns a [String] text with the word under the mouse cursor location.
 	Args: [], Returns: String
 */
 func (o *TextEdit) GetWordUnderCursor() gdnative.String {
@@ -990,7 +990,7 @@ func (o *TextEdit) GetWordUnderCursor() gdnative.String {
 }
 
 /*
-
+        Returns whether the specified [code]keyword[/code] has a color set to it or not.
 	Args: [{ false keyword String}], Returns: bool
 */
 func (o *TextEdit) HasKeywordColor(keyword gdnative.String) gdnative.Bool {
@@ -1014,7 +1014,7 @@ func (o *TextEdit) HasKeywordColor(keyword gdnative.String) gdnative.Bool {
 }
 
 /*
-        Insert a given text at the cursor position.
+        Insert the specified text at the cursor position.
 	Args: [{ false text String}], Returns: void
 */
 func (o *TextEdit) InsertTextAtCursor(text gdnative.String) {
@@ -1081,7 +1081,7 @@ func (o *TextEdit) IsContextMenuEnabled() gdnative.Bool {
 }
 
 /*
-
+        Returns whether the line at the specified index is folded or not.
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) IsFolded(line gdnative.Int) gdnative.Bool {
@@ -1174,7 +1174,7 @@ func (o *TextEdit) IsHighlightCurrentLineEnabled() gdnative.Bool {
 }
 
 /*
-
+        Returns whether the line at the specified index is hidden or not.
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) IsLineHidden(line gdnative.Int) gdnative.Bool {
@@ -1267,7 +1267,7 @@ func (o *TextEdit) IsRightClickMovingCaret() gdnative.Bool {
 }
 
 /*
-        Return true if the selection is active.
+        Returns [code]true[/code] if the selection is active.
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsSelectionActive() gdnative.Bool {
@@ -1382,7 +1382,7 @@ func (o *TextEdit) IsWrapEnabled() gdnative.Bool {
 }
 
 /*
-
+        Triggers a right-click menu action by the specified index. See [enum MenuItems] for a list of available indexes.
 	Args: [{ false option int}], Returns: void
 */
 func (o *TextEdit) MenuOption(option gdnative.Int) {
@@ -1443,7 +1443,7 @@ func (o *TextEdit) Redo() {
 }
 
 /*
-        Removes all the breakpoints (without firing "breakpoint_toggled" signal).
+        Removes all the breakpoints. This will not fire the [signal breakpoint_toggled] signal.
 	Args: [], Returns: void
 */
 func (o *TextEdit) RemoveBreakpoints() {
@@ -1463,7 +1463,7 @@ func (o *TextEdit) RemoveBreakpoints() {
 }
 
 /*
-        Perform a search inside the text. Search flags can be specified in the SEARCH_* enum.
+        Perform a search inside the text. Search flags can be specified in the[code]SEARCH_*[/code] enum.
 	Args: [{ false key String} { false flags int} { false from_line int} { false from_column int}], Returns: PoolIntArray
 */
 func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdnative.Int, fromColumn gdnative.Int) gdnative.PoolIntArray {
@@ -1639,7 +1639,7 @@ func (o *TextEdit) SetHighlightCurrentLine(enabled gdnative.Bool) {
 }
 
 /*
-
+        If [code]true[/code], hides the line of the specified index.
 	Args: [{ false line int} { false enable bool}], Returns: void
 */
 func (o *TextEdit) SetLineAsHidden(line gdnative.Int, enable gdnative.Bool) {
@@ -1891,7 +1891,7 @@ func (o *TextEdit) Undo() {
 }
 
 /*
-
+        Unfolds the given line, if folded.
 	Args: [{ false line int}], Returns: void
 */
 func (o *TextEdit) UnfoldLine(line gdnative.Int) {
@@ -1912,7 +1912,7 @@ func (o *TextEdit) UnfoldLine(line gdnative.Int) {
 }
 
 /*
-
+        Unhide all lines that were previously set to hidden by [method set_line_as_hidden].
 	Args: [], Returns: void
 */
 func (o *TextEdit) UnhideAllLines() {

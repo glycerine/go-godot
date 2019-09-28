@@ -97,7 +97,7 @@ func (o *RayCast2D) ClearExceptions() {
 }
 
 /*
-        Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next [code]_physics_process[/code] call, for example if the ray or its parent has changed state. Note: [code]enabled == true[/code] is not required for this to work.
+        Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next [code]_physics_process[/code] call, for example if the ray or its parent has changed state. [b]Note:[/b] [code]enabled == true[/code] is not required for this to work.
 	Args: [], Returns: void
 */
 func (o *RayCast2D) ForceRaycastUpdate() {
@@ -140,7 +140,7 @@ func (o *RayCast2D) GetCastTo() gdnative.Vector2 {
 }
 
 /*
-        Return the first object that the ray intersects, or [code]null[/code] if no object is intersecting the ray (i.e. [method is_colliding] returns [code]false[/code]).
+        Returns the first object that the ray intersects, or [code]null[/code] if no object is intersecting the ray (i.e. [method is_colliding] returns [code]false[/code]).
 	Args: [], Returns: Object
 */
 func (o *RayCast2D) GetCollider() ObjectImplementer {
@@ -223,7 +223,7 @@ func (o *RayCast2D) GetCollisionMask() gdnative.Int {
 }
 
 /*
-        Return an individual bit on the collision mask.
+        Returns an individual bit on the collision mask.
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *RayCast2D) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
@@ -270,7 +270,7 @@ func (o *RayCast2D) GetCollisionNormal() gdnative.Vector2 {
 }
 
 /*
-        Returns the collision point at which the ray intersects the closest object. Note: this point is in the [b]global[/b] coordinate system.
+        Returns the collision point at which the ray intersects the closest object. [b]Note:[/b] this point is in the [b]global[/b] coordinate system.
 	Args: [], Returns: Vector2
 */
 func (o *RayCast2D) GetCollisionPoint() gdnative.Vector2 {
@@ -362,7 +362,7 @@ func (o *RayCast2D) IsCollideWithBodiesEnabled() gdnative.Bool {
 }
 
 /*
-        Return whether any object is intersecting with the ray's vector (considering the vector length).
+        Returns whether any object is intersecting with the ray's vector (considering the vector length).
 	Args: [], Returns: bool
 */
 func (o *RayCast2D) IsColliding() gdnative.Bool {
@@ -534,7 +534,7 @@ func (o *RayCast2D) SetCollisionMask(mask gdnative.Int) {
 }
 
 /*
-        Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
+        Sets or clears individual bits on the collision mask. This makes selecting the areas scanned easier.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *RayCast2D) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {

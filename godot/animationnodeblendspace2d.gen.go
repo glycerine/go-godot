@@ -32,8 +32,8 @@ func newAnimationNodeBlendSpace2DFromPointer(ptr gdnative.Pointer) AnimationNode
 }
 
 /*
-
- */
+A resource to add to an [AnimationNodeBlendTree]. This node allows you to blend linearly between three animations using a [Vector2] weight. You can add vertices to the blend space with [method add_blend_point] and automatically triangulate it by setting [member auto_triangles] to [code]true[/code]. Otherwise, use [method add_triangle] and [method remove_triangle] to create up the blend space by hand.
+*/
 type AnimationNodeBlendSpace2D struct {
 	AnimationRootNode
 	owner gdnative.Object
@@ -150,7 +150,7 @@ func (o *AnimationNodeBlendSpace2D) X_UpdateTriangles() {
 }
 
 /*
-
+        Adds a new point that represents a [code]node[/code] at the position set by [code]pos[/code]. You can insert it at a specific index using the [code]at_index[/code] argument. If you use the default value for [code]at_index[/code] , the point is inserted at the end of the blend points array.
 	Args: [{ false node AnimationRootNode} { false pos Vector2} {-1 true at_index int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) AddBlendPoint(node AnimationRootNodeImplementer, pos gdnative.Vector2, atIndex gdnative.Int) {
@@ -173,7 +173,7 @@ func (o *AnimationNodeBlendSpace2D) AddBlendPoint(node AnimationRootNodeImplemen
 }
 
 /*
-
+        Creates a new triangle using three points [code]x[/code], [code]y[/code], and [code]z[/code]. Triangles can overlap. You can insert the triangle at a specific index using the [code]at_index[/code] argument. If you use the default value for [code]at_index[/code] , the point is inserted at the end of the blend points array.
 	Args: [{ false x int} { false y int} { false z int} {-1 true at_index int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) AddTriangle(x gdnative.Int, y gdnative.Int, z gdnative.Int, atIndex gdnative.Int) {
@@ -243,7 +243,7 @@ func (o *AnimationNodeBlendSpace2D) GetBlendMode() AnimationNodeBlendSpace2DBlen
 }
 
 /*
-
+        Returns the number of points in the blend space.
 	Args: [], Returns: int
 */
 func (o *AnimationNodeBlendSpace2D) GetBlendPointCount() gdnative.Int {
@@ -266,7 +266,7 @@ func (o *AnimationNodeBlendSpace2D) GetBlendPointCount() gdnative.Int {
 }
 
 /*
-
+        Returns the [code]AnimationRootNode[/code] referenced by the point at index [code]point[/code].
 	Args: [{ false point int}], Returns: AnimationRootNode
 */
 func (o *AnimationNodeBlendSpace2D) GetBlendPointNode(point gdnative.Int) AnimationRootNodeImplementer {
@@ -304,7 +304,7 @@ func (o *AnimationNodeBlendSpace2D) GetBlendPointNode(point gdnative.Int) Animat
 }
 
 /*
-
+        Returns the position of the point at index [code]point[/code].
 	Args: [{ false point int}], Returns: Vector2
 */
 func (o *AnimationNodeBlendSpace2D) GetBlendPointPosition(point gdnative.Int) gdnative.Vector2 {
@@ -397,7 +397,7 @@ func (o *AnimationNodeBlendSpace2D) GetSnap() gdnative.Vector2 {
 }
 
 /*
-
+        Returns the number of triangles in the blend space.
 	Args: [], Returns: int
 */
 func (o *AnimationNodeBlendSpace2D) GetTriangleCount() gdnative.Int {
@@ -420,7 +420,7 @@ func (o *AnimationNodeBlendSpace2D) GetTriangleCount() gdnative.Int {
 }
 
 /*
-
+        Returns the position of the point at index [code]point[/code] in the triangle of index [code]triangle[/code].
 	Args: [{ false triangle int} { false point int}], Returns: int
 */
 func (o *AnimationNodeBlendSpace2D) GetTrianglePoint(triangle gdnative.Int, point gdnative.Int) gdnative.Int {
@@ -491,7 +491,7 @@ func (o *AnimationNodeBlendSpace2D) GetYLabel() gdnative.String {
 }
 
 /*
-
+        Removes the point at index [code]point[/code] from the blend space.
 	Args: [{ false point int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) RemoveBlendPoint(point gdnative.Int) {
@@ -512,7 +512,7 @@ func (o *AnimationNodeBlendSpace2D) RemoveBlendPoint(point gdnative.Int) {
 }
 
 /*
-
+        Removes the triangle at index [code]triangle[/code] from the blend space.
 	Args: [{ false triangle int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) RemoveTriangle(triangle gdnative.Int) {
@@ -575,7 +575,7 @@ func (o *AnimationNodeBlendSpace2D) SetBlendMode(mode gdnative.Int) {
 }
 
 /*
-
+        Changes the AnimationNode referenced by the point at index [code]point[/code].
 	Args: [{ false point int} { false node AnimationRootNode}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) SetBlendPointNode(point gdnative.Int, node AnimationRootNodeImplementer) {
@@ -597,7 +597,7 @@ func (o *AnimationNodeBlendSpace2D) SetBlendPointNode(point gdnative.Int, node A
 }
 
 /*
-
+        Updates the position of the point at index [code]point[/code] on the blend axis.
 	Args: [{ false point int} { false pos Vector2}], Returns: void
 */
 func (o *AnimationNodeBlendSpace2D) SetBlendPointPosition(point gdnative.Int, pos gdnative.Vector2) {

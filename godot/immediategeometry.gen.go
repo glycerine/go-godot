@@ -35,7 +35,7 @@ func (o *ImmediateGeometry) BaseClass() string {
 }
 
 /*
-        Simple helper to draw a uvsphere, with given latitudes, longitude and radius.
+        Simple helper to draw an UV sphere with given latitude, longitude and radius.
 	Args: [{ false lats int} { false lons int} { false radius float} {True true add_uv bool}], Returns: void
 */
 func (o *ImmediateGeometry) AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Real, addUv gdnative.Bool) {
@@ -80,7 +80,7 @@ func (o *ImmediateGeometry) AddVertex(position gdnative.Vector3) {
 }
 
 /*
-        Begin drawing (And optionally pass a texture override). When done call end(). For more information on how this works, search for glBegin() glEnd() references. For the type of primitive, use the [Mesh].PRIMITIVE_* enumerations.
+        Begin drawing (And optionally pass a texture override). When done call end(). For more information on how this works, search for glBegin() glEnd() references. For the type of primitive, use the [Mesh].[code]PRIMITIVE_*[/code] enumerations.
 	Args: [{ false primitive int} {[Object:null] true texture Texture}], Returns: void
 */
 func (o *ImmediateGeometry) Begin(primitive gdnative.Int, texture TextureImplementer) {

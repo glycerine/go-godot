@@ -53,7 +53,7 @@ func newSceneTreeFromPointer(ptr gdnative.Pointer) SceneTree {
 }
 
 /*
-As one of the most important classes, the [code]SceneTree[/code] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded. You can also use the SceneTree to organize your nodes into groups: every node can be assigned as many groups as you want to create, e.g. a "enemy" group. You can then iterate these groups or even call methods and set properties on all the group's members at once.
+As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded. You can also use the [SceneTree] to organize your nodes into groups: every node can be assigned as many groups as you want to create, e.g. a "enemy" group. You can then iterate these groups or even call methods and set properties on all the group's members at once. [SceneTree] is the default [MainLoop] implementation used by scenes, and is thus in charge of the game loop.
 */
 type SceneTree struct {
 	MainLoop
@@ -239,7 +239,7 @@ func (o *SceneTree) CallGroupFlags(flags gdnative.Int, group gdnative.String, me
 }
 
 /*
-        Changes to the scene at the given [code]path[/code].
+        Changes the running scene to the one at the given [code]path[/code], after loading it into a [PackedScene] and creating a new instance. Returns [constant OK] on success, [constant ERR_CANT_OPEN] if the [code]path[/code] cannot be loaded into a [PackedScene], or [constant ERR_CANT_CREATE] if that scene cannot be instantiated.
 	Args: [{ false path String}], Returns: enum.Error
 */
 func (o *SceneTree) ChangeScene(path gdnative.String) gdnative.Error {
@@ -263,7 +263,7 @@ func (o *SceneTree) ChangeScene(path gdnative.String) gdnative.Error {
 }
 
 /*
-        Changes to the given [PackedScene].
+        Changes the running scene to a new instance of the given [PackedScene]. Returns [constant OK] on success or [constant ERR_CANT_CREATE] if the scene cannot be instantiated.
 	Args: [{ false packed_scene PackedScene}], Returns: enum.Error
 */
 func (o *SceneTree) ChangeSceneTo(packedScene PackedSceneImplementer) gdnative.Error {
@@ -287,7 +287,7 @@ func (o *SceneTree) ChangeSceneTo(packedScene PackedSceneImplementer) gdnative.E
 }
 
 /*
-        Returns a [SceneTreeTimer] which will [signal SceneTreeTimer.timeout] after the given time in seconds elapsed in this SceneTree. If [code]pause_mode_process[/code] is set to false, pausing the SceneTree will also pause the timer. Commonly used to create a one-shot delay timer as in the following example: [codeblock] func some_function(): print("start") yield(get_tree().create_timer(1.0), "timeout") print("end") [/codeblock]
+        Returns a [SceneTreeTimer] which will [signal SceneTreeTimer.timeout] after the given time in seconds elapsed in this [SceneTree]. If [code]pause_mode_process[/code] is set to [code]false[/code], pausing the [SceneTree] will also pause the timer. Commonly used to create a one-shot delay timer as in the following example: [codeblock] func some_function(): print("start") yield(get_tree().create_timer(1.0), "timeout") print("end") [/codeblock]
 	Args: [{ false time_sec float} {True true pause_mode_process bool}], Returns: SceneTreeTimer
 */
 func (o *SceneTree) CreateTimer(timeSec gdnative.Real, pauseModeProcess gdnative.Bool) SceneTreeTimerImplementer {
@@ -400,7 +400,7 @@ func (o *SceneTree) GetEditedSceneRoot() NodeImplementer {
 }
 
 /*
-
+        Returns the current frame number, i.e. the total frame count since the application started.
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetFrame() gdnative.Int {
@@ -460,7 +460,7 @@ func (o *SceneTree) GetMultiplayer() MultiplayerAPIImplementer {
 }
 
 /*
-        Returns the peer IDs of all connected peers of this SceneTree's [member network_peer].
+        Returns the peer IDs of all connected peers of this [SceneTree]'s [member network_peer].
 	Args: [], Returns: PoolIntArray
 */
 func (o *SceneTree) GetNetworkConnectedPeers() gdnative.PoolIntArray {
@@ -520,7 +520,7 @@ func (o *SceneTree) GetNetworkPeer() NetworkedMultiplayerPeerImplementer {
 }
 
 /*
-        Returns the unique peer ID of this SceneTree's [member network_peer].
+        Returns the unique peer ID of this [SceneTree]'s [member network_peer].
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetNetworkUniqueId() gdnative.Int {
@@ -543,7 +543,7 @@ func (o *SceneTree) GetNetworkUniqueId() gdnative.Int {
 }
 
 /*
-        Returns the number of nodes in this SceneTree.
+        Returns the number of nodes in this [SceneTree].
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetNodeCount() gdnative.Int {
@@ -566,7 +566,7 @@ func (o *SceneTree) GetNodeCount() gdnative.Int {
 }
 
 /*
-        Returns all nodes assigned to the given group.
+        Returns a list of all nodes assigned to the given group.
 	Args: [{ false group String}], Returns: Array
 */
 func (o *SceneTree) GetNodesInGroup(group gdnative.String) gdnative.Array {
@@ -743,7 +743,7 @@ func (o *SceneTree) IsDebuggingNavigationHint() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if the most recent InputEvent was marked as handled with [method set_input_as_handled].
+        Returns [code]true[/code] if the most recent [InputEvent] was marked as handled with [method set_input_as_handled].
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsInputHandled() gdnative.Bool {
@@ -789,7 +789,7 @@ func (o *SceneTree) IsMultiplayerPollEnabled() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if this SceneTree's [member network_peer] is in server mode (listening for connections).
+        Returns [code]true[/code] if this [SceneTree]'s [member network_peer] is in server mode (listening for connections).
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsNetworkServer() gdnative.Bool {
@@ -967,7 +967,7 @@ func (o *SceneTree) Quit() {
 }
 
 /*
-        Reloads the currently active scene.
+        Reloads the currently active scene. Returns an [enum Error] code as described in [method change_scene], with the addition of [constant ERR_UNCONFIGURED] if no [member current_scene] was defined yet.
 	Args: [], Returns: enum.Error
 */
 func (o *SceneTree) ReloadCurrentScene() gdnative.Error {
@@ -990,7 +990,7 @@ func (o *SceneTree) ReloadCurrentScene() gdnative.Error {
 }
 
 /*
-        If [code]true[/code], the application automatically accepts quitting.
+        If [code]true[/code], the application automatically accepts quitting. Enabled by default.
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SceneTree) SetAutoAcceptQuit(enabled gdnative.Bool) {
@@ -1142,7 +1142,7 @@ func (o *SceneTree) SetGroupFlags(callFlags gdnative.Int, group gdnative.String,
 }
 
 /*
-        Marks the most recent input event as handled.
+        Marks the most recent [InputEvent] as handled.
 	Args: [], Returns: void
 */
 func (o *SceneTree) SetInputAsHandled() {
@@ -1246,7 +1246,7 @@ func (o *SceneTree) SetPause(enable gdnative.Bool) {
 }
 
 /*
-        If [code]true[/code], the application quits automatically on going back (e.g. on Android).
+        If [code]true[/code], the application quits automatically on going back (e.g. on Android). Enabled by default.
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SceneTree) SetQuitOnGoBack(enabled gdnative.Bool) {
@@ -1288,7 +1288,7 @@ func (o *SceneTree) SetRefuseNewNetworkConnections(refuse gdnative.Bool) {
 }
 
 /*
-        Configures screen stretching to the given [enum StretchMode], [enum StretchAspect], minimum size and [code]shrink[/code].
+        Configures screen stretching to the given [enum StretchMode], [enum StretchAspect], minimum size and [code]shrink[/code] ratio.
 	Args: [{ false mode int} { false aspect int} { false minsize Vector2} {1 true shrink float}], Returns: void
 */
 func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Real) {

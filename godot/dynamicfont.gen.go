@@ -33,7 +33,7 @@ func newDynamicFontFromPointer(ptr gdnative.Pointer) DynamicFont {
 }
 
 /*
-DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [BitmapFont]. This trades the faster loading time of [BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [DynamicFontData] is used for referencing the font file paths.
+DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [BitmapFont]. This trades the faster loading time of [BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [DynamicFontData] is used for referencing the font file paths. [codeblock] var dynamic_font = DynamicFont.new() dynamic_font.font_data = load("res://BarlowCondensed-Bold.ttf") dynamic_font.size = 64 $"Label".set("custom_fonts/font", dynamic_font) [/codeblock]
 */
 type DynamicFont struct {
 	Font
@@ -233,7 +233,7 @@ func (o *DynamicFont) GetSize() gdnative.Int {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false type int}], Returns: int
 */
 func (o *DynamicFont) GetSpacing(aType gdnative.Int) gdnative.Int {
@@ -430,7 +430,7 @@ func (o *DynamicFont) SetSize(data gdnative.Int) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false type int} { false value int}], Returns: void
 */
 func (o *DynamicFont) SetSpacing(aType gdnative.Int, value gdnative.Int) {

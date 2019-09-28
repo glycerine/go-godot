@@ -23,8 +23,8 @@ func newBone2DFromPointer(ptr gdnative.Pointer) Bone2D {
 }
 
 /*
-
- */
+Use a hierarchy of [code]Bone2D[/code] bound to a [Skeleton2D] to control, and animate other [Node2D] nodes. You can use [code]Bone2D[/code] and [code]Skeleton2D[/code] nodes to animate 2D meshes created with the Polygon 2D UV editor. Each bone has a [member rest] transform that you can reset to with [method apply_rest]. These rest poses are relative to the bone's parent. If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
+*/
 type Bone2D struct {
 	Node2D
 	owner gdnative.Object
@@ -35,7 +35,7 @@ func (o *Bone2D) BaseClass() string {
 }
 
 /*
-
+        Stores the node's current transforms in [member rest].
 	Args: [], Returns: void
 */
 func (o *Bone2D) ApplyRest() {
@@ -78,7 +78,7 @@ func (o *Bone2D) GetDefaultLength() gdnative.Real {
 }
 
 /*
-
+        Returns the node's index as part of the entire skeleton. See [Skeleton2D].
 	Args: [], Returns: int
 */
 func (o *Bone2D) GetIndexInSkeleton() gdnative.Int {
@@ -124,7 +124,7 @@ func (o *Bone2D) GetRest() gdnative.Transform2D {
 }
 
 /*
-
+        Returns the node's [member rest] [code]Transform2D[/code] if it doesn't have a parent, or its rest pose relative to its parent.
 	Args: [], Returns: Transform2D
 */
 func (o *Bone2D) GetSkeletonRest() gdnative.Transform2D {

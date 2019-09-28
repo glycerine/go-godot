@@ -151,7 +151,7 @@ func (o *VisualInstance) GetTransformedAabb() gdnative.Aabb {
 }
 
 /*
-        Sets the base of the VisualInstance, which changes how the engine handles the VisualInstance under the hood. It is recommended to only use set_base if you know what you're doing.
+        Sets the base of the VisualInstance, which changes how the engine handles the VisualInstance under the hood. It is recommended to only use [method set_base] if you know what you're doing.
 	Args: [{ false base RID}], Returns: void
 */
 func (o *VisualInstance) SetBase(base gdnative.Rid) {

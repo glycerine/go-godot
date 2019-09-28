@@ -23,8 +23,8 @@ func newRandomNumberGeneratorFromPointer(ptr gdnative.Pointer) RandomNumberGener
 }
 
 /*
-
- */
+RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [url=http://www.pcg-random.org/]PCG32[/url]. [b]Note:[/b] The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions. To generate a random float number (within a given range) based on a time-dependant seed: [codeblock] var rng = RandomNumberGenerator.new() func _ready(): rng.randomize() var my_random_number = rng.randf_range(-10.0, 10.0) [/codeblock]
+*/
 type RandomNumberGenerator struct {
 	Reference
 	owner gdnative.Object
@@ -58,7 +58,7 @@ func (o *RandomNumberGenerator) GetSeed() gdnative.Int {
 }
 
 /*
-        Generates pseudo-random float between '0.0' and '1.0'.
+        Generates a pseudo-random float between [code]0.0[/code] and [code]1.0[/code] (inclusive).
 	Args: [], Returns: float
 */
 func (o *RandomNumberGenerator) Randf() gdnative.Real {
@@ -81,7 +81,7 @@ func (o *RandomNumberGenerator) Randf() gdnative.Real {
 }
 
 /*
-        Generates pseudo-random float between [code]from[/code] and [code]to[/code].
+        Generates a pseudo-random float between [code]from[/code] and [code]to[/code] (inclusive).
 	Args: [{ false from float} { false to float}], Returns: float
 */
 func (o *RandomNumberGenerator) RandfRange(from gdnative.Real, to gdnative.Real) gdnative.Real {
@@ -106,7 +106,7 @@ func (o *RandomNumberGenerator) RandfRange(from gdnative.Real, to gdnative.Real)
 }
 
 /*
-        Generates pseudo-random 32-bit unsigned integer between '0' and '4294967295'.
+        Generates a pseudo-random 32-bit unsigned integer between [code]0[/code] and [code]4294967295[/code] (inclusive).
 	Args: [], Returns: int
 */
 func (o *RandomNumberGenerator) Randi() gdnative.Int {
@@ -129,7 +129,7 @@ func (o *RandomNumberGenerator) Randi() gdnative.Int {
 }
 
 /*
-        Generates pseudo-random 32-bit signed integer between [code]from[/code] and [code]to[/code] (inclusive).
+        Generates a pseudo-random 32-bit signed integer between [code]from[/code] and [code]to[/code] (inclusive).
 	Args: [{ false from int} { false to int}], Returns: int
 */
 func (o *RandomNumberGenerator) RandiRange(from gdnative.Int, to gdnative.Int) gdnative.Int {

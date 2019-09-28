@@ -23,8 +23,8 @@ func newResourceFormatLoaderGDScriptFromPointer(ptr gdnative.Pointer) ResourceFo
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderGDScript struct {
 	ResourceFormatLoader
 	owner gdnative.Object

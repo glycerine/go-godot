@@ -100,7 +100,7 @@ func (o *MenuButton) X_UnhandledKeyInput(arg0 InputEventImplementer) {
 }
 
 /*
-        Return the [PopupMenu] contained in this button.
+        Returns the [PopupMenu] contained in this button.
 	Args: [], Returns: PopupMenu
 */
 func (o *MenuButton) GetPopup() PopupMenuImplementer {

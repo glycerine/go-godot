@@ -657,7 +657,7 @@ func (o *Viewport) GetRenderInfo(info gdnative.Int) gdnative.Int {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false quadrant int}], Returns: enum.Viewport::ShadowAtlasQuadrantSubdiv
 */
 func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant gdnative.Int) ViewportShadowAtlasQuadrantSubdiv {
@@ -750,7 +750,7 @@ func (o *Viewport) GetSizeOverride() gdnative.Vector2 {
 }
 
 /*
-        Returns the viewport's texture. Note that due to the way OpenGL works, the resulting [ViewportTexture] is flipped vertically. You can use [method Image.flip_y] on the result of [method Texture.get_data] to flip it back, for example: [codeblock] var img = get_viewport().get_texture().get_data() img.flip_y() [/codeblock]
+        Returns the viewport's texture. [b]Note:[/b] Due to the way OpenGL works, the resulting [ViewportTexture] is flipped vertically. You can use [method Image.flip_y] on the result of [method Texture.get_data] to flip it back, for example: [codeblock] var img = get_viewport().get_texture().get_data() img.flip_y() [/codeblock]
 	Args: [], Returns: ViewportTexture
 */
 func (o *Viewport) GetTexture() ViewportTextureImplementer {
@@ -1250,7 +1250,7 @@ func (o *Viewport) IsSizeOverrideEnabled() gdnative.Bool {
 }
 
 /*
-        Returns [code]true[/code] if the size stretch override is enabled. See [method set_size_override_stretch].
+        Undocumented
 	Args: [], Returns: bool
 */
 func (o *Viewport) IsSizeOverrideStretchEnabled() gdnative.Bool {
@@ -1633,7 +1633,7 @@ func (o *Viewport) SetPhysicsObjectPicking(enable gdnative.Bool) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false quadrant int} { false subdiv int}], Returns: void
 */
 func (o *Viewport) SetShadowAtlasQuadrantSubdiv(quadrant gdnative.Int, subdiv gdnative.Int) {
@@ -1720,7 +1720,7 @@ func (o *Viewport) SetSizeOverride(enable gdnative.Bool, size gdnative.Vector2, 
 }
 
 /*
-        If [code]true[/code], the size override affects stretch as well.
+        Undocumented
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Viewport) SetSizeOverrideStretch(enabled gdnative.Bool) {

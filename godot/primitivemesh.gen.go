@@ -23,7 +23,7 @@ func newPrimitiveMeshFromPointer(ptr gdnative.Pointer) PrimitiveMesh {
 }
 
 /*
-Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh.
+Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples include [CapsuleMesh], [CubeMesh], [CylinderMesh], [PlaneMesh], [PrismMesh], [QuadMesh], and [SphereMesh].
 */
 type PrimitiveMesh struct {
 	Mesh
@@ -138,7 +138,7 @@ func (o *PrimitiveMesh) GetMaterial() MaterialImplementer {
 }
 
 /*
-
+        Returns mesh arrays used to constitute surface of [Mesh]. Mesh arrays can be used with [ArrayMesh] to create new surfaces.
 	Args: [], Returns: Array
 */
 func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {

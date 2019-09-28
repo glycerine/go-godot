@@ -23,8 +23,8 @@ func newResourceFormatPKMFromPointer(ptr gdnative.Pointer) ResourceFormatPKM {
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatPKM struct {
 	ResourceFormatLoader
 	owner gdnative.Object

@@ -23,8 +23,8 @@ func newResourceFormatLoaderTheoraFromPointer(ptr gdnative.Pointer) ResourceForm
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderTheora struct {
 	ResourceFormatLoader
 	owner gdnative.Object

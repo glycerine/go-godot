@@ -23,8 +23,8 @@ func newResourceFormatLoaderTextureLayeredFromPointer(ptr gdnative.Pointer) Reso
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderTextureLayered struct {
 	ResourceFormatLoader
 	owner gdnative.Object

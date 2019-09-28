@@ -23,7 +23,7 @@ func newNavigationFromPointer(ptr gdnative.Pointer) Navigation {
 }
 
 /*
-Provides navigation and pathfinding within a collection of [NavigationMesh]es. By default these will be automatically collected from child [NavigationMeshInstance] nodes, but they can also be added on the fly with [method navmesh_add]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
+Provides navigation and pathfinding within a collection of [NavigationMesh]es. By default, these will be automatically collected from child [NavigationMeshInstance] nodes, but they can also be added on the fly with [method navmesh_add]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
 */
 type Navigation struct {
 	Spatial
@@ -147,7 +147,7 @@ func (o *Navigation) GetClosestPointToSegment(start gdnative.Vector3, end gdnati
 }
 
 /*
-        Returns the path between two given points. Points are in local coordinate space. If [code]optimize[/code] is [code]true[/code] (the default), the agent properties associated with each [NavigationMesh] (raidus, height, etc.) are considered in the path calculation, otherwise they are ignored.
+        Returns the path between two given points. Points are in local coordinate space. If [code]optimize[/code] is [code]true[/code] (the default), the agent properties associated with each [NavigationMesh] (radius, height, etc.) are considered in the path calculation, otherwise they are ignored.
 	Args: [{ false start Vector3} { false end Vector3} {True true optimize bool}], Returns: PoolVector3Array
 */
 func (o *Navigation) GetSimplePath(start gdnative.Vector3, end gdnative.Vector3, optimize gdnative.Bool) gdnative.PoolVector3Array {

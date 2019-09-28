@@ -23,8 +23,8 @@ func newResourceFormatLoaderStreamTextureFromPointer(ptr gdnative.Pointer) Resou
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderStreamTexture struct {
 	ResourceFormatLoader
 	owner gdnative.Object

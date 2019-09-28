@@ -23,8 +23,8 @@ func newResourceFormatSaverTextFromPointer(ptr gdnative.Pointer) ResourceFormatS
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatSaverText struct {
 	ResourceFormatSaver
 	owner gdnative.Object

@@ -23,8 +23,8 @@ func newResourceFormatLoaderBinaryFromPointer(ptr gdnative.Pointer) ResourceForm
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderBinary struct {
 	ResourceFormatLoader
 	owner gdnative.Object

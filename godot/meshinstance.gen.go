@@ -213,7 +213,7 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) MaterialImplemen
 }
 
 /*
-
+        Returns the number of surface materials.
 	Args: [], Returns: int
 */
 func (o *MeshInstance) GetSurfaceMaterialCount() gdnative.Int {

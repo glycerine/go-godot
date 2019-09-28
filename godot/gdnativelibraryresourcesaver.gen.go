@@ -23,8 +23,8 @@ func newGDNativeLibraryResourceSaverFromPointer(ptr gdnative.Pointer) GDNativeLi
 }
 
 /*
-
- */
+Undocumented
+*/
 type GDNativeLibraryResourceSaver struct {
 	ResourceFormatSaver
 	owner gdnative.Object

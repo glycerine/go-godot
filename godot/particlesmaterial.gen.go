@@ -337,7 +337,7 @@ func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *ParticlesMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
@@ -407,7 +407,7 @@ func (o *ParticlesMaterial) GetGravity() gdnative.Vector3 {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: float
 */
 func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Real {
@@ -431,7 +431,7 @@ func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: float
 */
 func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Real {
@@ -455,7 +455,7 @@ func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Real
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: Texture
 */
 func (o *ParticlesMaterial) GetParamTexture(param gdnative.Int) TextureImplementer {
@@ -802,7 +802,7 @@ func (o *ParticlesMaterial) SetEmissionSphereRadius(radius gdnative.Real) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int} { false enable bool}], Returns: void
 */
 func (o *ParticlesMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
@@ -866,7 +866,7 @@ func (o *ParticlesMaterial) SetGravity(accelVec gdnative.Vector3) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Real) {
@@ -888,7 +888,7 @@ func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Real) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false randomness float}], Returns: void
 */
 func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gdnative.Real) {
@@ -910,7 +910,7 @@ func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gd
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture TextureImplementer) {

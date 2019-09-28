@@ -117,7 +117,7 @@ func (o *StyleBox) GetCurrentItemDrawn() CanvasItemImplementer {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Real {
@@ -141,7 +141,7 @@ func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Real {
 }
 
 /*
-        Return the content margin offset for the specified margin Positive values reduce size inwards, unlike [Control]'s margin values.
+        Returns the content margin offset for the specified margin. Positive values reduce size inwards, unlike [Control]'s margin values.
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Real {
@@ -165,7 +165,7 @@ func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Real {
 }
 
 /*
-        Return the minimum size that this stylebox can be shrunk to.
+        Returns the minimum size that this stylebox can be shrunk to.
 	Args: [], Returns: Vector2
 */
 func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
@@ -188,7 +188,7 @@ func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
 }
 
 /*
-        Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
+        Returns the "offset" of a stylebox. This helper function returns a value equivalent to [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
 	Args: [], Returns: Vector2
 */
 func (o *StyleBox) GetOffset() gdnative.Vector2 {
@@ -211,7 +211,7 @@ func (o *StyleBox) GetOffset() gdnative.Vector2 {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false margin int} { false offset float}], Returns: void
 */
 func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Real) {

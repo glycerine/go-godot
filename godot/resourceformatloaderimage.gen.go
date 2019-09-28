@@ -23,8 +23,8 @@ func newResourceFormatLoaderImageFromPointer(ptr gdnative.Pointer) ResourceForma
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderImage struct {
 	ResourceFormatLoader
 	owner gdnative.Object

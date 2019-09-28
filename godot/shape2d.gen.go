@@ -23,7 +23,7 @@ func newShape2DFromPointer(ptr gdnative.Pointer) Shape2D {
 }
 
 /*
-Base class for all 2D Shapes. All 2D shape types inherit from this.
+Base class for all 2D shapes. All 2D shape types inherit from this.
 */
 type Shape2D struct {
 	Resource
@@ -87,7 +87,7 @@ func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withSha
 }
 
 /*
-        Return whether this shape would collide with another, if a given movement was applied. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the movement to test on this shape ([code]local_motion[/code]), the shape to check collisions with ([code]with_shape[/code]), the transformation matrix of that shape ([code]shape_xform[/code]), and the movement to test onto the other object ([code]shape_motion[/code]).
+        Returns whether this shape would collide with another, if a given movement was applied. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the movement to test on this shape ([code]local_motion[/code]), the shape to check collisions with ([code]with_shape[/code]), the transformation matrix of that shape ([code]shape_xform[/code]), and the movement to test onto the other object ([code]shape_motion[/code]).
 	Args: [{ false local_xform Transform2D} { false local_motion Vector2} { false with_shape Shape2D} { false shape_xform Transform2D} { false shape_motion Vector2}], Returns: bool
 */
 func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool {

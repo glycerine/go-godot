@@ -23,8 +23,8 @@ func newResourceFormatLoaderDynamicFontFromPointer(ptr gdnative.Pointer) Resourc
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderDynamicFont struct {
 	ResourceFormatLoader
 	owner gdnative.Object

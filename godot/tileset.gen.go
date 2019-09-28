@@ -119,7 +119,7 @@ func (o *TileSet) X_IsTileBound(drawnId gdnative.Int, neighborId gdnative.Int) g
 }
 
 /*
-        Clears all bitmask info of the autotile.
+        Clears all bitmask information of the autotile.
 	Args: [{ false id int}], Returns: void
 */
 func (o *TileSet) AutotileClearBitmaskMap(id gdnative.Int) {
@@ -140,7 +140,7 @@ func (o *TileSet) AutotileClearBitmaskMap(id gdnative.Int) {
 }
 
 /*
-        Returns the bitmask of the subtile from an autotile given its coordinates. The value is the sum of the values in [enum TileSet.AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
+        Returns the bitmask of the subtile from an autotile given its coordinates. The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 	Args: [{ false id int} { false coord Vector2}], Returns: int
 */
 func (o *TileSet) AutotileGetBitmask(id gdnative.Int, coord gdnative.Vector2) gdnative.Int {
@@ -165,7 +165,7 @@ func (o *TileSet) AutotileGetBitmask(id gdnative.Int, coord gdnative.Vector2) gd
 }
 
 /*
-        Returns the [enum TileSet.BitmaskMode] of the autotile.
+        Returns the [enum BitmaskMode] of the autotile.
 	Args: [{ false id int}], Returns: enum.TileSet::BitmaskMode
 */
 func (o *TileSet) AutotileGetBitmaskMode(id gdnative.Int) TileSetBitmaskMode {
@@ -189,7 +189,7 @@ func (o *TileSet) AutotileGetBitmaskMode(id gdnative.Int) TileSetBitmaskMode {
 }
 
 /*
-        Returns the subtile that's being used as an icon in an atlas/autotile given its coordinates. The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask info is incomplete. It will also be used to represent it in the TileSet editor.
+        Returns the subtile that's being used as an icon in an atlas/autotile given its coordinates. The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 	Args: [{ false id int}], Returns: Vector2
 */
 func (o *TileSet) AutotileGetIconCoordinate(id gdnative.Int) gdnative.Vector2 {
@@ -389,7 +389,7 @@ func (o *TileSet) AutotileGetZIndex(id gdnative.Int, coord gdnative.Vector2) gdn
 }
 
 /*
-        Sets the bitmask of the subtile from an autotile given its coordinates. The value is the sum of the values in [enum TileSet.AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
+        Sets the bitmask of the subtile from an autotile given its coordinates. The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
 	Args: [{ false id int} { false bitmask Vector2} { false flag int}], Returns: void
 */
 func (o *TileSet) AutotileSetBitmask(id gdnative.Int, bitmask gdnative.Vector2, flag gdnative.Int) {
@@ -412,7 +412,7 @@ func (o *TileSet) AutotileSetBitmask(id gdnative.Int, bitmask gdnative.Vector2, 
 }
 
 /*
-        Sets the [enum TileSet.BitmaskMode] of the autotile.
+        Sets the [enum BitmaskMode] of the autotile.
 	Args: [{ false id int} { false mode int}], Returns: void
 */
 func (o *TileSet) AutotileSetBitmaskMode(id gdnative.Int, mode gdnative.Int) {
@@ -434,7 +434,7 @@ func (o *TileSet) AutotileSetBitmaskMode(id gdnative.Int, mode gdnative.Int) {
 }
 
 /*
-        Sets the subtile that will be used as an icon in an atlas/autotile given its coordinates. The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask info is incomplete. It will also be used to represent it in the TileSet editor.
+        Sets the subtile that will be used as an icon in an atlas/autotile given its coordinates. The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
 	Args: [{ false id int} { false coord Vector2}], Returns: void
 */
 func (o *TileSet) AutotileSetIconCoordinate(id gdnative.Int, coord gdnative.Vector2) {
@@ -1270,7 +1270,7 @@ func (o *TileSet) TileGetTextureOffset(id gdnative.Int) gdnative.Vector2 {
 }
 
 /*
-        Returns the tile's [enum TileSet.TileMode].
+        Returns the tile's [enum TileMode].
 	Args: [{ false id int}], Returns: enum.TileSet::TileMode
 */
 func (o *TileSet) TileGetTileMode(id gdnative.Int) TileSetTileMode {
@@ -1294,7 +1294,7 @@ func (o *TileSet) TileGetTileMode(id gdnative.Int) TileSetTileMode {
 }
 
 /*
-        Returns the tile's z-index (drawing layer).
+        Returns the tile's Z index (drawing layer).
 	Args: [{ false id int}], Returns: int
 */
 func (o *TileSet) TileGetZIndex(id gdnative.Int) gdnative.Int {
@@ -1697,7 +1697,7 @@ func (o *TileSet) TileSetTextureOffset(id gdnative.Int, textureOffset gdnative.V
 }
 
 /*
-        Sets the tile's [enum TileSet.TileMode].
+        Sets the tile's [enum TileMode].
 	Args: [{ false id int} { false tilemode int}], Returns: void
 */
 func (o *TileSet) TileSetTileMode(id gdnative.Int, tilemode gdnative.Int) {

@@ -775,7 +775,7 @@ func (o *SpatialMaterial) GetEmissionOperator() SpatialMaterialEmissionOperator 
 }
 
 /*
-        Undocumented
+
 	Args: [{ false feature int}], Returns: bool
 */
 func (o *SpatialMaterial) GetFeature(feature gdnative.Int) gdnative.Bool {
@@ -799,7 +799,7 @@ func (o *SpatialMaterial) GetFeature(feature gdnative.Int) gdnative.Bool {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *SpatialMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
@@ -1260,7 +1260,7 @@ func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Real {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int}], Returns: Texture
 */
 func (o *SpatialMaterial) GetTexture(param gdnative.Int) TextureImplementer {
@@ -2074,7 +2074,7 @@ func (o *SpatialMaterial) SetEmissionOperator(operator gdnative.Int) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false feature int} { false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetFeature(feature gdnative.Int, enable gdnative.Bool) {
@@ -2096,7 +2096,7 @@ func (o *SpatialMaterial) SetFeature(feature gdnative.Int, enable gdnative.Bool)
 }
 
 /*
-        Undocumented
+
 	Args: [{ false flag int} { false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
@@ -2559,7 +2559,7 @@ func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Real
 }
 
 /*
-        Undocumented
+
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
 func (o *SpatialMaterial) SetTexture(param gdnative.Int, texture TextureImplementer) {

@@ -61,7 +61,7 @@ func newRichTextLabelFromPointer(ptr gdnative.Pointer) RichTextLabel {
 }
 
 /*
-Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights. Note that assignments to [member bbcode_text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [member bbcode_text] will erase previous edits made from other manual sources such as [method append_bbcode] and the [code]push_*[/code] / [method pop] methods.
+Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights. [b]Note:[/b] Assignments to [member bbcode_text] clear the tag stack and reconstruct it from the property's contents. Any edits made to [member bbcode_text] will erase previous edits made from other manual sources such as [method append_bbcode] and the [code]push_*[/code] / [method pop] methods.
 */
 type RichTextLabel struct {
 	Control
@@ -136,7 +136,7 @@ func (o *RichTextLabel) AddImage(image TextureImplementer) {
 }
 
 /*
-        Adds raw non-bbcode-parsed text to the tag stack.
+        Adds raw non-BBCode-parsed text to the tag stack.
 	Args: [{ false text String}], Returns: void
 */
 func (o *RichTextLabel) AddText(text gdnative.String) {
@@ -157,7 +157,7 @@ func (o *RichTextLabel) AddText(text gdnative.String) {
 }
 
 /*
-        Parses [code]bbcode[/code] and adds tags to the tag stack as needed. Returns the result of the parsing, [code]OK[/code] if successful.
+        Parses [code]bbcode[/code] and adds tags to the tag stack as needed. Returns the result of the parsing, [constant OK] if successful.
 	Args: [{ false bbcode String}], Returns: enum.Error
 */
 func (o *RichTextLabel) AppendBbcode(bbcode gdnative.String) gdnative.Error {
@@ -339,7 +339,7 @@ func (o *RichTextLabel) GetText() gdnative.String {
 }
 
 /*
-        Returns the total number of characters from text tags. Does not include bbcodes.
+        Returns the total number of characters from text tags. Does not include BBCodes.
 	Args: [], Returns: int
 */
 func (o *RichTextLabel) GetTotalCharacterCount() gdnative.Int {
@@ -603,7 +603,7 @@ func (o *RichTextLabel) Newline() {
 }
 
 /*
-        The assignment version of [method append_bbcode]. Clears the tag stack and inserts the new content. Returns [code]OK[/code] if parses [code]bbcode[/code] successfully.
+        The assignment version of [method append_bbcode]. Clears the tag stack and inserts the new content. Returns [constant OK] if parses [code]bbcode[/code] successfully.
 	Args: [{ false bbcode String}], Returns: enum.Error
 */
 func (o *RichTextLabel) ParseBbcode(bbcode gdnative.String) gdnative.Error {
@@ -627,7 +627,7 @@ func (o *RichTextLabel) ParseBbcode(bbcode gdnative.String) gdnative.Error {
 }
 
 /*
-        Terminates the current tag. Use after [code]push_*[/code] methods to close bbcodes manually. Does not need to follow [code]add_*[/code] methods.
+        Terminates the current tag. Use after [code]push_*[/code] methods to close BBCodes manually. Does not need to follow [code]add_*[/code] methods.
 	Args: [], Returns: void
 */
 func (o *RichTextLabel) Pop() {
@@ -647,7 +647,7 @@ func (o *RichTextLabel) Pop() {
 }
 
 /*
-        Adds an alignment tag based on the given [code]align[/code] value. See [enum Align] for possible values.
+        Adds an [code][align][/code] tag based on the given [code]align[/code] value. See [enum Align] for possible values.
 	Args: [{ false align int}], Returns: void
 */
 func (o *RichTextLabel) PushAlign(align gdnative.Int) {
@@ -751,7 +751,7 @@ func (o *RichTextLabel) PushIndent(level gdnative.Int) {
 }
 
 /*
-        Adds a list tag to the tag stack. Similar to the bbcodes [code][ol][/code] or [code][ul][/code], but supports more list types. Not fully implemented!
+        Adds a [code][list][/code] tag to the tag stack. Similar to the BBCodes [code][ol][/code] or [code][ul][/code], but supports more list types. Not fully implemented!
 	Args: [{ false type int}], Returns: void
 */
 func (o *RichTextLabel) PushList(aType gdnative.Int) {
@@ -772,7 +772,7 @@ func (o *RichTextLabel) PushList(aType gdnative.Int) {
 }
 
 /*
-        Adds a meta tag to the tag stack. Similar to the bbcode [code][url=something]{text}[/url][/code], but supports non-[String] metadata types.
+        Adds a [code][meta][/code] tag to the tag stack. Similar to the BBCode [code][url=something]{text}[/url][/code], but supports non-[String] metadata types.
 	Args: [{ false data Variant}], Returns: void
 */
 func (o *RichTextLabel) PushMeta(data gdnative.Variant) {
@@ -1067,7 +1067,7 @@ func (o *RichTextLabel) SetTabSize(spaces gdnative.Int) {
 }
 
 /*
-        Edits the selected columns expansion options. If [code]expand[/code] is [code]true[/code], the column expands in proportion to its expansion ratio versus the other columns' ratios. For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively. Columns with a [code]false[/code] expand will not contribute to the total ratio.
+        Edits the selected column's expansion options. If [code]expand[/code] is [code]true[/code], the column expands in proportion to its expansion ratio versus the other columns' ratios. For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively. If [code]expand[/code] is [code]false[/code], the column will not contribute to the total ratio.
 	Args: [{ false column int} { false expand bool} { false ratio int}], Returns: void
 */
 func (o *RichTextLabel) SetTableColumnExpand(column gdnative.Int, expand gdnative.Bool, ratio gdnative.Int) {

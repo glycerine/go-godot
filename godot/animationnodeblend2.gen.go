@@ -23,8 +23,8 @@ func newAnimationNodeBlend2FromPointer(ptr gdnative.Pointer) AnimationNodeBlend2
 }
 
 /*
-
- */
+A resource to add to an [AnimationNodeBlendTree]. Blends two animations linearly based on an amount value in the [code][0.0, 1.0][/code] range.
+*/
 type AnimationNodeBlend2 struct {
 	AnimationNode
 	owner gdnative.Object

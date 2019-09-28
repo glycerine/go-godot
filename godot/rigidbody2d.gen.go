@@ -42,7 +42,7 @@ func newRigidBody2DFromPointer(ptr gdnative.Pointer) RigidBody2D {
 }
 
 /*
-This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties. A RigidBody2D has 4 behavior [member mode]s: Rigid, Static, Character, and Kinematic. [b]Note:[/b] You should not change a RigidBody2D's [code]position[/code] or [code]linear_velocity[/code] every frame or even very often. If you need to directly affect the body's state, use [method _integrate_forces], which allows you to directly access the physics state. If you need to override the default physics behavior, you can write a custom force integration. See [member custom_integrator].
+This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties. A RigidBody2D has 4 behavior [member mode]s: Rigid, Static, Character, and Kinematic. [b]Note:[/b] You should not change a RigidBody2D's [code]position[/code] or [code]linear_velocity[/code] every frame or even very often. If you need to directly affect the body's state, use [method _integrate_forces], which allows you to directly access the physics state. Please also keep in mind that physics bodies manage their own transform which overwrites the ones you set. So any direct or indirect transformation (including scaling of the node or its parent) will be visible in the editor only, and immediately reset at runtime. If you need to override the default physics behavior or add a transformation at runtime, you can write a custom force integration. See [member custom_integrator].
 */
 type RigidBody2D struct {
 	PhysicsBody2D
@@ -243,7 +243,7 @@ func (o *RigidBody2D) ApplyCentralImpulse(impulse gdnative.Vector2) {
 }
 
 /*
-        Applies a positioned impulse to the body. An impulse is time independent! Applying an impulse every frame would result in a framerate dependent force. For this reason it should only be used when simulating one-time impacts (use the "_force" functions otherwise). The position uses the rotation of the global coordinate system, but is centered at the object's origin.
+        Applies a positioned impulse to the body. An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason it should only be used when simulating one-time impacts (use the "_force" functions otherwise). The position uses the rotation of the global coordinate system, but is centered at the object's origin.
 	Args: [{ false offset Vector2} { false impulse Vector2}], Returns: void
 */
 func (o *RigidBody2D) ApplyImpulse(offset gdnative.Vector2, impulse gdnative.Vector2) {
@@ -401,7 +401,7 @@ func (o *RigidBody2D) GetBounce() gdnative.Real {
 }
 
 /*
-        Returns a list of the bodies colliding with this one. Use [member contacts_reported] to set the maximum number reported. You must also set [member contact_monitor] to [code]true[/code]. Note that the result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
+        Returns a list of the bodies colliding with this one. Use [member contacts_reported] to set the maximum number reported. You must also set [member contact_monitor] to [code]true[/code]. [b]Note:[/b] The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [], Returns: Array
 */
 func (o *RigidBody2D) GetCollidingBodies() gdnative.Array {

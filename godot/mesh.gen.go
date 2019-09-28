@@ -88,7 +88,7 @@ func newMeshFromPointer(ptr gdnative.Pointer) Mesh {
 }
 
 /*
-Mesh is a type of [Resource] that contains vertex-array based geometry, divided in [i]surfaces[/i]. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
+Mesh is a type of [Resource] that contains vertex array-based geometry, divided in [i]surfaces[/i]. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
 */
 type Mesh struct {
 	Resource
@@ -137,7 +137,7 @@ func (o *Mesh) CreateConvexShape() ShapeImplementer {
 }
 
 /*
-        Calculate an outline mesh at a defined offset (margin) from the original mesh. Note: Typically returns the vertices in reverse order (e.g. clockwise to anti-clockwise).
+        Calculate an outline mesh at a defined offset (margin) from the original mesh. [b]Note:[/b] This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
 	Args: [{ false margin float}], Returns: Mesh
 */
 func (o *Mesh) CreateOutline(margin gdnative.Real) MeshImplementer {
@@ -295,7 +295,7 @@ func (o *Mesh) GetLightmapSizeHint() gdnative.Vector2 {
 }
 
 /*
-        Return the amount of surfaces that the [code]Mesh[/code] holds.
+        Returns the amount of surfaces that the [Mesh] holds.
 	Args: [], Returns: int
 */
 func (o *Mesh) GetSurfaceCount() gdnative.Int {
@@ -387,7 +387,7 @@ func (o *Mesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) gdnative.Array {
 }
 
 /*
-        Return a [Material] in a given surface. Surface is rendered using this material.
+        Returns a [Material] in a given surface. Surface is rendered using this material.
 	Args: [{ false surf_idx int}], Returns: Material
 */
 func (o *Mesh) SurfaceGetMaterial(surfIdx gdnative.Int) MaterialImplementer {

@@ -146,7 +146,7 @@ func (o *PhysicsBody) GetCollisionLayer() gdnative.Int {
 }
 
 /*
-        Returns an individual bit on the collision mask.
+        Returns an individual bit on the [member collision_layer].
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *PhysicsBody) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
@@ -193,7 +193,7 @@ func (o *PhysicsBody) GetCollisionMask() gdnative.Int {
 }
 
 /*
-        Returns an individual bit on the collision mask.
+        Returns an individual bit on the [member collision_mask].
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *PhysicsBody) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
@@ -259,7 +259,7 @@ func (o *PhysicsBody) SetCollisionLayer(layer gdnative.Int) {
 }
 
 /*
-        Sets individual bits on the layer mask. Use this if you only need to change one layer's value.
+        Sets individual bits on the [member collision_layer] bitmask. Use this if you only need to change one layer's value.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *PhysicsBody) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
@@ -302,7 +302,7 @@ func (o *PhysicsBody) SetCollisionMask(mask gdnative.Int) {
 }
 
 /*
-        Sets individual bits on the collision mask. Use this if you only need to change one layer's value.
+        Sets individual bits on the [member collision_mask] bitmask. Use this if you only need to change one layer's value.
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *PhysicsBody) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {

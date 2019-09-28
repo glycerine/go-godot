@@ -343,7 +343,7 @@ func (o *ColorPicker) X_WInput(arg0 InputEventImplementer) {
 }
 
 /*
-        Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them. Note: the presets list is only for [i]this[/i] color picker.
+        Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them. [b]Note:[/b] the presets list is only for [i]this[/i] color picker.
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ColorPicker) AddPreset(color gdnative.Color) {
@@ -364,7 +364,7 @@ func (o *ColorPicker) AddPreset(color gdnative.Color) {
 }
 
 /*
-        Remove the given color from the list of color presets of this color picker.
+        Removes the given color from the list of color presets of this color picker.
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ColorPicker) ErasePreset(color gdnative.Color) {
@@ -408,7 +408,7 @@ func (o *ColorPicker) GetPickColor() gdnative.Color {
 }
 
 /*
-        Return the list of colors in the presets of the color picker.
+        Returns the list of colors in the presets of the color picker.
 	Args: [], Returns: PoolColorArray
 */
 func (o *ColorPicker) GetPresets() gdnative.PoolColorArray {

@@ -43,7 +43,7 @@ func newTreeItemFromPointer(ptr gdnative.Pointer) TreeItem {
 }
 
 /*
-Control for a single item inside a [Tree]. May have child [code]TreeItem[/code]s and be styled as well as contain buttons.
+Control for a single item inside a [Tree]. May have child [TreeItem]s and be styled as well as contain buttons.
 */
 type TreeItem struct {
 	Object
@@ -228,7 +228,7 @@ func (o *TreeItem) GetButtonCount(column gdnative.Int) gdnative.Int {
 }
 
 /*
-        Returns the column's cell mode. See [code]CELL_MODE_*[/code] constants.
+        Returns the column's cell mode.
 	Args: [{ false column int}], Returns: enum.TreeItem::TreeCellMode
 */
 func (o *TreeItem) GetCellMode(column gdnative.Int) TreeItemTreeCellMode {
@@ -507,7 +507,7 @@ func (o *TreeItem) GetNext() TreeItemImplementer {
 }
 
 /*
-        Returns the next visible TreeItem in the tree.
+        Returns the next visible TreeItem in the tree. If [code]wrap[/code] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns [code]null[/code].
 	Args: [], Returns: TreeItem
 */
 func (o *TreeItem) GetNextVisible() TreeItemImplementer {
@@ -618,7 +618,7 @@ func (o *TreeItem) GetPrev() TreeItemImplementer {
 }
 
 /*
-        Returns the previous visible TreeItem in the tree.
+        Returns the previous visible TreeItem in the tree. If [code]wrap[/code] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns [code]null[/code].
 	Args: [], Returns: TreeItem
 */
 func (o *TreeItem) GetPrevVisible() TreeItemImplementer {
@@ -1491,7 +1491,7 @@ func (o *TreeItem) SetText(column gdnative.Int, text gdnative.String) {
 }
 
 /*
-        Sets the given column's text alignment. See [code]ALIGN_*[/code] constants.
+        Sets the given column's text alignment. See [enum TextAlign] for possible values.
 	Args: [{ false column int} { false text_align int}], Returns: void
 */
 func (o *TreeItem) SetTextAlign(column gdnative.Int, textAlign gdnative.Int) {

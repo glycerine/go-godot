@@ -23,8 +23,8 @@ func newResourceFormatDDSFromPointer(ptr gdnative.Pointer) ResourceFormatDDS {
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatDDS struct {
 	ResourceFormatLoader
 	owner gdnative.Object

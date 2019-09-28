@@ -23,7 +23,7 @@ func newResourceFormatSaverFromPointer(ptr gdnative.Pointer) ResourceFormatSaver
 }
 
 /*
-The engine can save resources when you do it from the editor, or when you call [method ResourceSaver.save]. This is accomplished with multiple [code]ResourceFormatSaver[/code]s, each handling its own format. By default, Godot saves resources as [code].tres[/code], [code].res[/code] or another built-in format, but you can choose to create your own format by extending this class. You should give it a global class name with [code]class_name[/code] for it to be registered. You may as well implement a [ResourceFormatLoader].
+The engine can save resources when you do it from the editor, or when you use the [ResourceSaver] singleton. This is accomplished thanks to multiple [ResourceFormatSaver]s, each handling its own format and called automatically by the engine. By default, Godot saves resources as [code].tres[/code] (text-based), [code].res[/code] (binary) or another built-in format, but you can choose to create your own format by extending this class. Be sure to respect the documented return types and values. You should give it a global class name with [code]class_name[/code] for it to be registered. Like built-in ResourceFormatSavers, it will be called automatically when saving resources of its recognized type(s). You may also implement a [ResourceFormatLoader].
 */
 type ResourceFormatSaver struct {
 	Reference
@@ -35,7 +35,7 @@ func (o *ResourceFormatSaver) BaseClass() string {
 }
 
 /*
-        Gets the list of extensions for files this saver is able to write.
+        Returns the list of extensions available for saving the resource object, provided it is recognized (see [method recognize]).
 	Args: [{ false resource Resource}], Returns: PoolStringArray
 */
 func (o *ResourceFormatSaver) GetRecognizedExtensions(resource ResourceImplementer) gdnative.PoolStringArray {
@@ -59,7 +59,7 @@ func (o *ResourceFormatSaver) GetRecognizedExtensions(resource ResourceImplement
 }
 
 /*
-        Returns true if the given resource object can be saved by this saver.
+        Returns whether the given resource object can be saved by this saver.
 	Args: [{ false resource Resource}], Returns: bool
 */
 func (o *ResourceFormatSaver) Recognize(resource ResourceImplementer) gdnative.Bool {
@@ -83,7 +83,7 @@ func (o *ResourceFormatSaver) Recognize(resource ResourceImplementer) gdnative.B
 }
 
 /*
-        Saves the given resource object to a file. [code]flags[/code] is a bitmask composed with [code]FLAG_*[/code] constants defined in [ResourceSaver]. Returns [code]OK[/code] on success, or an [code]ERR_*[/code] constant listed in [@GlobalScope] if it failed.
+        Saves the given resource object to a file at the target [code]path[/code]. [code]flags[/code] is a bitmask composed with [enum ResourceSaver.SaverFlags] constants. Returns [constant OK] on success, or an [enum Error] constant in case of failure.
 	Args: [{ false path String} { false resource Resource} { false flags int}], Returns: int
 */
 func (o *ResourceFormatSaver) Save(path gdnative.String, resource ResourceImplementer, flags gdnative.Int) gdnative.Int {

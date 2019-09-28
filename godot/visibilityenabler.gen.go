@@ -65,7 +65,7 @@ func (o *VisibilityEnabler) X_NodeRemoved(arg0 ObjectImplementer) {
 }
 
 /*
-        Undocumented
+
 	Args: [{ false enabler int}], Returns: bool
 */
 func (o *VisibilityEnabler) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bool {
@@ -89,7 +89,7 @@ func (o *VisibilityEnabler) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bool
 }
 
 /*
-        Undocumented
+
 	Args: [{ false enabler int} { false enabled bool}], Returns: void
 */
 func (o *VisibilityEnabler) SetEnabler(enabler gdnative.Int, enabled gdnative.Bool) {

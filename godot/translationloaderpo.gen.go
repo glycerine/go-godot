@@ -23,8 +23,8 @@ func newTranslationLoaderPOFromPointer(ptr gdnative.Pointer) TranslationLoaderPO
 }
 
 /*
-
- */
+Undocumented
+*/
 type TranslationLoaderPO struct {
 	ResourceFormatLoader
 	owner gdnative.Object

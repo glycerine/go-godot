@@ -667,7 +667,7 @@ func (o *EditorFileDialog) X_UpdateFileList() {
 }
 
 /*
-        Adds a comma-delimited file extension filter option to the [code]EditorFileDialog[/code] with an optional semi-colon-delimited label. Example: "*.tscn, *.scn; Scenes", results in filter text "Scenes (*.tscn, *.scn)".
+        Adds a comma-delimited file extension filter option to the [EditorFileDialog] with an optional semi-colon-delimited label. For example, [code]"*.tscn, *.scn; Scenes"[/code] results in filter text "Scenes (*.tscn, *.scn)".
 	Args: [{ false filter String}], Returns: void
 */
 func (o *EditorFileDialog) AddFilter(filter gdnative.String) {
@@ -883,7 +883,7 @@ func (o *EditorFileDialog) GetVbox() VBoxContainerImplementer {
 }
 
 /*
-        Notify the [code]EditorFileDialog[/code] that its view of the data is no longer accurate. Updates the view contents on next view update.
+        Notify the [EditorFileDialog] that its view of the data is no longer accurate. Updates the view contents on next view update.
 	Args: [], Returns: void
 */
 func (o *EditorFileDialog) Invalidate() {

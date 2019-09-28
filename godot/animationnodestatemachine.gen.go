@@ -23,8 +23,8 @@ func newAnimationNodeStateMachineFromPointer(ptr gdnative.Pointer) AnimationNode
 }
 
 /*
-
- */
+Contains multiple nodes representing animation states, connected in a graph. Node transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the AnimationNodeStateMachinePlayback object from the [AnimationTree] node to control it programmatically. [b]Example:[/b] [codeblock] var state_machine = $AnimationTree.get("parameters/playback") state_machine.travel("some_state") [/codeblock]
+*/
 type AnimationNodeStateMachine struct {
 	AnimationRootNode
 	owner gdnative.Object
@@ -55,7 +55,7 @@ func (o *AnimationNodeStateMachine) X_TreeChanged() {
 }
 
 /*
-
+        Adds a new node to the graph. The [code]position[/code] is used for display in the editor.
 	Args: [{ false name String} { false node AnimationNode} {(0, 0) true position Vector2}], Returns: void
 */
 func (o *AnimationNodeStateMachine) AddNode(name gdnative.String, node AnimationNodeImplementer, position gdnative.Vector2) {
@@ -78,7 +78,7 @@ func (o *AnimationNodeStateMachine) AddNode(name gdnative.String, node Animation
 }
 
 /*
-
+        Adds a transition between the given nodes.
 	Args: [{ false from String} { false to String} { false transition AnimationNodeStateMachineTransition}], Returns: void
 */
 func (o *AnimationNodeStateMachine) AddTransition(from gdnative.String, to gdnative.String, transition AnimationNodeStateMachineTransitionImplementer) {
@@ -101,7 +101,7 @@ func (o *AnimationNodeStateMachine) AddTransition(from gdnative.String, to gdnat
 }
 
 /*
-
+        Returns the graph's end node.
 	Args: [], Returns: String
 */
 func (o *AnimationNodeStateMachine) GetEndNode() gdnative.String {
@@ -124,7 +124,7 @@ func (o *AnimationNodeStateMachine) GetEndNode() gdnative.String {
 }
 
 /*
-
+        Returns the draw offset of the graph. Used for display in the editor.
 	Args: [], Returns: Vector2
 */
 func (o *AnimationNodeStateMachine) GetGraphOffset() gdnative.Vector2 {
@@ -147,7 +147,7 @@ func (o *AnimationNodeStateMachine) GetGraphOffset() gdnative.Vector2 {
 }
 
 /*
-
+        Returns the animation node with the given name.
 	Args: [{ false name String}], Returns: AnimationNode
 */
 func (o *AnimationNodeStateMachine) GetNode(name gdnative.String) AnimationNodeImplementer {
@@ -185,7 +185,7 @@ func (o *AnimationNodeStateMachine) GetNode(name gdnative.String) AnimationNodeI
 }
 
 /*
-
+        Returns the given animation node's name.
 	Args: [{ false node AnimationNode}], Returns: String
 */
 func (o *AnimationNodeStateMachine) GetNodeName(node AnimationNodeImplementer) gdnative.String {
@@ -209,7 +209,7 @@ func (o *AnimationNodeStateMachine) GetNodeName(node AnimationNodeImplementer) g
 }
 
 /*
-
+        Returns the given node's coordinates. Used for display in the editor.
 	Args: [{ false name String}], Returns: Vector2
 */
 func (o *AnimationNodeStateMachine) GetNodePosition(name gdnative.String) gdnative.Vector2 {
@@ -233,7 +233,7 @@ func (o *AnimationNodeStateMachine) GetNodePosition(name gdnative.String) gdnati
 }
 
 /*
-
+        Returns the graph's end node.
 	Args: [], Returns: String
 */
 func (o *AnimationNodeStateMachine) GetStartNode() gdnative.String {
@@ -256,7 +256,7 @@ func (o *AnimationNodeStateMachine) GetStartNode() gdnative.String {
 }
 
 /*
-
+        Returns the given transition.
 	Args: [{ false idx int}], Returns: AnimationNodeStateMachineTransition
 */
 func (o *AnimationNodeStateMachine) GetTransition(idx gdnative.Int) AnimationNodeStateMachineTransitionImplementer {
@@ -294,7 +294,7 @@ func (o *AnimationNodeStateMachine) GetTransition(idx gdnative.Int) AnimationNod
 }
 
 /*
-
+        Returns the number of connections in the graph.
 	Args: [], Returns: int
 */
 func (o *AnimationNodeStateMachine) GetTransitionCount() gdnative.Int {
@@ -317,7 +317,7 @@ func (o *AnimationNodeStateMachine) GetTransitionCount() gdnative.Int {
 }
 
 /*
-
+        Returns the given transition's start node.
 	Args: [{ false idx int}], Returns: String
 */
 func (o *AnimationNodeStateMachine) GetTransitionFrom(idx gdnative.Int) gdnative.String {
@@ -341,7 +341,7 @@ func (o *AnimationNodeStateMachine) GetTransitionFrom(idx gdnative.Int) gdnative
 }
 
 /*
-
+        Returns the given transition's end node.
 	Args: [{ false idx int}], Returns: String
 */
 func (o *AnimationNodeStateMachine) GetTransitionTo(idx gdnative.Int) gdnative.String {
@@ -365,7 +365,7 @@ func (o *AnimationNodeStateMachine) GetTransitionTo(idx gdnative.Int) gdnative.S
 }
 
 /*
-
+        Returns [code]true[/code] if the graph contains the given node.
 	Args: [{ false name String}], Returns: bool
 */
 func (o *AnimationNodeStateMachine) HasNode(name gdnative.String) gdnative.Bool {
@@ -389,7 +389,7 @@ func (o *AnimationNodeStateMachine) HasNode(name gdnative.String) gdnative.Bool 
 }
 
 /*
-
+        Returns [code]true[/code] if there is a transition between the given nodes.
 	Args: [{ false from String} { false to String}], Returns: bool
 */
 func (o *AnimationNodeStateMachine) HasTransition(from gdnative.String, to gdnative.String) gdnative.Bool {
@@ -414,7 +414,7 @@ func (o *AnimationNodeStateMachine) HasTransition(from gdnative.String, to gdnat
 }
 
 /*
-
+        Deletes the given node from the graph.
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationNodeStateMachine) RemoveNode(name gdnative.String) {
@@ -435,7 +435,7 @@ func (o *AnimationNodeStateMachine) RemoveNode(name gdnative.String) {
 }
 
 /*
-
+        Deletes the given transition.
 	Args: [{ false from String} { false to String}], Returns: void
 */
 func (o *AnimationNodeStateMachine) RemoveTransition(from gdnative.String, to gdnative.String) {
@@ -457,7 +457,7 @@ func (o *AnimationNodeStateMachine) RemoveTransition(from gdnative.String, to gd
 }
 
 /*
-
+        Deletes the given transition.
 	Args: [{ false idx int}], Returns: void
 */
 func (o *AnimationNodeStateMachine) RemoveTransitionByIndex(idx gdnative.Int) {
@@ -478,7 +478,7 @@ func (o *AnimationNodeStateMachine) RemoveTransitionByIndex(idx gdnative.Int) {
 }
 
 /*
-
+        Renames the given node.
 	Args: [{ false name String} { false new_name String}], Returns: void
 */
 func (o *AnimationNodeStateMachine) RenameNode(name gdnative.String, newName gdnative.String) {
@@ -500,7 +500,7 @@ func (o *AnimationNodeStateMachine) RenameNode(name gdnative.String, newName gdn
 }
 
 /*
-
+        Sets the given node as the graph end point.
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationNodeStateMachine) SetEndNode(name gdnative.String) {
@@ -521,7 +521,7 @@ func (o *AnimationNodeStateMachine) SetEndNode(name gdnative.String) {
 }
 
 /*
-
+        Sets the draw offset of the graph. Used for display in the editor.
 	Args: [{ false name Vector2}], Returns: void
 */
 func (o *AnimationNodeStateMachine) SetGraphOffset(name gdnative.Vector2) {
@@ -542,7 +542,7 @@ func (o *AnimationNodeStateMachine) SetGraphOffset(name gdnative.Vector2) {
 }
 
 /*
-
+        Sets the node's coordinates. Used for display in the editor.
 	Args: [{ false name String} { false position Vector2}], Returns: void
 */
 func (o *AnimationNodeStateMachine) SetNodePosition(name gdnative.String, position gdnative.Vector2) {
@@ -564,7 +564,7 @@ func (o *AnimationNodeStateMachine) SetNodePosition(name gdnative.String, positi
 }
 
 /*
-
+        Sets the given node as the graph start point.
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationNodeStateMachine) SetStartNode(name gdnative.String) {

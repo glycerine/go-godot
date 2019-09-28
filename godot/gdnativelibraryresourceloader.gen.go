@@ -23,8 +23,8 @@ func newGDNativeLibraryResourceLoaderFromPointer(ptr gdnative.Pointer) GDNativeL
 }
 
 /*
-
- */
+Undocumented
+*/
 type GDNativeLibraryResourceLoader struct {
 	ResourceFormatLoader
 	owner gdnative.Object

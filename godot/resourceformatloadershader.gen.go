@@ -23,8 +23,8 @@ func newResourceFormatLoaderShaderFromPointer(ptr gdnative.Pointer) ResourceForm
 }
 
 /*
-
- */
+Undocumented
+*/
 type ResourceFormatLoaderShader struct {
 	ResourceFormatLoader
 	owner gdnative.Object

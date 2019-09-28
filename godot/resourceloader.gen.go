@@ -27,12 +27,12 @@ func newSingletonResourceLoader() *resourceLoader {
 }
 
 /*
-   Resource Loader. This is a static object accessible as [code]ResourceLoader[/code]. GDScript has a simplified load() function, though.
+   Singleton used to load resource files from the filesystem. It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine. GDScript has a simplified [method @GDScript.load] built-in method which can be used in most situations, leaving the use of [ResourceLoader] for more advanced scenarios.
 */
 var ResourceLoader = newSingletonResourceLoader()
 
 /*
-Resource Loader. This is a static object accessible as [code]ResourceLoader[/code]. GDScript has a simplified load() function, though.
+Singleton used to load resource files from the filesystem. It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine. GDScript has a simplified [method @GDScript.load] built-in method which can be used in most situations, leaving the use of [ResourceLoader] for more advanced scenarios.
 */
 type resourceLoader struct {
 	Object

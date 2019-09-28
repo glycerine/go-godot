@@ -23,7 +23,7 @@ func newGraphEditFromPointer(ptr gdnative.Pointer) GraphEdit {
 }
 
 /*
-GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [member OS.low_processor_usage_mode]) when using GraphEdits.
+GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNode slots is disabled by default. It is greatly advised to enable low-processor usage mode (see [member OS.low_processor_usage_mode]) when using GraphEdits.
 */
 type GraphEdit struct {
 	Control
@@ -365,7 +365,7 @@ func (o *GraphEdit) AddValidRightDisconnectType(aType gdnative.Int) {
 }
 
 /*
-        Remove all connections between nodes.
+        Removes all connections between nodes.
 	Args: [], Returns: void
 */
 func (o *GraphEdit) ClearConnections() {
@@ -385,7 +385,7 @@ func (o *GraphEdit) ClearConnections() {
 }
 
 /*
-        Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
+        Create a connection between the [code]from_port[/code] slot of the [code]from[/code] GraphNode and the [code]to_port[/code] slot of the [code]to[/code] GraphNode. If the connection already exists, no connection is created.
 	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: enum.Error
 */
 func (o *GraphEdit) ConnectNode(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Error {
@@ -412,7 +412,7 @@ func (o *GraphEdit) ConnectNode(from gdnative.String, fromPort gdnative.Int, to 
 }
 
 /*
-        Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
+        Removes the connection between the [code]from_port[/code] slot of the [code]from[/code] GraphNode and the [code]to_port[/code] slot of the [code]to[/code] GraphNode. If the connection does not exist, no connection is removed.
 	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: void
 */
 func (o *GraphEdit) DisconnectNode(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) {
@@ -436,7 +436,7 @@ func (o *GraphEdit) DisconnectNode(from gdnative.String, fromPort gdnative.Int, 
 }
 
 /*
-        Return an Array containing the list of connections. A connection consists in a structure of the form {from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }
+        Returns an Array containing the list of connections. A connection consists in a structure of the form [code]{ from_port: 0, from: "GraphNode name 0", to_port: 1, to: "GraphNode name 1" }[/code].
 	Args: [], Returns: Array
 */
 func (o *GraphEdit) GetConnectionList() gdnative.Array {
@@ -565,7 +565,7 @@ func (o *GraphEdit) GetZoomHbox() HBoxContainerImplementer {
 }
 
 /*
-        Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
+        Returns [code]true[/code] if the [code]from_port[/code] slot of the [code]from[/code] GraphNode is connected to the [code]to_port[/code] slot of the [code]to[/code] GraphNode.
 	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: bool
 */
 func (o *GraphEdit) IsNodeConnected(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Bool {

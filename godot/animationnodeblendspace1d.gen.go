@@ -23,8 +23,8 @@ func newAnimationNodeBlendSpace1DFromPointer(ptr gdnative.Pointer) AnimationNode
 }
 
 /*
-
- */
+A resource to add to an [AnimationNodeBlendTree]. This is a virtual axis on which you can add any type of [AnimationNode] using [method add_blend_point]. Outputs the linear blend of the two [code]AnimationNode[/code] closest to the node's current [code]value[/code]. You can set the extents of the axis using the [member min_space] and [member max_space].
+*/
 type AnimationNodeBlendSpace1D struct {
 	AnimationRootNode
 	owner gdnative.Object
@@ -77,7 +77,7 @@ func (o *AnimationNodeBlendSpace1D) X_TreeChanged() {
 }
 
 /*
-
+        Adds a new point that represents a [code]node[/code] on the virtual axis at a given position set by [code]pos[/code]. You can insert it at a specific index using the [code]at_index[/code] argument. If you use the default value for [code]at_index[/code] , the point is inserted at the end of the blend points array.
 	Args: [{ false node AnimationRootNode} { false pos float} {-1 true at_index int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace1D) AddBlendPoint(node AnimationRootNodeImplementer, pos gdnative.Real, atIndex gdnative.Int) {
@@ -100,7 +100,7 @@ func (o *AnimationNodeBlendSpace1D) AddBlendPoint(node AnimationRootNodeImplemen
 }
 
 /*
-
+        Returns the number of points on the blend axis.
 	Args: [], Returns: int
 */
 func (o *AnimationNodeBlendSpace1D) GetBlendPointCount() gdnative.Int {
@@ -123,7 +123,7 @@ func (o *AnimationNodeBlendSpace1D) GetBlendPointCount() gdnative.Int {
 }
 
 /*
-
+        Returns the [code]AnimationNode[/code] referenced by the point at index [code]point[/code].
 	Args: [{ false point int}], Returns: AnimationRootNode
 */
 func (o *AnimationNodeBlendSpace1D) GetBlendPointNode(point gdnative.Int) AnimationRootNodeImplementer {
@@ -161,7 +161,7 @@ func (o *AnimationNodeBlendSpace1D) GetBlendPointNode(point gdnative.Int) Animat
 }
 
 /*
-
+        Returns the position of the point at index [code]point[/code].
 	Args: [{ false point int}], Returns: float
 */
 func (o *AnimationNodeBlendSpace1D) GetBlendPointPosition(point gdnative.Int) gdnative.Real {
@@ -277,7 +277,7 @@ func (o *AnimationNodeBlendSpace1D) GetValueLabel() gdnative.String {
 }
 
 /*
-
+        Removes the point at index [code]point[/code] from the blend axis.
 	Args: [{ false point int}], Returns: void
 */
 func (o *AnimationNodeBlendSpace1D) RemoveBlendPoint(point gdnative.Int) {
@@ -298,7 +298,7 @@ func (o *AnimationNodeBlendSpace1D) RemoveBlendPoint(point gdnative.Int) {
 }
 
 /*
-
+        Changes the AnimationNode referenced by the point at index [code]point[/code].
 	Args: [{ false point int} { false node AnimationRootNode}], Returns: void
 */
 func (o *AnimationNodeBlendSpace1D) SetBlendPointNode(point gdnative.Int, node AnimationRootNodeImplementer) {
@@ -320,7 +320,7 @@ func (o *AnimationNodeBlendSpace1D) SetBlendPointNode(point gdnative.Int, node A
 }
 
 /*
-
+        Updates the position of the point at index [code]point[/code] on the blend axis.
 	Args: [{ false point int} { false pos float}], Returns: void
 */
 func (o *AnimationNodeBlendSpace1D) SetBlendPointPosition(point gdnative.Int, pos gdnative.Real) {
